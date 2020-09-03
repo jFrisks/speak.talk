@@ -1,0 +1,5 @@
+for apa = 2.0 until not 7.0 do
+    if apa then
+        lucas = 2.0
+    fi
+od
