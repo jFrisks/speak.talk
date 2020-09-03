@@ -19,60 +19,83 @@ public class LangParser extends beaver.Parser {
 
   public static class Terminals {
     public static final short EOF = 0;
-    public static final short MUL = 1;
-    public static final short IN = 2;
-    public static final short END = 3;
-    public static final short ID = 4;
-    public static final short LET = 5;
-    public static final short NUMERAL = 6;
-    public static final short ASSIGN = 7;
+    public static final short OD = 1;
+    public static final short FI = 2;
+    public static final short ID = 3;
+    public static final short THEN = 4;
+    public static final short DO = 5;
+    public static final short UNTIL = 6;
+    public static final short NUMERAL = 7;
+    public static final short NOT = 8;
+    public static final short FOR = 9;
+    public static final short ASSIGN = 10;
+    public static final short IF = 11;
 
     public static final String[] NAMES = {
         "EOF",
-        "MUL",
-        "IN",
-        "END",
+        "OD",
+        "FI",
         "ID",
-        "LET",
+        "THEN",
+        "DO",
+        "UNTIL",
         "NUMERAL",
+        "NOT",
+        "FOR",
         "ASSIGN",
+        "IF",
     };
   }
 
   private final Action[] actions = {
-    Action.RETURN, // [0] numeral =  NUMERAL (default action: return symbol 1)
-    Action.RETURN, // [1] factor =  numeral (default action: return symbol 1)
-    Action.RETURN, // [2] exp =  factor (default action: return symbol 1)
-    Action.RETURN, // [3] id =  ID (default action: return symbol 1)
-    Action.RETURN, // [4] program =  exp (default action: return symbol 1)
-    new Action() { // [5] GOAL =  program EOF
+    Action.RETURN, // [0] stmt =  forStmt (default action: return symbol 1)
+    Action.RETURN, // [1] id =  ID (default action: return symbol 1)
+    Action.RETURN, // [2] program =  stmt (default action: return symbol 1)
+    new Action() { // [3] GOAL =  program EOF
       public Symbol reduce(Symbol[] _symbols, int offset) {
         final Symbol program = _symbols[offset + 1];
         final Symbol sym2 = _symbols[offset + 2];
         return program;
       }
     },
-    RETURN3, // [6] exp =  exp MUL factor (default action: return symbol 3)
-    RETURN7, // [7] let =  LET id ASSIGN exp IN exp END (default action: return symbol 7)
+    Action.RETURN, // [4] expr =  numeral (default action: return symbol 1)
+    Action.RETURN, // [5] numeral =  NUMERAL (default action: return symbol 1)
+    RETURN3, // [6] assignment =  id ASSIGN expr (default action: return symbol 3)
+    RETURN2, // [7] expr =  NOT expr (default action: return symbol 2)
+    RETURN5, // [8] ifStmt =  IF expr THEN stmt FI (default action: return symbol 5)
+    RETURN9, // [9] forStmt =  FOR id ASSIGN expr UNTIL expr DO stmt OD (default action: return symbol 9)
   };
 
+      static final Action RETURN2 = new Action() {
+        public Symbol reduce(Symbol[] _symbols, int offset) {
+          return _symbols[offset + 2];
+        }
+      };
       static final Action RETURN3 = new Action() {
         public Symbol reduce(Symbol[] _symbols, int offset) {
           return _symbols[offset + 3];
         }
       };
-      static final Action RETURN7 = new Action() {
+      static final Action RETURN5 = new Action() {
         public Symbol reduce(Symbol[] _symbols, int offset) {
-          return _symbols[offset + 7];
+          return _symbols[offset + 5];
+        }
+      };
+      static final Action RETURN9 = new Action() {
+        public Symbol reduce(Symbol[] _symbols, int offset) {
+          return _symbols[offset + 9];
         }
       };
   static final ParsingTables PARSING_TABLES = new ParsingTables(
-    "U9oDaxrImp0GX5Tn82742Kdy09JGKL8oLF0659Gy01qDCqb7coBloayCuhCa2oicXhlPiLR" +
-    "QrS$TMD96G$NLqx6EbEb0Knj28UoNpvgZzyf3ZJImhxlhzjDdr8#Z$iIjbpw3kcpvjygZOy" +
-    "x4H4dOZvI7##$bzjrddCWrw$JdOD7ml$b4LTrewDu$ebwImPSrwfNoVbIEsNFofru$#lQw1" +
-    "h$w6mvwaGGtJxcxVmVVtH$MwJSWQ$lv5Ykvqqlt9hc#5#0Kd84BS0ckm0su1NVW7Zo0H$04" +
-    "di4BMAzyAsPBDbtwuxRrU1$2#USrPtpT61VwVrHLDbJPqCcgveP#6ZhQWsVLNw3fDvpg72a" +
-    "=");
+    "U9oTb3jI0p4CXkMyDhlPGCW30Y5aXc6ewAWewUXeA9c10p1S0GfQRi01E00jFHVW1Xo09k4" +
+    "TyqlniawyJaZa#InPevMrOyj4wem2gj0oBL6TY7AW18eWe0ALAQH8zoal4KrYYSLkoRmcSu" +
+    "VTMaI#9FcoJP6ighBgOZKkWT4rMh7TUiWZrIFVNtv7z8$hi#fnfU69$yxsU#lyuf7gcVvF7" +
+    "gcUbPzMvwpdWuSRhjzvfDh9mvASEykwPz#DEUjvuv4HlpaZpsGzMzdXUi03DpF6gD8IpZe4" +
+    "5H03lh5SKHtdtKmYv3w8RS$6hx1hB7Ro9UU9afKU4yeR7L1vp2zve0ku#oNZYrB$f2JtrFL" +
+    "xuYDVlCS$HvqB#Ntv2ulLu$xNz7t5DkSkTabdIbRkXUefJi$ZrACyyQFxHjIx9ZaxViL2q0" +
+    "OxO1SSW2Dm0ix11RW4D#0Mt85xy00UmHDu1Y$W5U0rKDX3uMLNNR07zi4XE0QdPkyXw5zXI" +
+    "e0CxBKDT#h4kcfqpV9rBBjXsTkMtVEy1F#N29sfqCKAFQxGwJdqj49FA$Hi7dOENLn41uVK" +
+    "#WMl4AUH");
 
   public LangParser() {
     super(PARSING_TABLES);
