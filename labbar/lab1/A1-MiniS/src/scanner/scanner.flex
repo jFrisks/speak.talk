@@ -37,11 +37,15 @@ Numeral = [0-9]+ "." [0-9]+
 {WhiteSpace}  { }
 
 // token definitions
-"let"         { return sym(Terminals.LET); }
-"in"          { return sym(Terminals.IN); }
-"end"         { return sym(Terminals.END); }
+"for"         { return sym(Terminals.FOR); }
+"until"       { return sym(Terminals.UNTIL);}
+"do"          { return sym(Terminals.DO);}
+"od"          { return sym(Terminals.OD);}
+"if"          { return sym(Terminals.IF);}
+"fi"          { return sym(Terminals.FI);}
+"then"        { return sym(Terminals.THEN);}
+"not"         { return sym(Terminals.NOT);}
 "="           { return sym(Terminals.ASSIGN); }
-"*"           { return sym(Terminals.MUL); }
 {ID}          { return sym(Terminals.ID); }
 {Numeral}     { return sym(Terminals.NUMERAL); }
 <<EOF>>       { return sym(Terminals.EOF); }
