@@ -33,4 +33,22 @@ public class ParseTests {
 	public void scanningError() {
 		Util.testSyntaxError(TEST_DIRECTORY, "scanningError.in");
 	}
+
+	@Test
+	public void integerCorrect1() {
+		Util.testValidSyntax(TEST_DIRECTORY, "integerCorrect1.in");
+	}
+	@Test
+	public void integerCorrect2() {
+		Util.testValidSyntax(TEST_DIRECTORY, "integerCorrect2.in");
+	}
+	@Test
+	public void integerError1() {
+		Util.testSyntaxError(TEST_DIRECTORY, "integerError1.in");
+	}
+	@Test
+	public void integerError2() {
+		Util.testSyntaxError(TEST_DIRECTORY, "integerError2.in");
+	}
+
 }
