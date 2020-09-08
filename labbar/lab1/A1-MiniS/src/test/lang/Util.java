@@ -30,6 +30,9 @@ public final class Util {
   public static Object parse(File file) throws Exception {
     LangScanner scanner = new LangScanner(new FileReader(file));
     LangParser parser = new LangParser();
+    //RecursiveDescentParser parser = new RecursiveDescentParser();
+    parser.parse(scanner);
+    //return null;
     return parser.parse(scanner);
   }
 
