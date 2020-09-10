@@ -1,0 +1,9 @@
+let
+  jonte = 1.0
+  lucas = 2.0
+  elias = 3.0
+  keiwan = 4.0
+  ivar = 5.0
+in
+  jonte * lucas * elias * keiwan * ivar
+end
