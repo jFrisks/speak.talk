@@ -22,32 +22,32 @@ public class LangParser extends beaver.Parser {
     public static final short INT = 1;
     public static final short LPARAN = 2;
     public static final short RBRACKET = 3;
-    public static final short ID = 4;
+    public static final short LBRACKET = 4;
     public static final short RPARAN = 5;
-    public static final short LBRACKET = 6;
+    public static final short ID = 6;
 
     public static final String[] NAMES = {
         "EOF",
         "INT",
         "LPARAN",
         "RBRACKET",
-        "ID",
-        "RPARAN",
         "LBRACKET",
+        "RPARAN",
+        "ID",
     };
   }
 
   private final Action[] actions = {
-    new Action() { // [0] program =  functionCallStmtList
-      public Symbol reduce(Symbol[] _symbols, int offset) {
-        final List a = (List) _symbols[offset + 1].value;
-        return new Program(a);
-      }
-    },
-    new Action() { // [1] functionCallStmtList =  functionCallStmt
+    new Action() { // [0] functionCallStmtList =  functionCallStmt
       public Symbol reduce(Symbol[] _symbols, int offset) {
         final FunctionCallStmt a = (FunctionCallStmt) _symbols[offset + 1].value;
         return new List().add(a);
+      }
+    },
+    new Action() { // [1] program =  functionCallStmtList
+      public Symbol reduce(Symbol[] _symbols, int offset) {
+        final List a = (List) _symbols[offset + 1].value;
+        return new Program(a);
       }
     },
     new Action() { // [2] GOAL =  program EOF
@@ -84,10 +84,10 @@ public class LangParser extends beaver.Parser {
   };
 
   static final ParsingTables PARSING_TABLES = new ParsingTables(
-    "U9nzaB4EmZ0CH2zfqr9QaDZPs5WOcFW11cR4xy1lawOrLxKIDa8vwSKwNUn41l10YG2F0hM" +
-    "yqQA2aWZJhrOc6sLKRZ1PagHiepEiZUjCNo#ziXkJHObmgFcBXcSxpH4bNd7AbPair#TD5e" +
-    "ohCdt5RqQsBynliTIJ9pko9mTo92To9XTo9JToN$hYSnutJFKVLD9#UIEdYljptA3Z1Zshv" +
-    "yy2T#dHVG0jDyYC");
+    "U9nza34FWZ0GXLyBXOhenkRcuceStHsSZNz7$xQbM1yHmfs9VSdNzFNkuF80t56WX4qlU3Y" +
+    "iKK6gbYPHmhqvkRX1pQtKN4nHs4PrjggpJxsm6rKBAS1m8y#lrzoq#Muq2vLoWFdlLAVDp3" +
+    "bLApETnM#DR9zBQcEIddHaH$RaG8xaHCxaGgxaDis51uyPQf1#UelIZ$z4NXMJCzp4C4NBk" +
+    "#LcZbbQj1yooSYE");
 
   public LangParser() {
     super(PARSING_TABLES);

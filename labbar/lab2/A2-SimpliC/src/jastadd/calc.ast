@@ -1,3 +1,11 @@
 Program ::= FunctionCallStmt*;
 FunctionCallStmt ::= Block;
-Block ::= ;
+
+abstract Stmt;
+Block ::= Stmt*;
+IdDecl : Stmt ::= <ID>;
+Assignment : Stmt ::= IdUse Expr;
+
+abstract Expr;
+Numeral : Expr ::= <NUMERAL>;
+IdUse : Expr ::= <ID>;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="lang.TestDumpTree" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-09-11T09:57:58" hostname="Jonathans-MacBook-Pro.local" time="0.062">
+<testsuite name="lang.TestDumpTree" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-09-11T11:30:58" hostname="Lucas.local" time="0.098">
   <properties/>
-  <testcase name="runTest[functionIntEmpty.in]" classname="lang.TestDumpTree" time="0.062"/>
+  <testcase name="runTest[functionIntEmpty.in]" classname="lang.TestDumpTree" time="0.098"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
