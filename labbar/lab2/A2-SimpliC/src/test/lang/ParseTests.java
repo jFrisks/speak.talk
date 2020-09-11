@@ -13,7 +13,7 @@ public class ParseTests {
 	}
 
 	@Test public void function2IntEmpty() {
-		Util.testSyntaxError(TEST_DIRECTORY, "function2IntEmpty.in");
+		Util.testValidSyntax(TEST_DIRECTORY, "function2IntEmpty.in");
 	}
 
 	@Test public void errorFunctionBadOrder() {
