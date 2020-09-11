@@ -19,39 +19,52 @@ public class LangParser extends beaver.Parser {
 
   public static class Terminals {
     public static final short EOF = 0;
-    public static final short LPARAN = 1;
-    public static final short RBRACKET = 2;
-    public static final short ID = 3;
-    public static final short INT = 4;
+    public static final short INT = 1;
+    public static final short LPARAN = 2;
+    public static final short RBRACKET = 3;
+    public static final short ID = 4;
     public static final short RPARAN = 5;
     public static final short LBRACKET = 6;
 
     public static final String[] NAMES = {
         "EOF",
+        "INT",
         "LPARAN",
         "RBRACKET",
         "ID",
-        "INT",
         "RPARAN",
         "LBRACKET",
     };
   }
 
   private final Action[] actions = {
-    new Action() { // [0] program =  functionCallStmt
+    new Action() { // [0] program =  functionCallStmtList
       public Symbol reduce(Symbol[] _symbols, int offset) {
-        final FunctionCallStmt a = (FunctionCallStmt) _symbols[offset + 1].value;
+        final List a = (List) _symbols[offset + 1].value;
         return new Program(a);
       }
     },
-    new Action() { // [1] GOAL =  program EOF
+    new Action() { // [1] functionCallStmtList =  functionCallStmt
+      public Symbol reduce(Symbol[] _symbols, int offset) {
+        final FunctionCallStmt a = (FunctionCallStmt) _symbols[offset + 1].value;
+        return new List().add(a);
+      }
+    },
+    new Action() { // [2] GOAL =  program EOF
       public Symbol reduce(Symbol[] _symbols, int offset) {
         final Program program = (Program) _symbols[offset + 1].value;
         final Symbol sym2 = _symbols[offset + 2];
         return program;
       }
     },
-    new Action() { // [2] functionCallStmt =  INT ID LPARAN RPARAN block
+    new Action() { // [3] functionCallStmtList =  functionCallStmtList functionCallStmt
+      public Symbol reduce(Symbol[] _symbols, int offset) {
+        final List list = (List) _symbols[offset + 1].value;
+        final FunctionCallStmt b = (FunctionCallStmt) _symbols[offset + 2].value;
+        return list.add(b);
+      }
+    },
+    new Action() { // [4] functionCallStmt =  INT ID LPARAN RPARAN block
       public Symbol reduce(Symbol[] _symbols, int offset) {
         final Symbol INT = _symbols[offset + 1];
         final Symbol ID = _symbols[offset + 2];
@@ -61,7 +74,7 @@ public class LangParser extends beaver.Parser {
         return new FunctionCallStmt(b);
       }
     },
-    new Action() { // [3] block =  LBRACKET RBRACKET
+    new Action() { // [5] block =  LBRACKET RBRACKET
       public Symbol reduce(Symbol[] _symbols, int offset) {
         final Symbol LBRACKET = _symbols[offset + 1];
         final Symbol RBRACKET = _symbols[offset + 2];
@@ -71,9 +84,10 @@ public class LangParser extends beaver.Parser {
   };
 
   static final ParsingTables PARSING_TABLES = new ParsingTables(
-    "U9nzaRaEmZ0GH5ySd9EMZWg9YXz8GmkV1T$DPSP0uP52HXfBJxls7WREr0HMaExqGAHKKq9" +
-    "AHY$BR8qwey7kFIqsMkoXJbewLHheSxrKYDg81QgCeb6pS2zuJ5fVFvEhi##CkT#Dl9Ltyb" +
-    "u#o9Dyb4#$$Dj5nvppMoNd6lnNtaUbRGJjDEg70kCR6o2eH0==");
+    "U9nzaB4EmZ0CH2zfqr9QaDZPs5WOcFW11cR4xy1lawOrLxKIDa8vwSKwNUn41l10YG2F0hM" +
+    "yqQA2aWZJhrOc6sLKRZ1PagHiepEiZUjCNo#ziXkJHObmgFcBXcSxpH4bNd7AbPair#TD5e" +
+    "ohCdt5RqQsBynliTIJ9pko9mTo92To9XTo9JToN$hYSnutJFKVLD9#UIEdYljptA3Z1Zshv" +
+    "yy2T#dHVG0jDyYC");
 
   public LangParser() {
     super(PARSING_TABLES);

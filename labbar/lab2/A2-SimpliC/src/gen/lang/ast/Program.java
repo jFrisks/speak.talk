@@ -6,8 +6,8 @@ import java.lang.reflect.InvocationTargetException;
 /**
  * @ast node
  * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab2/A2-SimpliC/src/jastadd/calc.ast:1
- * @astdecl Program : ASTNode ::= FunctionCallStmt;
- * @production Program : {@link ASTNode} ::= <span class="component">{@link FunctionCallStmt}</span>;
+ * @astdecl Program : ASTNode ::= FunctionCallStmt*;
+ * @production Program : {@link ASTNode} ::= <span class="component">{@link FunctionCallStmt}*</span>;
 
  */
 public class Program extends ASTNode<ASTNode> implements Cloneable {
@@ -26,47 +26,48 @@ public class Program extends ASTNode<ASTNode> implements Cloneable {
    */
   public void init$Children() {
     children = new ASTNode[1];
+    setChild(new List(), 0);
   }
   /**
-   * @declaredat ASTNode:13
+   * @declaredat ASTNode:14
    */
   @ASTNodeAnnotation.Constructor(
     name = {"FunctionCallStmt"},
-    type = {"FunctionCallStmt"},
-    kind = {"Child"}
+    type = {"List<FunctionCallStmt>"},
+    kind = {"List"}
   )
-  public Program(FunctionCallStmt p0) {
+  public Program(List<FunctionCallStmt> p0) {
     setChild(p0, 0);
   }
   /** @apilevel low-level 
-   * @declaredat ASTNode:22
+   * @declaredat ASTNode:23
    */
   protected int numChildren() {
     return 1;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:26
+   * @declaredat ASTNode:27
    */
   public void flushAttrCache() {
     super.flushAttrCache();
 
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:31
+   * @declaredat ASTNode:32
    */
   public void flushCollectionCache() {
     super.flushCollectionCache();
 
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:36
+   * @declaredat ASTNode:37
    */
   public Program clone() throws CloneNotSupportedException {
     Program node = (Program) super.clone();
     return node;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:41
+   * @declaredat ASTNode:42
    */
   public Program copy() {
     try {
@@ -86,7 +87,7 @@ public class Program extends ASTNode<ASTNode> implements Cloneable {
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
    * @deprecated Please use treeCopy or treeCopyNoTransform instead
-   * @declaredat ASTNode:60
+   * @declaredat ASTNode:61
    */
   @Deprecated
   public Program fullCopy() {
@@ -97,7 +98,7 @@ public class Program extends ASTNode<ASTNode> implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:70
+   * @declaredat ASTNode:71
    */
   public Program treeCopyNoTransform() {
     Program tree = (Program) copy();
@@ -118,7 +119,7 @@ public class Program extends ASTNode<ASTNode> implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:90
+   * @declaredat ASTNode:91
    */
   public Program treeCopy() {
     Program tree = (Program) copy();
@@ -134,31 +135,118 @@ public class Program extends ASTNode<ASTNode> implements Cloneable {
     return tree;
   }
   /**
-   * Replaces the FunctionCallStmt child.
-   * @param node The new node to replace the FunctionCallStmt child.
+   * Replaces the FunctionCallStmt list.
+   * @param list The new list node to be used as the FunctionCallStmt list.
    * @apilevel high-level
    */
-  public Program setFunctionCallStmt(FunctionCallStmt node) {
-    setChild(node, 0);
+  public Program setFunctionCallStmtList(List<FunctionCallStmt> list) {
+    setChild(list, 0);
     return this;
   }
   /**
-   * Retrieves the FunctionCallStmt child.
-   * @return The current node used as the FunctionCallStmt child.
+   * Retrieves the number of children in the FunctionCallStmt list.
+   * @return Number of children in the FunctionCallStmt list.
    * @apilevel high-level
    */
-  @ASTNodeAnnotation.Child(name="FunctionCallStmt")
-  public FunctionCallStmt getFunctionCallStmt() {
-    return (FunctionCallStmt) getChild(0);
+  public int getNumFunctionCallStmt() {
+    return getFunctionCallStmtList().getNumChild();
   }
   /**
-   * Retrieves the FunctionCallStmt child.
-   * <p><em>This method does not invoke AST transformations.</em></p>
-   * @return The current node used as the FunctionCallStmt child.
+   * Retrieves the number of children in the FunctionCallStmt list.
+   * Calling this method will not trigger rewrites.
+   * @return Number of children in the FunctionCallStmt list.
    * @apilevel low-level
    */
-  public FunctionCallStmt getFunctionCallStmtNoTransform() {
-    return (FunctionCallStmt) getChildNoTransform(0);
+  public int getNumFunctionCallStmtNoTransform() {
+    return getFunctionCallStmtListNoTransform().getNumChildNoTransform();
+  }
+  /**
+   * Retrieves the element at index {@code i} in the FunctionCallStmt list.
+   * @param i Index of the element to return.
+   * @return The element at position {@code i} in the FunctionCallStmt list.
+   * @apilevel high-level
+   */
+  public FunctionCallStmt getFunctionCallStmt(int i) {
+    return (FunctionCallStmt) getFunctionCallStmtList().getChild(i);
+  }
+  /**
+   * Check whether the FunctionCallStmt list has any children.
+   * @return {@code true} if it has at least one child, {@code false} otherwise.
+   * @apilevel high-level
+   */
+  public boolean hasFunctionCallStmt() {
+    return getFunctionCallStmtList().getNumChild() != 0;
+  }
+  /**
+   * Append an element to the FunctionCallStmt list.
+   * @param node The element to append to the FunctionCallStmt list.
+   * @apilevel high-level
+   */
+  public Program addFunctionCallStmt(FunctionCallStmt node) {
+    List<FunctionCallStmt> list = (parent == null) ? getFunctionCallStmtListNoTransform() : getFunctionCallStmtList();
+    list.addChild(node);
+    return this;
+  }
+  /** @apilevel low-level 
+   */
+  public Program addFunctionCallStmtNoTransform(FunctionCallStmt node) {
+    List<FunctionCallStmt> list = getFunctionCallStmtListNoTransform();
+    list.addChild(node);
+    return this;
+  }
+  /**
+   * Replaces the FunctionCallStmt list element at index {@code i} with the new node {@code node}.
+   * @param node The new node to replace the old list element.
+   * @param i The list index of the node to be replaced.
+   * @apilevel high-level
+   */
+  public Program setFunctionCallStmt(FunctionCallStmt node, int i) {
+    List<FunctionCallStmt> list = getFunctionCallStmtList();
+    list.setChild(node, i);
+    return this;
+  }
+  /**
+   * Retrieves the FunctionCallStmt list.
+   * @return The node representing the FunctionCallStmt list.
+   * @apilevel high-level
+   */
+  @ASTNodeAnnotation.ListChild(name="FunctionCallStmt")
+  public List<FunctionCallStmt> getFunctionCallStmtList() {
+    List<FunctionCallStmt> list = (List<FunctionCallStmt>) getChild(0);
+    return list;
+  }
+  /**
+   * Retrieves the FunctionCallStmt list.
+   * <p><em>This method does not invoke AST transformations.</em></p>
+   * @return The node representing the FunctionCallStmt list.
+   * @apilevel low-level
+   */
+  public List<FunctionCallStmt> getFunctionCallStmtListNoTransform() {
+    return (List<FunctionCallStmt>) getChildNoTransform(0);
+  }
+  /**
+   * @return the element at index {@code i} in the FunctionCallStmt list without
+   * triggering rewrites.
+   */
+  public FunctionCallStmt getFunctionCallStmtNoTransform(int i) {
+    return (FunctionCallStmt) getFunctionCallStmtListNoTransform().getChildNoTransform(i);
+  }
+  /**
+   * Retrieves the FunctionCallStmt list.
+   * @return The node representing the FunctionCallStmt list.
+   * @apilevel high-level
+   */
+  public List<FunctionCallStmt> getFunctionCallStmts() {
+    return getFunctionCallStmtList();
+  }
+  /**
+   * Retrieves the FunctionCallStmt list.
+   * <p><em>This method does not invoke AST transformations.</em></p>
+   * @return The node representing the FunctionCallStmt list.
+   * @apilevel low-level
+   */
+  public List<FunctionCallStmt> getFunctionCallStmtsNoTransform() {
+    return getFunctionCallStmtListNoTransform();
   }
 
 }
