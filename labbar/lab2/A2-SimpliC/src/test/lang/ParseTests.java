@@ -16,8 +16,14 @@ public class ParseTests {
 		Util.testValidSyntax(TEST_DIRECTORY, "function2IntEmpty.in");
 	}
 
+	/* ERROR TESTS */
+
 	@Test public void errorFunctionBadOrder() {
 		Util.testSyntaxError(TEST_DIRECTORY, "errorFunctionBadOrder.in");
+	}
+
+	@Test public void errorFunctionString() {
+		Util.testSyntaxError(TEST_DIRECTORY, "errorFunctionString.in");
 	}
 
 }
