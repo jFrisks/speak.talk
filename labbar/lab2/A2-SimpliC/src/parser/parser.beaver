@@ -9,7 +9,7 @@
 	}
 :};
 
-%terminals ID, INT, LPARAN, RPARAN, LBRACKET, RBRACKET, NUMERAL, ASSIGN;
+%terminals ID, INT, LPARAN, RPARAN, LBRACKET, RBRACKET, NUMERAL, ASSIGN, SEMICOLON;
 
 %typeof program = "Program";
 %typeof functionCallStmt = "FunctionCallStmt";
@@ -38,11 +38,11 @@ stmtList =
   ;
 
 stmt =
-  idDecl.a {: return new IdDecl(a); :}
-  | assignment.a {: return new Assignment(a); :}
+  idDecl.a SEMICOLON {: return a; :}
+  | assignment.a SEMICOLON {: return a; :}
   ;
 
-block = LBRACKET RBRACKET {: return new Block(); :} ;
+block = LBRACKET stmtList.a RBRACKET {: return new Block(a); :} ;
 
 assignment =
   idUse.a ASSIGN expr.b {: return new Assignment(a, b); :} ;
@@ -54,7 +54,7 @@ idUse = ID.id {: return new IdUse(id); :} ;
 idDecl = INT ID.id {: return new IdDecl(id); :} ;
 
 expr =
-  numeral.a {: return new Numeral(a); :}
-  | idUse.id {: return new IdUse(id); :}
+  numeral
+  | idUse
   ;
 

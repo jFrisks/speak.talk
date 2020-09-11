@@ -11,7 +11,7 @@ Program
             IDUse
               ID="x"
             Numeral
-              ID="5"
+              NUMERAL="5"
           Assignment
             IDUse
               ID="y"

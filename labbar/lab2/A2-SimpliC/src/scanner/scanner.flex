@@ -44,6 +44,7 @@ NUMERAL = (0|[1-9][0-9]*)
 ")"           { return sym(Terminals.RPARAN);}
 "{"           { return sym(Terminals.LBRACKET);}
 "}"           { return sym(Terminals.RBRACKET);}
+";"           { return sym(Terminals.SEMICOLON);}
 <<EOF>>       { return sym(Terminals.EOF); }
 
 /* error fallback */
