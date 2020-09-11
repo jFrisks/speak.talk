@@ -13,11 +13,18 @@
 
 %typeof program = "Program";
 %typeof functionCallStmt = "FunctionCallStmt";
+%typeof functionCallStmtList = "List";
 %typeof block = "Block";
 
 
 %goal program;
 
-program = functionCallStmt.a {: return new Program(a); :} ;
+program = functionCallStmtList.list {: return new Program(list); :} ;
+
+functionCallStmtList =
+  functionCallStmt.a {: return new List().add(a); :}
+  | functionCallStmtList.a functionCallStmt.b {: return new a.add(b); :}
+  ;
+
 functionCallStmt = INT ID LPARAN RPARAN block.b {: return new FunctionCallStmt(b); :} ;
 block = LBRACKET RBRACKET {: return new Block(); :} ;
