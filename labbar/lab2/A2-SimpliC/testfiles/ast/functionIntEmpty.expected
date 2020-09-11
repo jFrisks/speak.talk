@@ -2,4 +2,4 @@ Program
   List
     FunctionCallStmt
       Block
-        null
+        List

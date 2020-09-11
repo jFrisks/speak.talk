@@ -2,5 +2,5 @@ Program ::= FunctionCallStmt*;
 FunctionCallStmt ::= Block;
 
 abstract Stmt;
-Block ::= Stmt;
-IdDecl : Stmt ::= <ID:String>;
+Block ::= Stmt*;
+IdDecl : Stmt ::= <ID>;

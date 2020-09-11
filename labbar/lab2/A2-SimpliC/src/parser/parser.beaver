@@ -15,6 +15,7 @@
 %typeof functionCallStmt = "FunctionCallStmt";
 %typeof functionCallStmtList = "List";
 %typeof stmt = "Stmt";
+%typeof stmtList = "List";
 %typeof block = "Block";
 %typeof idDecl = "Stmt";
 
@@ -31,9 +32,13 @@ functionCallStmtList =
 functionCallStmt = INT ID LPARAN RPARAN block.b {: return new FunctionCallStmt(b); :} ;
 
 block =
-    LBRACKET stmt.a RBRACKET {: return new Block(a); :}
+    LBRACKET stmtList.list RBRACKET {: return new Block(list); :}
     | LBRACKET RBRACKET {: return new Block(); :} ;
 
 stmt = idDecl.a SEMICOLON {: return a; :};
+
+stmtList =
+    stmt.a {: return new List().add(a); :}
+    | stmtList.a stmt.b {: return a.add(b); :} ;
 
 idDecl = INT ID.id {: return new IdDecl(id); :} ;
