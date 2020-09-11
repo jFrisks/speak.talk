@@ -5,7 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
 /**
  * @ast node
- * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab2/A2-CalcAST/src/jastadd/calc.ast:5
+ * @declaredat /Users/lucas/Documents/LTH/edan_new/edan65-compilers/labbar/lab2/A2-SimpliC/src/jastadd/calc.ast:10
  * @astdecl Numeral : Expr ::= <NUMERAL:String>;
  * @production Numeral : {@link Expr} ::= <span class="component">&lt;NUMERAL:{@link String}&gt;</span>;
 

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="lang.ParseTests" tests="8" skipped="0" failures="1" errors="0" timestamp="2020-09-11T11:30:58" hostname="Lucas.local" time="0.103">
+<testsuite name="lang.ParseTests" tests="8" skipped="0" failures="1" errors="0" timestamp="2020-09-11T13:02:59" hostname="Lucas.local" time="0.035">
   <properties/>
-  <testcase name="variableDeclarationAndUsesError1" classname="lang.ParseTests" time="0.005"/>
-  <testcase name="variableDeclarationAndUsesError2" classname="lang.ParseTests" time="0.006"/>
-  <testcase name="variableDeclarationAndUsesError3" classname="lang.ParseTests" time="0.002"/>
-  <testcase name="functionIntEmpty" classname="lang.ParseTests" time="0.005"/>
-  <testcase name="errorFunctionBadOrder" classname="lang.ParseTests" time="0.003"/>
-  <testcase name="variableDeclarationAndUses" classname="lang.ParseTests" time="0.062">
+  <testcase name="variableDeclarationAndUsesError1" classname="lang.ParseTests" time="0.001"/>
+  <testcase name="variableDeclarationAndUsesError2" classname="lang.ParseTests" time="0.001"/>
+  <testcase name="variableDeclarationAndUsesError3" classname="lang.ParseTests" time="0.001"/>
+  <testcase name="functionIntEmpty" classname="lang.ParseTests" time="0.001"/>
+  <testcase name="errorFunctionBadOrder" classname="lang.ParseTests" time="0.001"/>
+  <testcase name="variableDeclarationAndUses" classname="lang.ParseTests" time="0.027">
     <failure message="java.lang.AssertionError: Unexpected error while parsing 'variableDeclarationAndUses.in': Cannot recover from the syntax error" type="java.lang.AssertionError">java.lang.AssertionError: Unexpected error while parsing 'variableDeclarationAndUses.in': Cannot recover from the syntax error
 	at org.junit.Assert.fail(Assert.java:89)
 	at lang.Util.testValidSyntax(Util.java:83)

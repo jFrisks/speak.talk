@@ -9,13 +9,17 @@
 	}
 :};
 
-%terminals ID, INT, LPARAN, RPARAN, LBRACKET, RBRACKET;
+%terminals ID, INT, LPARAN, RPARAN, LBRACKET, RBRACKET, NUMERAL, ASSIGN;
 
 %typeof program = "Program";
 %typeof functionCallStmt = "FunctionCallStmt";
 %typeof functionCallStmtList = "List";
+%typeof stmtList = "List";
 %typeof block = "Block";
-
+%typeof idDecl = "Stmt";
+%typeof idUse = "Expr";
+%typeof assignment = "Stmt";
+%typeof numeral = "Expr";
 
 %goal program;
 
@@ -28,6 +32,29 @@ functionCallStmtList =
 
 functionCallStmt = INT ID LPARAN RPARAN block.b {: return new FunctionCallStmt(b); :} ;
 
+stmtList =
+  stmt.a {: return new List().add(a); :}
+  | stmtList.a stmt.b {: return a.add(b); :}
+  ;
+
+stmt =
+  idDecl.a {: return new IdDecl(a); :}
+  | assignment.a {: return new Assignment(a); :}
+  ;
+
 block = LBRACKET RBRACKET {: return new Block(); :} ;
 
+assignment =
+  idUse.a ASSIGN expr.b {: return new Assignment(a, b); :} ;
+
+numeral = NUMERAL.a {: return new Numeral(a); :} ;
+
+idUse = ID.id {: return new IdUse(id); :} ;
+
+idDecl = INT ID.id {: return new IdDecl(id); :} ;
+
+expr =
+  numeral.a {: return new Numeral(a); :}
+  | idUse.id {: return new IdUse(id); :}
+  ;
 

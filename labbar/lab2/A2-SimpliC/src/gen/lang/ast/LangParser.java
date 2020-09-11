@@ -20,20 +20,24 @@ public class LangParser extends beaver.Parser {
   public static class Terminals {
     public static final short EOF = 0;
     public static final short INT = 1;
-    public static final short LPARAN = 2;
-    public static final short RBRACKET = 3;
+    public static final short RBRACKET = 2;
+    public static final short LPARAN = 3;
     public static final short LBRACKET = 4;
     public static final short RPARAN = 5;
     public static final short ID = 6;
+    public static final short NUMERAL = 7;
+    public static final short ASSIGN = 8;
 
     public static final String[] NAMES = {
         "EOF",
         "INT",
-        "LPARAN",
         "RBRACKET",
+        "LPARAN",
         "LBRACKET",
         "RPARAN",
         "ID",
+        "NUMERAL",
+        "ASSIGN",
     };
   }
 
@@ -50,18 +54,18 @@ public class LangParser extends beaver.Parser {
         return new Program(a);
       }
     },
-    new Action() { // [2] GOAL =  program EOF
-      public Symbol reduce(Symbol[] _symbols, int offset) {
-        final Program program = (Program) _symbols[offset + 1].value;
-        final Symbol sym2 = _symbols[offset + 2];
-        return program;
-      }
-    },
-    new Action() { // [3] functionCallStmtList =  functionCallStmtList functionCallStmt
+    new Action() { // [2] functionCallStmtList =  functionCallStmtList functionCallStmt
       public Symbol reduce(Symbol[] _symbols, int offset) {
         final List list = (List) _symbols[offset + 1].value;
         final FunctionCallStmt b = (FunctionCallStmt) _symbols[offset + 2].value;
         return list.add(b);
+      }
+    },
+    new Action() { // [3] GOAL =  program EOF
+      public Symbol reduce(Symbol[] _symbols, int offset) {
+        final Program program = (Program) _symbols[offset + 1].value;
+        final Symbol sym2 = _symbols[offset + 2];
+        return program;
       }
     },
     new Action() { // [4] functionCallStmt =  INT ID LPARAN RPARAN block
@@ -84,10 +88,10 @@ public class LangParser extends beaver.Parser {
   };
 
   static final ParsingTables PARSING_TABLES = new ParsingTables(
-    "U9nza34FWZ0GXLyBXOhenkRcuceStHsSZNz7$xQbM1yHmfs9VSdNzFNkuF80t56WX4qlU3Y" +
-    "iKK6gbYPHmhqvkRX1pQtKN4nHs4PrjggpJxsm6rKBAS1m8y#lrzoq#Muq2vLoWFdlLAVDp3" +
-    "bLApETnM#DR9zBQcEIddHaH$RaG8xaHCxaGgxaDis51uyPQf1#UelIZ$z4NXMJCzp4C4NBk" +
-    "#LcZbbQj1yooSYE");
+    "U9oDaJqEmZ0CXL$Ifj1IEY1n0rOc3i30p0NOs15NW6FJFyoBg129C$H9dwAys4vY0xWZXqK" +
+    "XBHmoh409XK3oPbIe1M8jOqD66IEhL363gbCffrPPlVIHjLOndNGmlB7ahsgULzE$Z0HAE8" +
+    "L87ACTbPNDo7BAoMTKjgaOqZpncvRlx8PioOxioO4SoOcSoOLSoMtAUps#vLg$fg26$xs$K" +
+    "qqdLC5E6$RRSBNilENB76TgqNm0slRvA0==");
 
   public LangParser() {
     super(PARSING_TABLES);

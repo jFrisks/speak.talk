@@ -66,8 +66,9 @@ public final class LangScanner extends beaver.Scanner {
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
     "\11\0\2\1\1\0\2\1\22\0\1\1\7\0\1\2"+
-    "\1\3\27\0\32\4\6\0\10\4\1\5\4\4\1\6"+
-    "\5\4\1\7\6\4\1\10\1\0\1\11\u0182\0";
+    "\1\3\6\0\1\4\11\5\3\0\1\6\3\0\32\7"+
+    "\6\0\10\7\1\10\4\7\1\11\5\7\1\12\6\7"+
+    "\1\13\1\0\1\14\u0182\0";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[512];
@@ -94,11 +95,11 @@ public final class LangScanner extends beaver.Scanner {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\1\2\1\3\1\4\2\5\1\6\1\7"+
-    "\1\5\1\10";
+    "\1\0\1\1\1\2\1\3\1\4\2\5\1\6\2\7"+
+    "\1\10\1\11\1\7\1\12";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[11];
+    int [] result = new int[14];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -123,11 +124,11 @@ public final class LangScanner extends beaver.Scanner {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\12\0\12\0\12\0\12\0\24\0\36\0\12"+
-    "\0\12\0\50\0\24";
+    "\0\0\0\15\0\15\0\15\0\15\0\15\0\32\0\15"+
+    "\0\47\0\64\0\15\0\15\0\101\0\47";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[11];
+    int [] result = new int[14];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -150,12 +151,12 @@ public final class LangScanner extends beaver.Scanner {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\1\3\1\4\1\5\1\6\1\7\2\6\1\10"+
-    "\1\11\16\0\4\6\6\0\2\6\1\12\1\6\6\0"+
-    "\3\6\1\13\2\0";
+    "\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11"+
+    "\1\12\2\11\1\13\1\14\21\0\2\7\16\0\4\11"+
+    "\11\0\2\11\1\15\1\11\11\0\3\11\1\16\2\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[50];
+    int [] result = new int[78];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -198,10 +199,10 @@ public final class LangScanner extends beaver.Scanner {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\4\11\2\1\2\11\2\1";
+    "\1\0\5\11\1\1\1\11\2\1\2\11\2\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[11];
+    int [] result = new int[14];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -682,42 +683,52 @@ public final class LangScanner extends beaver.Scanner {
             { throw new SyntaxError("Illegal character <"+yytext()+">");
             }
             // fall through
-          case 9: break;
+          case 11: break;
           case 2:
             { 
             }
             // fall through
-          case 10: break;
+          case 12: break;
           case 3:
             { return sym(Terminals.LPARAN);
             }
             // fall through
-          case 11: break;
+          case 13: break;
           case 4:
             { return sym(Terminals.RPARAN);
             }
             // fall through
-          case 12: break;
-          case 5:
-            { return sym(Terminals.ID);
-            }
-            // fall through
-          case 13: break;
-          case 6:
-            { return sym(Terminals.LBRACKET);
-            }
-            // fall through
           case 14: break;
-          case 7:
-            { return sym(Terminals.RBRACKET);
+          case 5:
+            { return sym(Terminals.NUMERAL);
             }
             // fall through
           case 15: break;
-          case 8:
-            { return sym(Terminals.INT);
+          case 6:
+            { return sym(Terminals.ASSIGN);
             }
             // fall through
           case 16: break;
+          case 7:
+            { return sym(Terminals.ID);
+            }
+            // fall through
+          case 17: break;
+          case 8:
+            { return sym(Terminals.LBRACKET);
+            }
+            // fall through
+          case 18: break;
+          case 9:
+            { return sym(Terminals.RBRACKET);
+            }
+            // fall through
+          case 19: break;
+          case 10:
+            { return sym(Terminals.INT);
+            }
+            // fall through
+          case 20: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

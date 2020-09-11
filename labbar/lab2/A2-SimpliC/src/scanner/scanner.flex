@@ -37,6 +37,7 @@ NUMERAL = (0|[1-9][0-9]*)
 
 // token definitions
 "int"         { return sym(Terminals.INT); }
+"="           { return sym(Terminals.ASSIGN); }
 {ID}          { return sym(Terminals.ID); }
 {NUMERAL}     { return sym(Terminals.NUMERAL); }
 "("           { return sym(Terminals.LPARAN);}
