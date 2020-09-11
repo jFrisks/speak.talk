@@ -1,1 +1,3 @@
-Program ::= Expr;
+Program ::= FunctionCallStmt;
+FunctionCallStmt ::= Block;
+Block ::= <LBRACKET> <RBRACKET>;

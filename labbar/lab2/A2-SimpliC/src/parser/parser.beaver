@@ -9,14 +9,15 @@
 	}
 :};
 
-%terminals LET, IN, END, ASSIGN, MUL, ID, NUMERAL;
-
-// new terminals for Calc 2.0
-%terminals ASK, USER, LBRACKET, RBRACKET;
+%terminals ID, INT, LPARAN, RPARAN, LBRACKET, RBRACKET;
 
 %typeof program = "Program";
+%typeof functionCallStmt = "FunctionCallStmt";
+%typeof block = "Block";
 
 
 %goal program;
 
-program = exp.a {: return new Program(a); :} ;
+program = functionCallStmt.a {: return new Program(a); :} ;
+functionCallStmt = INT ID LPARAN RPARAN block.b {: return new FunctionCallStmt(b); :} ;
+block = LBRACKET RBRACKET {: return new Block(); :} ;

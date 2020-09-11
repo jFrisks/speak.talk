@@ -12,12 +12,12 @@ import java.lang.reflect.InvocationTargetException;
 public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneable {
   /**
    * @aspect DumpTree
-   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab2/A2-CalcAST/src/jastadd/DumpTree.jrag:9
+   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab2/A2-SimpliC/src/jastadd/DumpTree.jrag:9
    */
   private static final String DUMP_TREE_INDENT = "  ";
   /**
    * @aspect DumpTree
-   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab2/A2-CalcAST/src/jastadd/DumpTree.jrag:11
+   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab2/A2-SimpliC/src/jastadd/DumpTree.jrag:11
    */
   public String dumpTree() {
 		ByteArrayOutputStream bytes = new ByteArrayOutputStream();
@@ -26,7 +26,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
 	}
   /**
    * @aspect DumpTree
-   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab2/A2-CalcAST/src/jastadd/DumpTree.jrag:17
+   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab2/A2-SimpliC/src/jastadd/DumpTree.jrag:17
    */
   public void dumpTree(PrintStream out) {
 		dumpTree(out, "");
@@ -34,7 +34,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
 	}
   /**
    * @aspect DumpTree
-   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab2/A2-CalcAST/src/jastadd/DumpTree.jrag:22
+   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab2/A2-SimpliC/src/jastadd/DumpTree.jrag:22
    */
   public void dumpTree(PrintStream out, String indent) {
 		out.print(indent + getClass().getSimpleName());
@@ -50,7 +50,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
 	}
   /**
    * @aspect DumpTree
-   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab2/A2-CalcAST/src/jastadd/DumpTree.jrag:35
+   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab2/A2-SimpliC/src/jastadd/DumpTree.jrag:35
    */
   public String getTokens() {
 		java.util.TreeSet<java.lang.reflect.Method> methods = new java.util.TreeSet<>(

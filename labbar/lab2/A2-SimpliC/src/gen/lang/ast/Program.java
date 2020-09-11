@@ -5,9 +5,9 @@ import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
 /**
  * @ast node
- * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab2/A2-CalcAST/src/jastadd/calc.ast:1
- * @astdecl Program : ASTNode ::= Expr;
- * @production Program : {@link ASTNode} ::= <span class="component">{@link Expr}</span>;
+ * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab2/A2-SimpliC/src/jastadd/calc.ast:1
+ * @astdecl Program : ASTNode ::= FunctionCallStmt;
+ * @production Program : {@link ASTNode} ::= <span class="component">{@link FunctionCallStmt}</span>;
 
  */
 public class Program extends ASTNode<ASTNode> implements Cloneable {
@@ -31,11 +31,11 @@ public class Program extends ASTNode<ASTNode> implements Cloneable {
    * @declaredat ASTNode:13
    */
   @ASTNodeAnnotation.Constructor(
-    name = {"Expr"},
-    type = {"Expr"},
+    name = {"FunctionCallStmt"},
+    type = {"FunctionCallStmt"},
     kind = {"Child"}
   )
-  public Program(Expr p0) {
+  public Program(FunctionCallStmt p0) {
     setChild(p0, 0);
   }
   /** @apilevel low-level 
@@ -134,31 +134,31 @@ public class Program extends ASTNode<ASTNode> implements Cloneable {
     return tree;
   }
   /**
-   * Replaces the Expr child.
-   * @param node The new node to replace the Expr child.
+   * Replaces the FunctionCallStmt child.
+   * @param node The new node to replace the FunctionCallStmt child.
    * @apilevel high-level
    */
-  public Program setExpr(Expr node) {
+  public Program setFunctionCallStmt(FunctionCallStmt node) {
     setChild(node, 0);
     return this;
   }
   /**
-   * Retrieves the Expr child.
-   * @return The current node used as the Expr child.
+   * Retrieves the FunctionCallStmt child.
+   * @return The current node used as the FunctionCallStmt child.
    * @apilevel high-level
    */
-  @ASTNodeAnnotation.Child(name="Expr")
-  public Expr getExpr() {
-    return (Expr) getChild(0);
+  @ASTNodeAnnotation.Child(name="FunctionCallStmt")
+  public FunctionCallStmt getFunctionCallStmt() {
+    return (FunctionCallStmt) getChild(0);
   }
   /**
-   * Retrieves the Expr child.
+   * Retrieves the FunctionCallStmt child.
    * <p><em>This method does not invoke AST transformations.</em></p>
-   * @return The current node used as the Expr child.
+   * @return The current node used as the FunctionCallStmt child.
    * @apilevel low-level
    */
-  public Expr getExprNoTransform() {
-    return (Expr) getChildNoTransform(0);
+  public FunctionCallStmt getFunctionCallStmtNoTransform() {
+    return (FunctionCallStmt) getChildNoTransform(0);
   }
 
 }
