@@ -9,18 +9,15 @@
 	}
 :};
 
-%terminals ID, INT, LPARAN, RPARAN, LBRACKET, RBRACKET, NUMERAL, ASSIGN, SEMICOLON;
+%terminals ID, INT, LPARAN, RPARAN, LBRACKET, RBRACKET, SEMICOLON;
 
 %typeof program = "Program";
 %typeof functionCallStmt = "FunctionCallStmt";
 %typeof functionCallStmtList = "List";
-%typeof stmtList = "List";
 %typeof stmt = "Stmt";
 %typeof block = "Block";
 %typeof idDecl = "Stmt";
-%typeof idUse = "Expr";
-%typeof assignment = "Stmt";
-%typeof numeral = "Expr";
+
 
 %goal program;
 
@@ -33,29 +30,10 @@ functionCallStmtList =
 
 functionCallStmt = INT ID LPARAN RPARAN block.b {: return new FunctionCallStmt(b); :} ;
 
-stmtList =
-  stmt.a {: return new List().add(a); :}
-  | stmtList.list stmt.b {: return list.add(b); :}
-  ;
+block =
+    LBRACKET stmt.a RBRACKET {: return new Block(a); :}
+    | LBRACKET RBRACKET {: return new Block(); :} ;
 
-stmt =
-  idDecl.a SEMICOLON {: return a; :}
-  | assignment.a SEMICOLON {: return a; :}
-  ;
-
-block = LBRACKET stmtList.a RBRACKET {: return new Block(a); :} ;
-
-assignment =
-  idUse.id ASSIGN expr.b {: return new Assignment(id, b); :} ;
-
-numeral = NUMERAL.a {: return new Numeral(a); :} ;
-
-idUse = ID.id {: return new IdUse(id); :} ;
+stmt = idDecl.a SEMICOLON {: return a; :};
 
 idDecl = INT ID.id {: return new IdDecl(id); :} ;
-
-expr =
-  numeral
-  | idUse
-  ;
-
