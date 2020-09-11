@@ -38,14 +38,6 @@ Numeral = [0-9]+ "." [0-9]+
 
 // token definitions
 "let"         { return sym(Terminals.LET); }
-"in"          { return sym(Terminals.IN); }
-"end"         { return sym(Terminals.END); }
-"ask"         { return sym(Terminals.ASK); }
-"user"        { return sym(Terminals.USER); }
-"="           { return sym(Terminals.ASSIGN); }
-"*"           { return sym(Terminals.MUL); }
-"["           { return sym(Terminals.LBRACKET); }
-"]"           { return sym(Terminals.RBRACKET); }
 {ID}          { return sym(Terminals.ID); }
 {Numeral}     { return sym(Terminals.NUMERAL); }
 <<EOF>>       { return sym(Terminals.EOF); }
