@@ -20,9 +20,29 @@ public class ParseTests {
         Util.testValidSyntax(TEST_DIRECTORY, "declaration.in");
     }
 
-//	@Test public void variableDeclarationAndUses() {
-//		Util.testValidSyntax(TEST_DIRECTORY, "variableDeclarationAndUses.in");
-//	}
+	@Test public void variableDeclarationAndUses() {
+		Util.testValidSyntax(TEST_DIRECTORY, "variableDeclarationAndUses.in");
+	}
+
+	@Test public void mul1() {
+		Util.testValidSyntax(TEST_DIRECTORY, "mul1.in");
+	}
+
+	@Test public void mul2() {
+		Util.testValidSyntax(TEST_DIRECTORY, "mul2.in");
+	}
+
+	@Test public void add1() {
+		Util.testValidSyntax(TEST_DIRECTORY, "add1.in");
+	}
+
+	@Test public void add2() {
+		Util.testValidSyntax(TEST_DIRECTORY, "add2.in");
+	}
+
+	@Test public void operations1() {
+		Util.testValidSyntax(TEST_DIRECTORY, "operations1.in");
+	}
 
 	/* ERROR TESTS */
 
@@ -47,4 +67,3 @@ public class ParseTests {
 	}
 
 }
-//variableDeclarationAndUsesError1
