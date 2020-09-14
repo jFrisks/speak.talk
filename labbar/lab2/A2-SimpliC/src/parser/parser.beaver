@@ -21,8 +21,9 @@
 %typeof assignment = "Assignment";
 %typeof idUse = "IdUse";
 %typeof numeral = "Numeral";
-%typeof factor = "Expr";
 %typeof expr = "Expr";
+%typeof factor = "Expr";
+%typeof term = "Expr";
 %typeof mul = "Mul";
 %typeof add = "Add";
 
@@ -53,20 +54,25 @@ stmt =
 assignment = idUse.a ASSIGN expr.b SEMICOLON {: return new Assignment(a,b); :};
 
 expr =
-  factor
-  | mul
+  term
   | add
   ;
 
-mul = expr.a MULTIPLIER factor.b {: return new Mul(a, b); :};
+add = expr.a PLUS term.b {: return new Add(a, b); :};
 
-add = expr.a PLUS factor.b {: return new Add(a, b); :};
 
-idUse = ID.id {: return new IdUse(id); :};
+term =
+    mul
+    | factor
+    ;
+
+mul = term.a MULTIPLIER factor.b {: return new Mul(a, b); :};
 
 factor =
   numeral
   | idUse;
+
+idUse = ID.id {: return new IdUse(id); :};
 
 numeral = NUMERAL.a {: return new Numeral(a); :};
 
