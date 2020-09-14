@@ -9,6 +9,9 @@ IdDecl : Stmt ::= <ID>;
 abstract Expr;
 Mul : Expr ::= Left:Expr Right:Expr;
 Add : Expr ::= Left:Expr Right:Expr;
+Sub : Expr ::= Left:Expr Right:Expr;
+Div : Expr ::= Left:Expr Right:Expr;
+Mod : Expr ::= Left:Expr Right:Expr;
 
 IdUse : Expr ::= <ID>;
 Numeral : Expr ::= <NUMERAL>;

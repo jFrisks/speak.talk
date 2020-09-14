@@ -47,6 +47,9 @@ NUMERAL = (0 | [1-9][0-9]*)
 ";"           { return sym(Terminals.SEMICOLON);}
 "*"           { return sym(Terminals.MULTIPLIER);}
 "+"           { return sym(Terminals.PLUS);}
+"-"           { return sym(Terminals.SUB);}
+"/"           { return sym(Terminals.DIVIDER);}
+"%"           { return sym(Terminals.MODULAR);}
 <<EOF>>       { return sym(Terminals.EOF); }
 
 /* error fallback */
