@@ -1,10 +1,15 @@
 Program ::= FunctionCallStmt*;
 FunctionCallStmt ::= Block;
+Block ::= Stmt*;
 
 abstract Stmt;
-Block ::= Stmt*;
-abstract Factor;
-Assignment : Stmt ::= IdUse Factor;
+Assignment : Stmt ::= IdUse Expr;
 IdDecl : Stmt ::= <ID>;
-IdUse : Factor ::= <ID>;
-Numeral : Factor ::= <NUMERAL>;
+
+abstract Expr;
+Mul : Expr ::= Left:Expr Right:Expr;
+Add : Expr ::= Left:Expr Right:Expr;
+
+
+IdUse : Expr ::= <ID>;
+Numeral : Expr ::= <NUMERAL>;
