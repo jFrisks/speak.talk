@@ -1,12 +1,10 @@
-Program ::= Expr;
+Program ::= FunctionCallStmt*;
+FunctionCallStmt ::= Block;
 
-abstract Expr;
-Mul : Expr ::= Left:Expr Right:Expr;
-Numeral : Expr ::= <NUMERAL>;
-IdUse : Expr ::= <ID>;
-
-Let : Expr ::= Binding* Expr;
-Binding ::= IdDecl Expr;
-IdDecl ::= <ID>;
-
-Ask : Expr ::= [Default:Expr];
+abstract Stmt;
+Block ::= Stmt*;
+abstract Factor;
+Assignment : Stmt ::= IdUse Factor;
+IdDecl : Stmt ::= <ID>;
+IdUse : Factor ::= <ID>;
+Numeral : Factor ::= <NUMERAL>;

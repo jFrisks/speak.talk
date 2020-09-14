@@ -29,25 +29,22 @@ import lang.ast.LangParser.SyntaxError;
 // macros
 WhiteSpace = [ ] | \t | \f | \n | \r
 ID = [a-zA-Z]+
-Numeral = [0-9]+ "." [0-9]+
-
+NUMERAL = (0 | [1-9][0-9]*)
 %%
 
 // discard whitespace information
 {WhiteSpace}  { }
 
 // token definitions
-"let"         { return sym(Terminals.LET); }
-"in"          { return sym(Terminals.IN); }
-"end"         { return sym(Terminals.END); }
-"ask"         { return sym(Terminals.ASK); }
-"user"        { return sym(Terminals.USER); }
+"int"         { return sym(Terminals.INT); }
 "="           { return sym(Terminals.ASSIGN); }
-"*"           { return sym(Terminals.MUL); }
-"["           { return sym(Terminals.LBRACKET); }
-"]"           { return sym(Terminals.RBRACKET); }
+{NUMERAL}     { return sym(Terminals.NUMERAL); }
 {ID}          { return sym(Terminals.ID); }
-{Numeral}     { return sym(Terminals.NUMERAL); }
+"("           { return sym(Terminals.LPARAN);}
+")"           { return sym(Terminals.RPARAN);}
+"{"           { return sym(Terminals.LBRACKET);}
+"}"           { return sym(Terminals.RBRACKET);}
+";"           { return sym(Terminals.SEMICOLON);}
 <<EOF>>       { return sym(Terminals.EOF); }
 
 /* error fallback */
