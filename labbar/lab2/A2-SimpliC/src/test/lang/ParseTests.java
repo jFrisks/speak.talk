@@ -34,17 +34,17 @@ public class ParseTests {
 		Util.testSyntaxError(TEST_DIRECTORY, "errorFunctionString.in");
 	}
 
-//	@Test public void variableDeclarationAndUsesError1() {
-//		Util.testSyntaxError(TEST_DIRECTORY, "variableDeclarationAndUsesError1.in");
-//	}
-//
-//	@Test public void variableDeclarationAndUsesError2() {
-//		Util.testSyntaxError(TEST_DIRECTORY, "variableDeclarationAndUsesError2.in");
-//	}
-//
-//	@Test public void variableDeclarationAndUsesError3() {
-//		Util.testSyntaxError(TEST_DIRECTORY, "variableDeclarationAndUsesError3.in");
-//	}
+	@Test public void variableDeclarationAndUsesError1() {
+		Util.testSyntaxError(TEST_DIRECTORY, "variableDeclarationAndUsesError1.in");
+	}
+
+	@Test public void variableDeclarationAndUsesError2() {
+		Util.testSyntaxError(TEST_DIRECTORY, "variableDeclarationAndUsesError2.in");
+	}
+
+	@Test public void variableDeclarationAndUsesError3() {
+		Util.testSyntaxError(TEST_DIRECTORY, "variableDeclarationAndUsesError3.in");
+	}
 
 }
 //variableDeclarationAndUsesError1

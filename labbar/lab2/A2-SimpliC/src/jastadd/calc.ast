@@ -3,4 +3,8 @@ FunctionCallStmt ::= Block;
 
 abstract Stmt;
 Block ::= Stmt*;
+abstract Factor;
+Assignment : Stmt ::= IdUse Factor;
 IdDecl : Stmt ::= <ID>;
+IdUse : Factor ::= <ID>;
+Numeral : Factor ::= <NUMERAL>;
