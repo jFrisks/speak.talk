@@ -40,6 +40,30 @@ public class ParseTests {
 		Util.testValidSyntax(TEST_DIRECTORY, "add2.in");
 	}
 
+	@Test public void sub1() {
+		Util.testValidSyntax(TEST_DIRECTORY, "sub1.in");
+	}
+
+	@Test public void sub2() {
+		Util.testValidSyntax(TEST_DIRECTORY, "sub2.in");
+	}
+
+	@Test public void div1() {
+		Util.testValidSyntax(TEST_DIRECTORY, "div1.in");
+	}
+
+	@Test public void div2() {
+		Util.testValidSyntax(TEST_DIRECTORY, "div2.in");
+	}
+
+	@Test public void mod1() {
+		Util.testValidSyntax(TEST_DIRECTORY, "mod1.in");
+	}
+
+	@Test public void mod2() {
+		Util.testValidSyntax(TEST_DIRECTORY, "mod2.in");
+	}
+
 	@Test public void operations1() {
 		Util.testValidSyntax(TEST_DIRECTORY, "operations1.in");
 	}

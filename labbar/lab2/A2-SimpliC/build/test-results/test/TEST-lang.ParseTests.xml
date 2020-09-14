@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="lang.ParseTests" tests="8" skipped="0" failures="0" errors="0" timestamp="2020-09-14T07:45:18" hostname="Lucas.local" time="0.023">
+<testsuite name="lang.ParseTests" tests="20" skipped="0" failures="0" errors="0" timestamp="2020-09-14T13:44:31" hostname="Lucas.local" time="0.053">
   <properties/>
-  <testcase name="variableDeclarationAndUsesError1" classname="lang.ParseTests" time="0.002"/>
-  <testcase name="variableDeclarationAndUsesError2" classname="lang.ParseTests" time="0.002"/>
-  <testcase name="variableDeclarationAndUsesError3" classname="lang.ParseTests" time="0.003"/>
-  <testcase name="declaration" classname="lang.ParseTests" time="0.003"/>
+  <testcase name="variableDeclarationAndUsesError1" classname="lang.ParseTests" time="0.003"/>
+  <testcase name="variableDeclarationAndUsesError2" classname="lang.ParseTests" time="0.003"/>
+  <testcase name="variableDeclarationAndUsesError3" classname="lang.ParseTests" time="0.002"/>
+  <testcase name="declaration" classname="lang.ParseTests" time="0.001"/>
   <testcase name="functionIntEmpty" classname="lang.ParseTests" time="0.002"/>
   <testcase name="errorFunctionBadOrder" classname="lang.ParseTests" time="0.002"/>
-  <testcase name="errorFunctionString" classname="lang.ParseTests" time="0.004"/>
-  <testcase name="function2IntEmpty" classname="lang.ParseTests" time="0.003"/>
+  <testcase name="variableDeclarationAndUses" classname="lang.ParseTests" time="0.002"/>
+  <testcase name="errorFunctionString" classname="lang.ParseTests" time="0.002"/>
+  <testcase name="add1" classname="lang.ParseTests" time="0.004"/>
+  <testcase name="add2" classname="lang.ParseTests" time="0.001"/>
+  <testcase name="div1" classname="lang.ParseTests" time="0.001"/>
+  <testcase name="div2" classname="lang.ParseTests" time="0.002"/>
+  <testcase name="mod1" classname="lang.ParseTests" time="0.006"/>
+  <testcase name="mod2" classname="lang.ParseTests" time="0.002"/>
+  <testcase name="mul1" classname="lang.ParseTests" time="0.002"/>
+  <testcase name="mul2" classname="lang.ParseTests" time="0.003"/>
+  <testcase name="sub1" classname="lang.ParseTests" time="0.001"/>
+  <testcase name="sub2" classname="lang.ParseTests" time="0.001"/>
+  <testcase name="operations1" classname="lang.ParseTests" time="0.002"/>
+  <testcase name="function2IntEmpty" classname="lang.ParseTests" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

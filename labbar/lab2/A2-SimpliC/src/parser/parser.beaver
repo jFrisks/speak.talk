@@ -9,7 +9,7 @@
 	}
 :};
 
-%terminals ID, NUMERAL, INT, LPARAN, RPARAN, LBRACKET, RBRACKET, SEMICOLON, ASSIGN, MULTIPLIER, PLUS;
+%terminals ID, NUMERAL, INT, LPARAN, RPARAN, LBRACKET, RBRACKET, SEMICOLON, ASSIGN, MULTIPLIER, PLUS, SUB, DIVIDER, MODULAR;
 
 %typeof program = "Program";
 %typeof functionCallStmt = "FunctionCallStmt";
@@ -26,6 +26,9 @@
 %typeof term = "Expr";
 %typeof mul = "Mul";
 %typeof add = "Add";
+%typeof sub = "Sub";
+%typeof div = "Div";
+%typeof mod = "Mod";
 
 %goal program;
 
@@ -56,17 +59,25 @@ assignment = idUse.a ASSIGN expr.b SEMICOLON {: return new Assignment(a,b); :};
 expr =
   term
   | add
+  | sub
   ;
 
 add = expr.a PLUS term.b {: return new Add(a, b); :};
 
+sub = expr.a SUB term.b {: return new Sub(a, b); :};
 
 term =
-    mul
-    | factor
+    factor
+    | div
+    | mod
+    | mul
     ;
 
 mul = term.a MULTIPLIER factor.b {: return new Mul(a, b); :};
+
+div = term.a DIVIDER factor.b {: return new Div(a, b); :};
+
+mod = term.a MODULAR factor.b {: return new Mod(a, b); :};
 
 factor =
   numeral
