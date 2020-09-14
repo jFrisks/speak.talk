@@ -3,17 +3,11 @@ Program
     FunctionCallStmt
       Block
         List
-          IdDecl
-            ID="x"
-          IdDecl
-            ID="y"
+          IdDecl ID="x"
+          IdDecl ID="y"
           Assignment
-            IDUse
-              ID="x"
-            Numeral
-              NUMERAL="5"
+            IdUse ID="x"
+            Numeral NUMERAL="5"
           Assignment
-            IDUse
-              ID="y"
-            IdUse
-              ID="x"
+            IdUse ID="y"
+            IdUse ID="x"
