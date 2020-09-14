@@ -1,0 +1,6 @@
+int a() {
+    int x;
+    int y;
+    x = 4;
+    y = 5 + 3 * x;
+}

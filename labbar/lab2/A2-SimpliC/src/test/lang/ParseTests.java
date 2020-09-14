@@ -54,8 +54,4 @@ public class ParseTests {
 		Util.testSyntaxError(TEST_DIRECTORY, "variableDeclarationAndUsesError3.in");
 	}
 
-	@Test public void mulError1() {
-		Util.testSyntaxError(TEST_DIRECTORY, "mulError1.in");
-	}
-
 }

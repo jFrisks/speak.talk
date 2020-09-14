@@ -21,23 +21,27 @@ public class LangParser extends beaver.Parser {
     public static final short EOF = 0;
     public static final short INT = 1;
     public static final short ID = 2;
-    public static final short RBRACKET = 3;
-    public static final short SEMICOLON = 4;
-    public static final short ASSIGN = 5;
-    public static final short RPARAN = 6;
+    public static final short SEMICOLON = 3;
+    public static final short PLUS = 4;
+    public static final short MULTIPLIER = 5;
+    public static final short RBRACKET = 6;
     public static final short NUMERAL = 7;
-    public static final short LBRACKET = 8;
-    public static final short LPARAN = 9;
+    public static final short ASSIGN = 8;
+    public static final short RPARAN = 9;
+    public static final short LBRACKET = 10;
+    public static final short LPARAN = 11;
 
     public static final String[] NAMES = {
         "EOF",
         "INT",
         "ID",
-        "RBRACKET",
         "SEMICOLON",
+        "PLUS",
+        "MULTIPLIER",
+        "RBRACKET",
+        "NUMERAL",
         "ASSIGN",
         "RPARAN",
-        "NUMERAL",
         "LBRACKET",
         "LPARAN",
     };
@@ -56,18 +60,18 @@ public class LangParser extends beaver.Parser {
         return new List().add(stmt);
       }
     },
-    new Action() { // [2] functionCallStmtList =  functionCallStmtList functionCallStmt
-      public Symbol reduce(Symbol[] _symbols, int offset) {
-        final List list = (List) _symbols[offset + 1].value;
-        final FunctionCallStmt b = (FunctionCallStmt) _symbols[offset + 2].value;
-        return list.add(b);
-      }
-    },
-    new Action() { // [3] GOAL =  program EOF
+    new Action() { // [2] GOAL =  program EOF
       public Symbol reduce(Symbol[] _symbols, int offset) {
         final Program program = (Program) _symbols[offset + 1].value;
         final Symbol sym2 = _symbols[offset + 2];
         return program;
+      }
+    },
+    new Action() { // [3] functionCallStmtList =  functionCallStmtList functionCallStmt
+      public Symbol reduce(Symbol[] _symbols, int offset) {
+        final List list = (List) _symbols[offset + 1].value;
+        final FunctionCallStmt b = (FunctionCallStmt) _symbols[offset + 2].value;
+        return list.add(b);
       }
     },
     new Action() { // [4] functionCallStmt =  INT ID LPARAN RPARAN block
@@ -80,17 +84,12 @@ public class LangParser extends beaver.Parser {
         return new FunctionCallStmt(b);
       }
     },
-    new Action() { // [5] block =  LBRACKET RBRACKET
+    Action.RETURN, // [5] stmt =  idDecl (default action: return symbol 1)
+    new Action() { // [6] block =  LBRACKET RBRACKET
       public Symbol reduce(Symbol[] _symbols, int offset) {
         final Symbol LBRACKET = _symbols[offset + 1];
         final Symbol RBRACKET = _symbols[offset + 2];
         return new Block();
-      }
-    },
-    new Action() { // [6] stmtList =  stmt
-      public Symbol reduce(Symbol[] _symbols, int offset) {
-        final Stmt a = (Stmt) _symbols[offset + 1].value;
-        return new List().add(a);
       }
     },
     new Action() { // [7] idUse =  ID
@@ -99,7 +98,12 @@ public class LangParser extends beaver.Parser {
         return new IdUse(id);
       }
     },
-    Action.RETURN, // [8] stmt =  idDecl (default action: return symbol 1)
+    new Action() { // [8] stmtList =  stmt
+      public Symbol reduce(Symbol[] _symbols, int offset) {
+        final Stmt a = (Stmt) _symbols[offset + 1].value;
+        return new List().add(a);
+      }
+    },
     new Action() { // [9] block =  LBRACKET stmtList RBRACKET
       public Symbol reduce(Symbol[] _symbols, int offset) {
         final Symbol LBRACKET = _symbols[offset + 1];
@@ -123,33 +127,52 @@ public class LangParser extends beaver.Parser {
         return new IdDecl(id);
       }
     },
-    Action.RETURN, // [12] factor =  idUse (default action: return symbol 1)
-    new Action() { // [13] numeral =  NUMERAL
+    Action.RETURN, // [12] factor =  numeral (default action: return symbol 1)
+    Action.RETURN, // [13] expr =  factor (default action: return symbol 1)
+    new Action() { // [14] numeral =  NUMERAL
       public Symbol reduce(Symbol[] _symbols, int offset) {
         final Symbol a = _symbols[offset + 1];
         return new Numeral(a);
       }
     },
-    new Action() { // [14] assignment =  idUse ASSIGN factor SEMICOLON
+    new Action() { // [15] assignment =  idUse ASSIGN expr SEMICOLON
       public Symbol reduce(Symbol[] _symbols, int offset) {
         final IdUse a = (IdUse) _symbols[offset + 1].value;
         final Symbol ASSIGN = _symbols[offset + 2];
-        final Factor b = (Factor) _symbols[offset + 3].value;
+        final Expr b = (Expr) _symbols[offset + 3].value;
         final Symbol SEMICOLON = _symbols[offset + 4];
         return new Assignment(a,b);
+      }
+    },
+    new Action() { // [16] add =  expr PLUS factor
+      public Symbol reduce(Symbol[] _symbols, int offset) {
+        final Expr a = (Expr) _symbols[offset + 1].value;
+        final Symbol PLUS = _symbols[offset + 2];
+        final Expr b = (Expr) _symbols[offset + 3].value;
+        return new Add(a, b);
+      }
+    },
+    new Action() { // [17] mul =  expr MULTIPLIER factor
+      public Symbol reduce(Symbol[] _symbols, int offset) {
+        final Expr a = (Expr) _symbols[offset + 1].value;
+        final Symbol MULTIPLIER = _symbols[offset + 2];
+        final Expr b = (Expr) _symbols[offset + 3].value;
+        return new Mul(a, b);
       }
     },
   };
 
   static final ParsingTables PARSING_TABLES = new ParsingTables(
-    "U9obb3jEmq0GXlzTEoz227do9g90eeOxK51o1NfAEWG7eANZ0jJKT1o00z1IymYOa90C$pf" +
-    "Hb7Y7o16p#hpsxvdCA9vPmEmYG0QXl2ABHLZ49a9r2SkeeivzDTvpM4SDaxQ1FA#RKnfa80" +
-    "CaJFhIJseeU0hanzUme6X5HIkXWdBYzthIy$mQIcnJgQKhNK$xTYkXTQJZ#NsvfTItai9lJ" +
-    "QclChxR6iT64dbvFzrAQ1zk9RIsdqBJiAtulIlQcrimx9KoksQ9zTOaDhuq$895zbPfl5lU" +
-    "rMN2s5#kvneoPIvM98LMI2hEJz6oYfPNDCCAWnHvhHARqMfHOhKSeH#j#gNLGgMMSSt8pLr" +
-    "VsXp$qU8ShAXrYU4tnF04g8wwSO$iamDoI8x8CJaXf#ICd9ChSarko2sv8$VaWJoI9$9CNa" +
-    "ZacfGmZwcJdL7kDeakUFaBcfiiEyk7xxCJzyLPlYEVbZA9yrcPo$2qTbXEfELCPZYLbkUuc" +
-    "qV3IJHy3lXiEPC1JqN3$zXmEaCqVm6qltMI");
+    "U9pDbhjI554GXllCiCjzXUKYSX4lG9MPYPa4F00PLHIfLJw0aU4Q61aOaXYPcHYH#0e#WGz" +
+    "WZAp87TpswvaTQWTEusvXO9$wptJ$f#S$PsvzHYJiI2eL6P0#CKjaH4HtPHo$AZMPb8cCjt" +
+    "YC#2vnF$vzcPSv#YLwaLbBKKLfKHPWbpEsRThIbaHCVyTOR31EwuLUH0U679rXXn#LUjkxK" +
+    "z8$r$De$fIpdZCzAxmIVwgdVvbtkiJFEFedrdAlgtcFzRZmIaBt7FqZFOhoXtfOUAM1#gNt" +
+    "e9H$e0U5Lyf$A8$aSKJ$bxK8ls#j1xvNdP$M8dnJcuLN6d2krxqFUzOY#Z#iIU2ykamgnbS" +
+    "qHJyh8$Js5ex9UCPRF9t7abZCErFBUwA9B4TGck6Pjjd2ZDU8sNSPvOSTtjCPTFA773xO5M" +
+    "HUjIlzv1$fUFa3ZdvAvQjSpt1rF3vrz7jTv#LzaFxkvYtMVqN$V#DxlLwFlt5UxlRA6ydVU" +
+    "GxiPLcjNG9FmNEm2ZR09dW1NeEtu3tu03w17V05V0NVm7Um2zX$0hjVe0A4HV04F0DhO1ri" +
+    "WPVW5MY0Ts0RV0IVs#lQQz0ryaKt2xyJs3veNUKvlHhBxnYltJJUaMUx#Nn7l7AzQjtAwbI" +
+    "umBz3eCOb71EO2bKji9VQ7qRWgPYVSaoeTocrBF1d4QXsWTNrKU5IQbmgSty0jlIEOW==");
 
   public LangParser() {
     super(PARSING_TABLES);

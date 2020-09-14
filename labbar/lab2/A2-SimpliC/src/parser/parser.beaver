@@ -45,8 +45,6 @@ stmtList =
     stmt.a {: return new List().add(a); :}
     | stmtList.a stmt.b {: return a.add(b); :} ;
 
-
-
 stmt =
   idDecl
   | assignment
@@ -54,19 +52,15 @@ stmt =
 
 assignment = idUse.a ASSIGN expr.b SEMICOLON {: return new Assignment(a,b); :};
 
-
-
 expr =
   factor
   | mul
   | add
   ;
 
-mul = factor.a MULTIPLIER factor.b {: return new Mul(a, b); :};
+mul = expr.a MULTIPLIER factor.b {: return new Mul(a, b); :};
 
-add = factor.a PLUS factor.b {: return new Add(a, b); :};
-
-
+add = expr.a PLUS factor.b {: return new Add(a, b); :};
 
 idUse = ID.id {: return new IdUse(id); :};
 

@@ -10,6 +10,5 @@ abstract Expr;
 Mul : Expr ::= Left:Expr Right:Expr;
 Add : Expr ::= Left:Expr Right:Expr;
 
-
 IdUse : Expr ::= <ID>;
 Numeral : Expr ::= <NUMERAL>;

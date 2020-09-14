@@ -1,0 +1,9 @@
+Program
+  List
+    FunctionCallStmt
+      Block
+        List
+          IdDecl ID="x"
+          IdDecl ID="y"
+          Assignment
+            IdUse ID="4"
