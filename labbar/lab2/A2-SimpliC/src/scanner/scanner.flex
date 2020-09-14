@@ -37,7 +37,6 @@ NUMERAL = (0 | [1-9][0-9]*)
 
 // token definitions
 "int"         { return sym(Terminals.INT); }
-"="           { return sym(Terminals.ASSIGN); }
 {NUMERAL}     { return sym(Terminals.NUMERAL); }
 {ID}          { return sym(Terminals.ID); }
 "("           { return sym(Terminals.LPARAN);}
@@ -50,6 +49,13 @@ NUMERAL = (0 | [1-9][0-9]*)
 "-"           { return sym(Terminals.SUB);}
 "/"           { return sym(Terminals.DIVIDER);}
 "%"           { return sym(Terminals.MODULAR);}
+"<="          { return sym(Terminals.LEQ);}
+">="          { return sym(Terminals.GEQ);}
+"<"           { return sym(Terminals.LESS);}
+">"           { return sym(Terminals.GREATER);}
+"!="          { return sym(Terminals.NOTEQ);}
+"=="          { return sym(Terminals.EQ);}
+"="           { return sym(Terminals.ASSIGN); }
 <<EOF>>       { return sym(Terminals.EOF); }
 
 /* error fallback */
