@@ -68,6 +68,14 @@ public class ParseTests {
 		Util.testValidSyntax(TEST_DIRECTORY, "operations1.in");
 	}
 
+	@Test public void comparators() {
+		Util.testValidSyntax(TEST_DIRECTORY, "comparators.in");
+	}
+
+	@Test public void paren1() {
+		Util.testValidSyntax(TEST_DIRECTORY, "paren1.in");
+	}
+
 	/* ERROR TESTS */
 
 	@Test public void errorFunctionBadOrder() {
@@ -88,6 +96,10 @@ public class ParseTests {
 
 	@Test public void variableDeclarationAndUsesError3() {
 		Util.testSyntaxError(TEST_DIRECTORY, "variableDeclarationAndUsesError3.in");
+	}
+
+	@Test public void comparatorsError() {
+		Util.testSyntaxError(TEST_DIRECTORY, "comparatorsError.in");
 	}
 
 }

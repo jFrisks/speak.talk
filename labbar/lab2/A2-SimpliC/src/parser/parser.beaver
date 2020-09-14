@@ -9,7 +9,7 @@
 	}
 :};
 
-%terminals ID, NUMERAL, INT, LPARAN, RPARAN, LBRACKET, RBRACKET, SEMICOLON, ASSIGN, MULTIPLIER, PLUS, SUB, DIVIDER, MODULAR;
+%terminals ID, NUMERAL, INT, LPARAN, RPARAN, LBRACKET, RBRACKET, SEMICOLON, ASSIGN, MULTIPLIER, PLUS, SUB, DIVIDER, MODULAR, LESS, GREATER, LEQ, GEQ, NOTEQ, EQ;
 
 %typeof program = "Program";
 %typeof functionCallStmt = "FunctionCallStmt";
@@ -22,8 +22,16 @@
 %typeof idUse = "IdUse";
 %typeof numeral = "Numeral";
 %typeof expr = "Expr";
+%typeof comparator = "Expr";
 %typeof factor = "Expr";
 %typeof term = "Expr";
+%typeof paren = "Expr";
+%typeof less = "Less";
+%typeof greater = "Greater";
+%typeof lessEqual = "LessEq";
+%typeof greaterEqual = "GreaterEq";
+%typeof equal = "Eq";
+%typeof notEqual = "NotEq";
 %typeof mul = "Mul";
 %typeof add = "Add";
 %typeof sub = "Sub";
@@ -57,14 +65,36 @@ stmt =
 assignment = idUse.a ASSIGN expr.b SEMICOLON {: return new Assignment(a,b); :};
 
 expr =
-  term
-  | add
-  | sub
+  comparator
+  | less
+  | greater
+  | lessEqual
+  | greaterEqual
+  | equal
+  | notEqual
   ;
 
-add = expr.a PLUS term.b {: return new Add(a, b); :};
+less = comparator.a LESS comparator.b {: return new Less(a, b); :};
 
-sub = expr.a SUB term.b {: return new Sub(a, b); :};
+greater = comparator.a GREATER comparator.b {: return new Greater(a, b); :};
+
+lessEqual = comparator.a LEQ comparator.b {: return new LessEq(a, b); :};
+
+greaterEqual = comparator.a GEQ comparator.b {: return new GreaterEq(a, b); :};
+
+notEqual = comparator.a NOTEQ comparator.b {: return new NotEq(a, b); :};
+
+equal = comparator.a EQ comparator.b {: return new Eq(a, b); :};
+
+comparator =
+    term
+    | add
+    | sub
+    ;
+
+add = comparator.a PLUS term.b {: return new Add(a, b); :};
+
+sub = comparator.a SUB term.b {: return new Sub(a, b); :};
 
 term =
     factor
@@ -81,7 +111,12 @@ mod = term.a MODULAR factor.b {: return new Mod(a, b); :};
 
 factor =
   numeral
-  | idUse;
+  | idUse
+  | paren
+  ;
+
+paren =
+  LPARAN expr.a RPARAN {: return a; :};
 
 idUse = ID.id {: return new IdUse(id); :};
 

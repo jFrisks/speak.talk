@@ -19,37 +19,49 @@ public class LangParser extends beaver.Parser {
 
   public static class Terminals {
     public static final short EOF = 0;
-    public static final short SEMICOLON = 1;
-    public static final short SUB = 2;
-    public static final short PLUS = 3;
-    public static final short ID = 4;
-    public static final short INT = 5;
-    public static final short DIVIDER = 6;
-    public static final short MODULAR = 7;
-    public static final short MULTIPLIER = 8;
-    public static final short RBRACKET = 9;
-    public static final short NUMERAL = 10;
-    public static final short ASSIGN = 11;
-    public static final short RPARAN = 12;
-    public static final short LBRACKET = 13;
-    public static final short LPARAN = 14;
+    public static final short RPARAN = 1;
+    public static final short SEMICOLON = 2;
+    public static final short SUB = 3;
+    public static final short PLUS = 4;
+    public static final short ID = 5;
+    public static final short GEQ = 6;
+    public static final short LESS = 7;
+    public static final short GREATER = 8;
+    public static final short EQ = 9;
+    public static final short NOTEQ = 10;
+    public static final short LEQ = 11;
+    public static final short DIVIDER = 12;
+    public static final short MODULAR = 13;
+    public static final short MULTIPLIER = 14;
+    public static final short INT = 15;
+    public static final short LPARAN = 16;
+    public static final short NUMERAL = 17;
+    public static final short RBRACKET = 18;
+    public static final short ASSIGN = 19;
+    public static final short LBRACKET = 20;
 
     public static final String[] NAMES = {
         "EOF",
+        "RPARAN",
         "SEMICOLON",
         "SUB",
         "PLUS",
         "ID",
-        "INT",
+        "GEQ",
+        "LESS",
+        "GREATER",
+        "EQ",
+        "NOTEQ",
+        "LEQ",
         "DIVIDER",
         "MODULAR",
         "MULTIPLIER",
-        "RBRACKET",
-        "NUMERAL",
-        "ASSIGN",
-        "RPARAN",
-        "LBRACKET",
+        "INT",
         "LPARAN",
+        "NUMERAL",
+        "RBRACKET",
+        "ASSIGN",
+        "LBRACKET",
     };
   }
 
@@ -91,17 +103,17 @@ public class LangParser extends beaver.Parser {
       }
     },
     Action.RETURN, // [5] stmt =  idDecl (default action: return symbol 1)
-    new Action() { // [6] block =  LBRACKET RBRACKET
+    new Action() { // [6] stmtList =  stmt
+      public Symbol reduce(Symbol[] _symbols, int offset) {
+        final Stmt a = (Stmt) _symbols[offset + 1].value;
+        return new List().add(a);
+      }
+    },
+    new Action() { // [7] block =  LBRACKET RBRACKET
       public Symbol reduce(Symbol[] _symbols, int offset) {
         final Symbol LBRACKET = _symbols[offset + 1];
         final Symbol RBRACKET = _symbols[offset + 2];
         return new Block();
-      }
-    },
-    new Action() { // [7] stmtList =  stmt
-      public Symbol reduce(Symbol[] _symbols, int offset) {
-        final Stmt a = (Stmt) _symbols[offset + 1].value;
-        return new List().add(a);
       }
     },
     new Action() { // [8] idUse =  ID
@@ -110,19 +122,19 @@ public class LangParser extends beaver.Parser {
         return new IdUse(id);
       }
     },
-    new Action() { // [9] block =  LBRACKET stmtList RBRACKET
+    new Action() { // [9] stmtList =  stmtList stmt
+      public Symbol reduce(Symbol[] _symbols, int offset) {
+        final List a = (List) _symbols[offset + 1].value;
+        final Stmt b = (Stmt) _symbols[offset + 2].value;
+        return a.add(b);
+      }
+    },
+    new Action() { // [10] block =  LBRACKET stmtList RBRACKET
       public Symbol reduce(Symbol[] _symbols, int offset) {
         final Symbol LBRACKET = _symbols[offset + 1];
         final List list = (List) _symbols[offset + 2].value;
         final Symbol RBRACKET = _symbols[offset + 3];
         return new Block(list);
-      }
-    },
-    new Action() { // [10] stmtList =  stmtList stmt
-      public Symbol reduce(Symbol[] _symbols, int offset) {
-        final List a = (List) _symbols[offset + 1].value;
-        final Stmt b = (Stmt) _symbols[offset + 2].value;
-        return a.add(b);
       }
     },
     new Action() { // [11] idDecl =  INT ID SEMICOLON
@@ -133,16 +145,17 @@ public class LangParser extends beaver.Parser {
         return new IdDecl(id);
       }
     },
-    Action.RETURN, // [12] expr =  sub (default action: return symbol 1)
-    Action.RETURN, // [13] term =  factor (default action: return symbol 1)
-    Action.RETURN, // [14] factor =  idUse (default action: return symbol 1)
-    new Action() { // [15] numeral =  NUMERAL
+    Action.RETURN, // [12] term =  factor (default action: return symbol 1)
+    Action.RETURN, // [13] comparator =  term (default action: return symbol 1)
+    Action.RETURN, // [14] factor =  numeral (default action: return symbol 1)
+    Action.RETURN, // [15] expr =  notEqual (default action: return symbol 1)
+    new Action() { // [16] numeral =  NUMERAL
       public Symbol reduce(Symbol[] _symbols, int offset) {
         final Symbol a = _symbols[offset + 1];
         return new Numeral(a);
       }
     },
-    new Action() { // [16] assignment =  idUse ASSIGN expr SEMICOLON
+    new Action() { // [17] assignment =  idUse ASSIGN expr SEMICOLON
       public Symbol reduce(Symbol[] _symbols, int offset) {
         final IdUse a = (IdUse) _symbols[offset + 1].value;
         final Symbol ASSIGN = _symbols[offset + 2];
@@ -151,7 +164,7 @@ public class LangParser extends beaver.Parser {
         return new Assignment(a,b);
       }
     },
-    new Action() { // [17] div =  term DIVIDER factor
+    new Action() { // [18] div =  term DIVIDER factor
       public Symbol reduce(Symbol[] _symbols, int offset) {
         final Expr a = (Expr) _symbols[offset + 1].value;
         final Symbol DIVIDER = _symbols[offset + 2];
@@ -159,7 +172,7 @@ public class LangParser extends beaver.Parser {
         return new Div(a, b);
       }
     },
-    new Action() { // [18] mod =  term MODULAR factor
+    new Action() { // [19] mod =  term MODULAR factor
       public Symbol reduce(Symbol[] _symbols, int offset) {
         final Expr a = (Expr) _symbols[offset + 1].value;
         final Symbol MODULAR = _symbols[offset + 2];
@@ -167,7 +180,7 @@ public class LangParser extends beaver.Parser {
         return new Mod(a, b);
       }
     },
-    new Action() { // [19] mul =  term MULTIPLIER factor
+    new Action() { // [20] mul =  term MULTIPLIER factor
       public Symbol reduce(Symbol[] _symbols, int offset) {
         final Expr a = (Expr) _symbols[offset + 1].value;
         final Symbol MULTIPLIER = _symbols[offset + 2];
@@ -175,7 +188,31 @@ public class LangParser extends beaver.Parser {
         return new Mul(a, b);
       }
     },
-    new Action() { // [20] add =  expr PLUS term
+    new Action() { // [21] lessEqual =  comparator LEQ comparator
+      public Symbol reduce(Symbol[] _symbols, int offset) {
+        final Expr a = (Expr) _symbols[offset + 1].value;
+        final Symbol LEQ = _symbols[offset + 2];
+        final Expr b = (Expr) _symbols[offset + 3].value;
+        return new LessEq(a, b);
+      }
+    },
+    new Action() { // [22] greaterEqual =  comparator GEQ comparator
+      public Symbol reduce(Symbol[] _symbols, int offset) {
+        final Expr a = (Expr) _symbols[offset + 1].value;
+        final Symbol GEQ = _symbols[offset + 2];
+        final Expr b = (Expr) _symbols[offset + 3].value;
+        return new GreaterEq(a, b);
+      }
+    },
+    new Action() { // [23] greater =  comparator GREATER comparator
+      public Symbol reduce(Symbol[] _symbols, int offset) {
+        final Expr a = (Expr) _symbols[offset + 1].value;
+        final Symbol GREATER = _symbols[offset + 2];
+        final Expr b = (Expr) _symbols[offset + 3].value;
+        return new Greater(a, b);
+      }
+    },
+    new Action() { // [24] add =  comparator PLUS term
       public Symbol reduce(Symbol[] _symbols, int offset) {
         final Expr a = (Expr) _symbols[offset + 1].value;
         final Symbol PLUS = _symbols[offset + 2];
@@ -183,7 +220,31 @@ public class LangParser extends beaver.Parser {
         return new Add(a, b);
       }
     },
-    new Action() { // [21] sub =  expr SUB term
+    new Action() { // [25] less =  comparator LESS comparator
+      public Symbol reduce(Symbol[] _symbols, int offset) {
+        final Expr a = (Expr) _symbols[offset + 1].value;
+        final Symbol LESS = _symbols[offset + 2];
+        final Expr b = (Expr) _symbols[offset + 3].value;
+        return new Less(a, b);
+      }
+    },
+    new Action() { // [26] equal =  comparator EQ comparator
+      public Symbol reduce(Symbol[] _symbols, int offset) {
+        final Expr a = (Expr) _symbols[offset + 1].value;
+        final Symbol EQ = _symbols[offset + 2];
+        final Expr b = (Expr) _symbols[offset + 3].value;
+        return new Eq(a, b);
+      }
+    },
+    new Action() { // [27] notEqual =  comparator NOTEQ comparator
+      public Symbol reduce(Symbol[] _symbols, int offset) {
+        final Expr a = (Expr) _symbols[offset + 1].value;
+        final Symbol NOTEQ = _symbols[offset + 2];
+        final Expr b = (Expr) _symbols[offset + 3].value;
+        return new NotEq(a, b);
+      }
+    },
+    new Action() { // [28] sub =  comparator SUB term
       public Symbol reduce(Symbol[] _symbols, int offset) {
         final Expr a = (Expr) _symbols[offset + 1].value;
         final Symbol SUB = _symbols[offset + 2];
@@ -191,22 +252,36 @@ public class LangParser extends beaver.Parser {
         return new Sub(a, b);
       }
     },
+    new Action() { // [29] paren =  LPARAN expr RPARAN
+      public Symbol reduce(Symbol[] _symbols, int offset) {
+        final Symbol LPARAN = _symbols[offset + 1];
+        final Expr a = (Expr) _symbols[offset + 2].value;
+        final Symbol RPARAN = _symbols[offset + 3];
+        return a;
+      }
+    },
   };
 
   static final ParsingTables PARSING_TABLES = new ParsingTables(
-    "U9pDbxjk4q4KXi$isY5tGeXp9JW942xX4Wa96YXfgA6XXGQ95WeQAE09GFJ02m0b3U8546#" +
-    "0A2WI0k6IG32GuPlnBfxrZYUsLa6SqQ$pU$uvS$7QSywAHCybahBi4D5B4akV6DibfSIBTC" +
-    "cW3EDtuiUjDpOYCp8d2rfRVvIUoB8fgSe#sIDxxQXkstSCDYcpCfsCE5uVeJSbCLXTEU74z" +
-    "aZ0zEyySzHVeLZf3QhzmNL$vfbZksKWOKCUjHASkQPhAUjO$P5dZeq6rztG6odpgDzDQsP$" +
-    "vSPvnpnJJuJM9RPX#tFhViipHrtNwodpg6jwBMKUzQjfhJQblvYMPMshHMPkn1wGUJdOf7u" +
-    "sBSiSEoH7v73BTOEnM#pgasbPvbZm2HPHzQfUJLakijZC7qtBCaVzO5gMEUgAQLdcgEzDiz" +
-    "Jt19TDSzGoT#auj#SKzzsanhXNP#iUbFZFZk4dKc#L6SOCsJlPUdhAISymfnwHYXtLKAUvI" +
-    "QlP4UmaCM$ie0wO6njIlR7zGNMWmBgbj5TwV6fmvYrYWsfuLtq5rbNaqjYoBl9oTtQ#hMB3" +
-    "wpgyDwSM#fxREv5tLvxpTgvktyp$rRhX9rX8RVT$rF7C$#0fjADoCoxU5lihDxMRgNHDfMc" +
-    "gqpFWBBW4he9hu2Pu01w29#05U0NUWdU0EHJLZwBAKGlWD3WFBe8hu0Qu2#w3n#0PU0bUWp" +
-    "U0tAEeNIFgpOYwEY9ZHAV0EN01N0RNmHrm3pm2JvFzBzsg7t7PU1#mbSJNMer9z4tZcROI6" +
-    "XU2r6jcK$5May$pu6IBiOlDENaRR9It3KLcDOZ8iH7PjaoDgdWFCUyfYjndU0oF61tpIr1a" +
-    "GaK#L9n4aNbBvCMOZ1cJ7MFoQ4m#ZMNk3zTKU$m=");
+    "U9pjc4kC5KKKXlz#uO0Zmsju2GCpmy30F7Ye#5R0nopScXWI5snOu8u52n82h21nApiM96p" +
+    "GX2K9QvSkTASRZOaA2FXWv0sAvTVLDrDtkgjdQhovmuHG9t$twJf$dLEdRjrxwxIKNLIiLC" +
+    "#eKykGJ58YcPyqh3KQqkiyBqIaHLgkUToxaBmjjjU2jLhzUbw3sg9UzMc3UepHPerWNmlMW" +
+    "m5jR73Vu2bkw6yIwL#lZxUizzpgMaTzF2pDyURhjObuaxblQr8pZxoiNHDMn$odYRdRCdqZ" +
+    "zq1TuBMyqzJxdksLdlKotrMrBVNqFMUlIqeP$UrX#gtTKp4dZNfOrrUsp83vmCDyuBNKvxw" +
+    "YDFw#X#crcdk5ECs9uzZRogbyJcghGedcRbrVsMBkJEcdsUfR9McJrbL6tVPukkspc5k5EC" +
+    "r9YNcp4AVPfr5jrROIywz2dEQan1mtu$wyAxCFPzuen6bE$hTFV#wjCSDNFf$dAteHTOTUq" +
+    "WlQgPUrtJlHLyFocKdkCzXrCyieR9xXFiDtNHlsP$WgFMNEVQRviqeh#YgMzxq#FStyKOZJ" +
+    "d9IOlnVYD2Sbvc#5ECr9YNdTN6$yXamtpslcMY3pghaQoFor4AVP9zz$nnLp9T3dPNCva7d" +
+    "9N0fa$bA8q#oJRvu$5#8q9voUDoAZdBwwDSGvUGHiHL$EQMObUgzwkMv0Ckw36ZGq3TjhWy" +
+    "L9OpNdnJMSTdlOd#i9sQT#x0DWaprxRsdosDMao#$3sAOkCz6OUsqyB4tng0oQuldyEf$Xq" +
+    "IlCcf6AQcPPweMvB6IEDdhcwREpqv9oHbLcUKozpvfHuT4VBpCyzuYABr6ADezAiuFwR06r" +
+    "JoUd#8KJdANk6j8K1pDdxTFacx2uXUW1gzHUPbtchJ3R4RtgintCyFNq#WpVd#6vX##wMLl" +
+    "vERW$M$fkFcNEVMRTxwVFfpVEOz$91JDydkrWFddph38vHuuTb$rVpwltHI1$xvg$1VuGx0" +
+    "L7mMVW7FW2V0seHNHFYZf1BzW9FW3xmM5m19m55y0tu4TmIuhXn$1Z#37yU1yu13u5Pm3y#" +
+    "2i0Fxuf9HrW5TW1ni37u20u0Kw3y#1By1sWPakPLjeDo24bXvGSqWE0759oIE6dy5FuAVpy" +
+    "PNu6FuEVmS$WP$0p#1dyxFF6sdn$h5ZA7$Ax3xHlmOqQstZTEDpFhxDD1yRkdc8##PlIl3O" +
+    "V04FW8$09E0PEWbEDp$DC2$77fgyAPxdra6ka4OkOkZ6cbioe5ICDWr6UkwqUeoVKaWcLJi" +
+    "GwHLGz4NLQH0KKKLMcr3y95L12BPHGmoLyBn8goOG8YVf17nW0Qy4AiEq$BQo$pW==");
 
   public LangParser() {
     super(PARSING_TABLES);
