@@ -25,6 +25,7 @@
 %typeof comparator = "Expr";
 %typeof factor = "Expr";
 %typeof term = "Expr";
+%typeof paren = "Expr";
 %typeof less = "Less";
 %typeof greater = "Greater";
 %typeof lessEqual = "LessEq";
@@ -110,7 +111,12 @@ mod = term.a MODULAR factor.b {: return new Mod(a, b); :};
 
 factor =
   numeral
-  | idUse;
+  | idUse
+  | paren
+  ;
+
+paren =
+  LPARAN expr.a RPARAN {: return a; :};
 
 idUse = ID.id {: return new IdUse(id); :};
 

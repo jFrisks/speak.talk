@@ -72,6 +72,10 @@ public class ParseTests {
 		Util.testValidSyntax(TEST_DIRECTORY, "comparators.in");
 	}
 
+	@Test public void paren1() {
+		Util.testValidSyntax(TEST_DIRECTORY, "paren1.in");
+	}
+
 	/* ERROR TESTS */
 
 	@Test public void errorFunctionBadOrder() {
