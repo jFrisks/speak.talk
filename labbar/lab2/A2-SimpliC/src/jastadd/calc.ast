@@ -9,6 +9,8 @@ Assignment : Stmt ::= IdUse Expr;
 IdDecl : Stmt ::= <ID>;
 PrintStmt : Stmt ::= Expr;
 ReturnStmt : Stmt ::= Expr;
+IfElse: Stmt ::= Expr Block;
+While: Stmt ::= Expr Block;
 
 abstract Expr;
 FunctionCall : Expr ::= Expr*;
