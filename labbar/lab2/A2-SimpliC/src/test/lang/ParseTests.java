@@ -114,4 +114,8 @@ public class ParseTests {
 		Util.testSyntaxError(TEST_DIRECTORY, "comparatorsError.in");
 	}
 
+	@Test public void functionCallTrailingComma() {
+		Util.testSyntaxError(TEST_DIRECTORY, "functionCallTrailingComma.in");
+	}
+
 }
