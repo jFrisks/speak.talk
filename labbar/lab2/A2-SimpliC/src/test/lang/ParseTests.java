@@ -114,9 +114,9 @@ public class ParseTests {
 		Util.testValidSyntax(TEST_DIRECTORY, "ifOnly.in");
 	}
 
-//	@Test public void ifElse() {
-//		Util.testValidSyntax(TEST_DIRECTORY, "ifElse.in");
-//	}
+	@Test public void ifElse() {
+		Util.testValidSyntax(TEST_DIRECTORY, "ifElse.in");
+	}
 
 	@Test public void assignTest() {
 		Util.testValidSyntax(TEST_DIRECTORY, "assignTest.in");
@@ -125,6 +125,10 @@ public class ParseTests {
 
 	@Test public void whileTest() {
 		Util.testValidSyntax(TEST_DIRECTORY, "while.in");
+	}
+
+	@Test public void finalBoss() {
+		Util.testValidSyntax(TEST_DIRECTORY, "finalBoss.in");
 	}
 
 	/* ERROR TESTS */
@@ -173,8 +177,5 @@ public class ParseTests {
 		Util.testSyntaxError(TEST_DIRECTORY, "whileError.in");
 	}
 
-//	@Test public void assignError() {
-//		Util.testSyntaxError(TEST_DIRECTORY, "assignError.in");
-//	}
 
 }

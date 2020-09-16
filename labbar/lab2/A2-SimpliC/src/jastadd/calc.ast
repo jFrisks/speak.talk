@@ -9,7 +9,7 @@ Assignment : Stmt ::= IdUse Expr;
 IdDecl : Stmt ::= <ID>;
 PrintStmt : Stmt ::= Expr;
 ReturnStmt : Stmt ::= Expr;
-IfElse: Stmt ::= Expr Block;
+IfElse: Stmt ::= IfExpr:Expr If:Block [Else:Block];
 While: Stmt ::= Expr Block;
 
 abstract Expr;

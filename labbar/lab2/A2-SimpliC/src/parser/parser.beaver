@@ -106,8 +106,8 @@ printStmt = PRINT paren.a {: return new PrintStmt(a); :};
 while = WHILE paren.a block.b {: return new While(a,b); :};
 
 ifElse =
-  IF paren.a block.b {: return new IfElse(a,b); :}
-  /* | IF paren.a block.b ELSE block.c {: return new IfElse(a,b,c); :}*/
+  IF paren.a block.b {: return new IfElse(a,b, new Opt()); :}
+  | IF paren.a block.b ELSE block.c {: return new IfElse(a,b,new Opt(c)); :}
   ;
 
 expr =
