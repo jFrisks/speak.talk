@@ -54,7 +54,8 @@
 program = programStmtList.a {: return new Program(a); :} ;
 
 programStmtList =
-  programStmt.stmt {: return new List().add(stmt); :}
+  /* epsilon */
+  | programStmt.stmt {: return new List().add(stmt); :}
   | programStmtList.list programStmt.b {: return list.add(b); :}
   ;
 

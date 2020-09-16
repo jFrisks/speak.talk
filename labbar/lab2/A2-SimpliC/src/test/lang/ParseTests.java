@@ -8,6 +8,10 @@ public class ParseTests {
 	/** Directory where the test input files are stored. */
 	private static final File TEST_DIRECTORY = new File("testfiles/parser");
 
+	@Test public void empty() {
+		Util.testValidSyntax(TEST_DIRECTORY, "empty.in");
+	}
+
 	@Test public void functionIntEmpty() {
 		Util.testValidSyntax(TEST_DIRECTORY, "functionIntEmpty.in");
 	}
