@@ -38,9 +38,8 @@ COMMENT = \/\/.*
 
 // token definitions
 "int"         { return sym(Terminals.INT); }
-{COMMENT}     { return sym(Terminals.COMMENT); }
-{NUMERAL}     { return sym(Terminals.NUMERAL); }
-{ID}          { return sym(Terminals.ID); }
+"return"      { return sym(Terminals.RETURN); }
+"print"      { return sym(Terminals.PRINT); }
 "("           { return sym(Terminals.LPARAN);}
 ")"           { return sym(Terminals.RPARAN);}
 "{"           { return sym(Terminals.LBRACKET);}
@@ -59,6 +58,9 @@ COMMENT = \/\/.*
 "=="          { return sym(Terminals.EQ);}
 "="           { return sym(Terminals.ASSIGN); }
 ","           { return sym(Terminals.COMMA); }
+{COMMENT}     { return sym(Terminals.COMMENT); }
+{NUMERAL}     { return sym(Terminals.NUMERAL); }
+{ID}          { return sym(Terminals.ID); }
 <<EOF>>       { return sym(Terminals.EOF); }
 
 /* error fallback */

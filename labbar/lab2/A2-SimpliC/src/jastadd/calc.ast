@@ -8,6 +8,7 @@ abstract Stmt;
 Assignment : Stmt ::= IdUse Expr;
 IdDecl : Stmt ::= <ID>;
 PrintStmt : Stmt ::= Expr;
+ReturnStmt : Stmt ::= Expr;
 
 abstract Expr;
 FunctionCall : Expr ::= Expr*;
