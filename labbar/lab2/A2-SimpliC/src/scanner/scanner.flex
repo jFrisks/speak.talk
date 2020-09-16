@@ -30,6 +30,7 @@ import lang.ast.LangParser.SyntaxError;
 WhiteSpace = [ ] | \t | \f | \n | \r
 ID = [a-zA-Z]+
 NUMERAL = (0 | [1-9][0-9]*)
+COMMENT = \/\/.*
 %%
 
 // discard whitespace information
@@ -37,6 +38,7 @@ NUMERAL = (0 | [1-9][0-9]*)
 
 // token definitions
 "int"         { return sym(Terminals.INT); }
+{COMMENT}     { return sym(Terminals.COMMENT); }
 {NUMERAL}     { return sym(Terminals.NUMERAL); }
 {ID}          { return sym(Terminals.ID); }
 "("           { return sym(Terminals.LPARAN);}

@@ -9,9 +9,11 @@
 	}
 :};
 
-%terminals ID, NUMERAL, INT, LPARAN, RPARAN, LBRACKET, RBRACKET, SEMICOLON, ASSIGN, MULTIPLIER, PLUS, SUB, DIVIDER, MODULAR, LESS, GREATER, LEQ, GEQ, NOTEQ, EQ, COMMA;
+%terminals ID, NUMERAL, INT, LPARAN, RPARAN, LBRACKET, RBRACKET, SEMICOLON, ASSIGN, MULTIPLIER, PLUS, SUB, DIVIDER, MODULAR, LESS, GREATER, LEQ, GEQ, NOTEQ, EQ, COMMA, COMMENT;
 
 %typeof program = "Program";
+%typeof programStmtList = "List";
+%typeof programStmt = "ProgramStmt";
 %typeof functionCallStmt = "FunctionCallStmt";
 %typeof functionCallStmtList = "List";
 %typeof functionCall = "Expr";
@@ -40,17 +42,26 @@
 %typeof sub = "Sub";
 %typeof div = "Div";
 %typeof mod = "Mod";
+%typeof comment = "Comment";
 
 %goal program;
 
-program = functionCallStmtList.a {: return new Program(a); :} ;
+program = programStmtList.a {: return new Program(a); :} ;
 
-functionCallStmtList =
-  functionCallStmt.stmt {: return new List().add(stmt); :}
-  | functionCallStmtList.list functionCallStmt.b {: return list.add(b); :}
+programStmtList =
+  programStmt.stmt {: return new List().add(stmt); :}
+  | programStmtList.list programStmt.b {: return list.add(b); :}
   ;
 
-functionCallStmt = INT ID LPARAN paramDeclareList.a RPARAN block.b {: return new FunctionCallStmt(b); :} ;
+programStmt =
+  comment
+  | functionCallStmt
+  ;
+
+functionCallStmt =
+  INT ID LPARAN paramDeclareList.a RPARAN block.b {: return new FunctionCallStmt(b); :};
+
+comment = COMMENT.a {: return new Comment(a); :};
 
 paramDeclareList =
   /* epsilon */

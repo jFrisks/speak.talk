@@ -92,6 +92,9 @@ public class ParseTests {
 		Util.testValidSyntax(TEST_DIRECTORY, "functionCallStmtArgs.in");
 	}
 
+	@Test public void comment() {
+		Util.testValidSyntax(TEST_DIRECTORY, "comment.in");
+	}
 
 	/* ERROR TESTS */
 

@@ -1,5 +1,7 @@
-Program ::= FunctionCallStmt*;
-FunctionCallStmt ::= Block;
+Program ::= ProgramStmt*;
+abstract ProgramStmt;
+FunctionCallStmt : ProgramStmt ::= Block;
+Comment : ProgramStmt ::= <COMMENT>;
 Block ::= Stmt*;
 
 abstract Stmt;
