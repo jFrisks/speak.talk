@@ -28,6 +28,7 @@
 %typeof term = "Expr";
 %typeof paren = "Expr";
 %typeof paramList = "List";
+%typeof paramDeclareList = "List";
 %typeof less = "Less";
 %typeof greater = "Greater";
 %typeof lessEqual = "LessEq";
@@ -49,7 +50,13 @@ functionCallStmtList =
   | functionCallStmtList.list functionCallStmt.b {: return list.add(b); :}
   ;
 
-functionCallStmt = INT ID LPARAN RPARAN block.b {: return new FunctionCallStmt(b); :} ;
+functionCallStmt = INT ID LPARAN paramDeclareList.a RPARAN block.b {: return new FunctionCallStmt(b); :} ;
+
+paramDeclareList =
+  /* epsilon */
+  | idDecl.a {: return new List().add(a); :}
+  | paramDeclareList.a COMMA idDecl.b {: return a.add(b); :}
+  ;
 
 block =
     LBRACKET stmtList.list RBRACKET {: return new Block(list); :}
@@ -61,11 +68,13 @@ stmtList =
     ;
 
 stmt =
-  idDecl
-  | assignment
+  idDecl.a SEMICOLON {: return a; :}
+  | assignment.a SEMICOLON {: return a; :}
   ;
 
-assignment = idUse.a ASSIGN expr.b SEMICOLON {: return new Assignment(a,b); :};
+assignment = idUse.a ASSIGN expr.b {: return new Assignment(a,b); :};
+
+idDecl = INT ID.id {: return new IdDecl(id); :} ;
 
 expr =
   comparator
@@ -133,5 +142,3 @@ paren =
 idUse = ID.id {: return new IdUse(id); :};
 
 numeral = NUMERAL.a {: return new Numeral(a); :};
-
-idDecl = INT ID.id SEMICOLON {: return new IdDecl(id); :} ;

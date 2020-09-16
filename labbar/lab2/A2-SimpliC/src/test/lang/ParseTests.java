@@ -88,6 +88,11 @@ public class ParseTests {
 		Util.testValidSyntax(TEST_DIRECTORY, "functionCallArgs.in");
 	}
 
+	@Test public void functionCallStmtArgs() {
+		Util.testValidSyntax(TEST_DIRECTORY, "functionCallStmtArgs.in");
+	}
+
+
 	/* ERROR TESTS */
 
 	@Test public void errorFunctionBadOrder() {
@@ -116,6 +121,18 @@ public class ParseTests {
 
 	@Test public void functionCallTrailingComma() {
 		Util.testSyntaxError(TEST_DIRECTORY, "functionCallTrailingComma.in");
+	}
+
+	@Test public void functionCallStmtArgsError() {
+		Util.testSyntaxError(TEST_DIRECTORY, "functionCallStmtArgsError.in");
+	}
+
+	@Test public void functionCallStmtArgsError2() {
+		Util.testSyntaxError(TEST_DIRECTORY, "functionCallStmtArgsError2.in");
+	}
+
+	@Test public void functionCallStmtArgsError3() {
+		Util.testSyntaxError(TEST_DIRECTORY, "functionCallStmtArgsError3.in");
 	}
 
 }
