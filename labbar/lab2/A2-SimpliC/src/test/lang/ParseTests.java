@@ -104,6 +104,10 @@ public class ParseTests {
 		Util.testValidSyntax(TEST_DIRECTORY, "print.in");
 	}
 
+	@Test public void read() {
+		Util.testValidSyntax(TEST_DIRECTORY, "read.in");
+	}
+
 	/* ERROR TESTS */
 
 	@Test public void errorFunctionBadOrder() {

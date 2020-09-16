@@ -1,0 +1,9 @@
+Program
+  List
+    FunctionCallStmt
+      Block
+        List
+          IdDecl ID="x"
+          Assignment
+            IdUse ID="x"
+            ReadExpr
