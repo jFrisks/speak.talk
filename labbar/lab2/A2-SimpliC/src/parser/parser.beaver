@@ -54,7 +54,8 @@
 program = programStmtList.a {: return new Program(a); :};
 
 programStmtList =
-  programStmt.stmt {: return new List().add(stmt); :}
+  /*epsilon*/ {: return new List(); :}
+  | programStmt.stmt {: return new List().add(stmt); :}
   | programStmtList.list programStmt.b {: return list.add(b); :}
   ;
 
@@ -64,12 +65,12 @@ programStmt =
   ;
 
 functionDecl =
-  INT ID LPARAN paramDeclareList.a RPARAN block.b {: return new FunctionDecl(b); :};
+  INT ID LPARAN paramDeclareList.a RPARAN block.b {: return new FunctionDecl(a, b); :};
 
 comment = COMMENT.a {: return new Comment(a); :};
 
 paramDeclareList =
-  /* epsilon */
+  /* epsilon */ {: return new List(); :}
   | idDecl.a {: return new List().add(a); :}
   | paramDeclareList.a COMMA idDecl.b {: return a.add(b); :}
   ;
@@ -127,7 +128,7 @@ expr =
 functionCall = ID LPARAN paramList.a RPARAN {: return new FunctionCall(a); :} ;
 
 paramList =
-  /* epsilon */
+  /* epsilon */ {: return new List(); :}
   | expr.a {: return new List().add(a); :}
   | paramList.a COMMA expr.b {: return a.add(b); :}
   ;

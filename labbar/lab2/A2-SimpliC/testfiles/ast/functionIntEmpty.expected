@@ -1,5 +1,6 @@
 Program
   List
     FunctionDecl
+      List
       Block
         List
