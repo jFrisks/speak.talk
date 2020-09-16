@@ -25,6 +25,7 @@
 %typeof ifElse = "IfElse";
 %typeof printStmt = "PrintStmt";
 %typeof while = "While";
+%typeof functionCallStmt = "FunctionCallStmt";
 %typeof readExpr = "ReadExpr";
 %typeof comment = "Comment";
 %typeof idUse = "IdUse";
@@ -89,6 +90,7 @@ stmt =
   | printStmt.a SEMICOLON {: return a; :}
   | ifElse.a {: return a; :}
   | while.a {: return a; :}
+  | functionCallStmt.a SEMICOLON {: return a; :}
   ;
 
 assignment =
@@ -109,6 +111,8 @@ ifElse =
   | IF paren.a block.b ELSE block.c {: return new IfElse(a,b,new Opt(c)); :}
   ;
 
+functionCallStmt = functionCall.a {: return new FunctionCallStmt(a); :};
+
 expr =
   comparator
   | readExpr
@@ -120,7 +124,7 @@ expr =
   | notEqual
   ;
 
-functionCall = ID LPARAN paramList.a RPARAN {: return new FunctionCall(); :} ;
+functionCall = ID LPARAN paramList.a RPARAN {: return new FunctionCall(a); :} ;
 
 paramList =
   /* epsilon */

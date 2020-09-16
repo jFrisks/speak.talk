@@ -135,6 +135,10 @@ public class ParseTests {
 		Util.testValidSyntax(TEST_DIRECTORY, "finalBoss.in");
 	}
 
+    @Test public void functionCallAsStatement() {
+        Util.testValidSyntax(TEST_DIRECTORY, "functionCallAsStatement.in");
+    }
+
 	/* ERROR TESTS */
 
 	@Test public void errorFunctionBadOrder() {

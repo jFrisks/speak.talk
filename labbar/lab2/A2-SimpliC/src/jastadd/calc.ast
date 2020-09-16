@@ -11,6 +11,7 @@ PrintStmt : Stmt ::= Expr;
 ReturnStmt : Stmt ::= Expr;
 IfElse: Stmt ::= IfExpr:Expr If:Block [Else:Block];
 While: Stmt ::= Expr Block;
+FunctionCallStmt : Stmt ::= Expr;
 
 abstract Expr;
 FunctionCall : Expr ::= Expr*;
