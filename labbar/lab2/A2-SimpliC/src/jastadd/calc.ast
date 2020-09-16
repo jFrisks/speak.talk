@@ -1,6 +1,6 @@
 Program ::= ProgramStmt*;
 abstract ProgramStmt;
-FunctionCallStmt : ProgramStmt ::= Block;
+FunctionDecl : ProgramStmt ::= Block;
 Comment : ProgramStmt ::= <COMMENT>;
 Block ::= Stmt*;
 

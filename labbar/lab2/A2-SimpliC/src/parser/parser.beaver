@@ -14,8 +14,7 @@
 %typeof program = "Program";
 %typeof programStmtList = "List";
 %typeof programStmt = "ProgramStmt";
-%typeof functionCallStmt = "FunctionCallStmt";
-%typeof functionCallStmtList = "List";
+%typeof functionDecl = "FunctionDecl";
 %typeof functionCall = "Expr";
 %typeof stmt = "Stmt";
 %typeof stmtList = "List";
@@ -51,21 +50,20 @@
 
 %goal program;
 
-program = programStmtList.a {: return new Program(a); :} ;
+program = programStmtList.a {: return new Program(a); :};
 
 programStmtList =
-  /* epsilon */
-  | programStmt.stmt {: return new List().add(stmt); :}
+  programStmt.stmt {: return new List().add(stmt); :}
   | programStmtList.list programStmt.b {: return list.add(b); :}
   ;
 
 programStmt =
   comment
-  | functionCallStmt
+  | functionDecl
   ;
 
-functionCallStmt =
-  INT ID LPARAN paramDeclareList.a RPARAN block.b {: return new FunctionCallStmt(b); :};
+functionDecl =
+  INT ID LPARAN paramDeclareList.a RPARAN block.b {: return new FunctionDecl(b); :};
 
 comment = COMMENT.a {: return new Comment(a); :};
 

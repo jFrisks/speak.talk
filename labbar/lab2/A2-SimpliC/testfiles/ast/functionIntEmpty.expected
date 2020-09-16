@@ -1,5 +1,5 @@
 Program
   List
-    FunctionCallStmt
+    FunctionDecl
       Block
         List
