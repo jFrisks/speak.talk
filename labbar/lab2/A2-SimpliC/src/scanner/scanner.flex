@@ -38,6 +38,9 @@ COMMENT = \/\/.*
 
 // token definitions
 "int"         { return sym(Terminals.INT); }
+"if"          { return sym(Terminals.IF); }
+"else"        { return sym(Terminals.ELSE); }
+"while"       { return sym(Terminals.WHILE); }
 "return"      { return sym(Terminals.RETURN); }
 "print"       { return sym(Terminals.PRINT); }
 "read"        { return sym(Terminals.READ); }

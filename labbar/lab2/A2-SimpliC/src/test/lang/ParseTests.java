@@ -108,6 +108,25 @@ public class ParseTests {
 		Util.testValidSyntax(TEST_DIRECTORY, "read.in");
 	}
 
+
+
+	@Test public void ifOnly() {
+		Util.testValidSyntax(TEST_DIRECTORY, "ifOnly.in");
+	}
+
+//	@Test public void ifElse() {
+//		Util.testValidSyntax(TEST_DIRECTORY, "ifElse.in");
+//	}
+
+	@Test public void assignTest() {
+		Util.testValidSyntax(TEST_DIRECTORY, "assignTest.in");
+	}
+
+
+	@Test public void whileTest() {
+		Util.testValidSyntax(TEST_DIRECTORY, "while.in");
+	}
+
 	/* ERROR TESTS */
 
 	@Test public void errorFunctionBadOrder() {
@@ -124,10 +143,6 @@ public class ParseTests {
 
 	@Test public void variableDeclarationAndUsesError2() {
 		Util.testSyntaxError(TEST_DIRECTORY, "variableDeclarationAndUsesError2.in");
-	}
-
-	@Test public void variableDeclarationAndUsesError3() {
-		Util.testSyntaxError(TEST_DIRECTORY, "variableDeclarationAndUsesError3.in");
 	}
 
 	@Test public void comparatorsError() {
@@ -153,5 +168,13 @@ public class ParseTests {
 	@Test public void returnError() {
 		Util.testSyntaxError(TEST_DIRECTORY, "returnError.in");
 	}
+
+	@Test public void whileError() {
+		Util.testSyntaxError(TEST_DIRECTORY, "whileError.in");
+	}
+
+//	@Test public void assignError() {
+//		Util.testSyntaxError(TEST_DIRECTORY, "assignError.in");
+//	}
 
 }

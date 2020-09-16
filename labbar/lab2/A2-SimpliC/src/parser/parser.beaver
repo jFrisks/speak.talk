@@ -9,7 +9,7 @@
 	}
 :};
 
-%terminals ID, NUMERAL, INT, LPARAN, RPARAN, LBRACKET, RBRACKET, SEMICOLON, ASSIGN, MULTIPLIER, PLUS, SUB, DIVIDER, MODULAR, LESS, GREATER, LEQ, GEQ, NOTEQ, EQ, COMMA, COMMENT, RETURN, PRINT, READ;
+%terminals ID, NUMERAL, INT, LPARAN, RPARAN, LBRACKET, RBRACKET, SEMICOLON, ASSIGN, MULTIPLIER, PLUS, SUB, DIVIDER, MODULAR, LESS, GREATER, LEQ, GEQ, NOTEQ, EQ, COMMA, COMMENT, RETURN, PRINT, READ, IF, ELSE, WHILE;
 
 %typeof program = "Program";
 %typeof programStmtList = "List";
@@ -23,7 +23,9 @@
 %typeof idDecl = "IdDecl";
 %typeof assignment = "Assignment";
 %typeof returnStmt = "ReturnStmt";
+%typeof ifElse = "IfElse";
 %typeof printStmt = "PrintStmt";
+%typeof while = "While";
 %typeof readExpr = "ReadExpr";
 %typeof comment = "Comment";
 %typeof idUse = "IdUse";
@@ -86,9 +88,14 @@ stmt =
   | assignment.a SEMICOLON {: return a; :}
   | returnStmt.a SEMICOLON {: return a; :}
   | printStmt.a SEMICOLON {: return a; :}
+  | ifElse.a {: return a; :}
+  | while.a {: return a; :}
   ;
 
-assignment = idUse.a ASSIGN expr.b {: return new Assignment(a,b); :};
+assignment =
+  idUse.a ASSIGN expr.b {: return new Assignment(a,b); :}
+  | INT idUse.a ASSIGN expr.b {: return new Assignment(a,b); :}
+  ;
 
 idDecl = INT ID.id {: return new IdDecl(id); :} ;
 
@@ -96,6 +103,12 @@ returnStmt = RETURN expr.a {: return new ReturnStmt(a); :};
 
 printStmt = PRINT paren.a {: return new PrintStmt(a); :};
 
+while = WHILE paren.a block.b {: return new While(a,b); :};
+
+ifElse =
+  IF paren.a block.b {: return new IfElse(a,b); :}
+  /* | IF paren.a block.b ELSE block.c {: return new IfElse(a,b,c); :}*/
+  ;
 
 expr =
   comparator
