@@ -56,6 +56,7 @@ NUMERAL = (0 | [1-9][0-9]*)
 "!="          { return sym(Terminals.NOTEQ);}
 "=="          { return sym(Terminals.EQ);}
 "="           { return sym(Terminals.ASSIGN); }
+","           { return sym(Terminals.COMMA); }
 <<EOF>>       { return sym(Terminals.EOF); }
 
 /* error fallback */

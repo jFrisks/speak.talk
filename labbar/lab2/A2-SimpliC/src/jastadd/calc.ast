@@ -7,6 +7,7 @@ Assignment : Stmt ::= IdUse Expr;
 IdDecl : Stmt ::= <ID>;
 
 abstract Expr;
+FunctionCall : Expr ::= Expr*;
 Less : Expr ::= Left:Expr Right:Expr;
 Greater : Expr ::= Left:Expr Right:Expr;
 LessEq : Expr ::= Left:Expr Right:Expr;

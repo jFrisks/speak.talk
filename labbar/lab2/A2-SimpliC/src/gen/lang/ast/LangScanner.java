@@ -66,10 +66,10 @@ public final class LangScanner extends beaver.Scanner {
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
     "\11\0\2\1\1\0\2\1\22\0\1\1\1\2\3\0"+
-    "\1\3\2\0\1\4\1\5\1\6\1\7\1\0\1\10"+
-    "\1\0\1\11\1\12\11\13\1\0\1\14\1\15\1\16"+
-    "\1\17\2\0\32\20\6\0\10\20\1\21\4\20\1\22"+
-    "\5\20\1\23\6\20\1\24\1\0\1\25\u0182\0";
+    "\1\3\2\0\1\4\1\5\1\6\1\7\1\10\1\11"+
+    "\1\0\1\12\1\13\11\14\1\0\1\15\1\16\1\17"+
+    "\1\20\2\0\32\21\6\0\10\21\1\22\4\21\1\23"+
+    "\5\21\1\24\6\21\1\25\1\0\1\26\u0182\0";
 
   private static int [] zzUnpackcmap_blocks() {
     int [] result = new int[512];
@@ -97,12 +97,12 @@ public final class LangScanner extends beaver.Scanner {
 
   private static final String ZZ_ACTION_PACKED_0 =
     "\1\0\1\1\1\2\1\1\1\3\1\4\1\5\1\6"+
-    "\1\7\1\10\1\11\2\12\1\13\1\14\1\15\1\16"+
-    "\2\17\1\20\1\21\1\22\1\23\1\24\1\25\1\17"+
-    "\1\26";
+    "\1\7\1\10\1\11\1\12\2\13\1\14\1\15\1\16"+
+    "\1\17\2\20\1\21\1\22\1\23\1\24\1\25\1\26"+
+    "\1\20\1\27";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[27];
+    int [] result = new int[28];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -127,13 +127,13 @@ public final class LangScanner extends beaver.Scanner {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\26\0\26\0\54\0\26\0\26\0\26\0\26"+
-    "\0\26\0\26\0\26\0\26\0\102\0\26\0\130\0\156"+
-    "\0\204\0\232\0\260\0\26\0\26\0\26\0\26\0\26"+
-    "\0\26\0\306\0\232";
+    "\0\0\0\27\0\27\0\56\0\27\0\27\0\27\0\27"+
+    "\0\27\0\27\0\27\0\27\0\27\0\105\0\27\0\134"+
+    "\0\163\0\212\0\241\0\270\0\27\0\27\0\27\0\27"+
+    "\0\27\0\27\0\317\0\241";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[27];
+    int [] result = new int[28];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -158,13 +158,13 @@ public final class LangScanner extends beaver.Scanner {
   private static final String ZZ_TRANS_PACKED_0 =
     "\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11"+
     "\1\12\1\13\1\14\1\15\1\16\1\17\1\20\1\21"+
-    "\1\22\1\23\2\22\1\24\1\25\44\0\1\26\21\0"+
-    "\2\15\30\0\1\27\25\0\1\30\25\0\1\31\27\0"+
-    "\4\22\22\0\2\22\1\32\1\22\22\0\3\22\1\33"+
-    "\2\0";
+    "\1\22\1\23\1\24\2\23\1\25\1\26\46\0\1\27"+
+    "\22\0\2\16\31\0\1\30\26\0\1\31\26\0\1\32"+
+    "\30\0\4\23\23\0\2\23\1\33\1\23\23\0\3\23"+
+    "\1\34\2\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[220];
+    int [] result = new int[230];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -207,11 +207,11 @@ public final class LangScanner extends beaver.Scanner {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\2\11\1\1\10\11\1\1\1\11\5\1\6\11"+
+    "\1\0\2\11\1\1\11\11\1\1\1\11\5\1\6\11"+
     "\2\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[27];
+    int [] result = new int[28];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -692,112 +692,117 @@ public final class LangScanner extends beaver.Scanner {
             { throw new SyntaxError("Illegal character <"+yytext()+">");
             }
             // fall through
-          case 23: break;
+          case 24: break;
           case 2:
             { 
             }
             // fall through
-          case 24: break;
+          case 25: break;
           case 3:
             { return sym(Terminals.MODULAR);
             }
             // fall through
-          case 25: break;
+          case 26: break;
           case 4:
             { return sym(Terminals.LPARAN);
             }
             // fall through
-          case 26: break;
+          case 27: break;
           case 5:
             { return sym(Terminals.RPARAN);
             }
             // fall through
-          case 27: break;
+          case 28: break;
           case 6:
             { return sym(Terminals.MULTIPLIER);
             }
             // fall through
-          case 28: break;
+          case 29: break;
           case 7:
             { return sym(Terminals.PLUS);
             }
             // fall through
-          case 29: break;
-          case 8:
-            { return sym(Terminals.SUB);
-            }
-            // fall through
           case 30: break;
-          case 9:
-            { return sym(Terminals.DIVIDER);
+          case 8:
+            { return sym(Terminals.COMMA);
             }
             // fall through
           case 31: break;
-          case 10:
-            { return sym(Terminals.NUMERAL);
+          case 9:
+            { return sym(Terminals.SUB);
             }
             // fall through
           case 32: break;
-          case 11:
-            { return sym(Terminals.SEMICOLON);
+          case 10:
+            { return sym(Terminals.DIVIDER);
             }
             // fall through
           case 33: break;
-          case 12:
-            { return sym(Terminals.LESS);
+          case 11:
+            { return sym(Terminals.NUMERAL);
             }
             // fall through
           case 34: break;
-          case 13:
-            { return sym(Terminals.ASSIGN);
+          case 12:
+            { return sym(Terminals.SEMICOLON);
             }
             // fall through
           case 35: break;
-          case 14:
-            { return sym(Terminals.GREATER);
+          case 13:
+            { return sym(Terminals.LESS);
             }
             // fall through
           case 36: break;
-          case 15:
-            { return sym(Terminals.ID);
+          case 14:
+            { return sym(Terminals.ASSIGN);
             }
             // fall through
           case 37: break;
-          case 16:
-            { return sym(Terminals.LBRACKET);
+          case 15:
+            { return sym(Terminals.GREATER);
             }
             // fall through
           case 38: break;
-          case 17:
-            { return sym(Terminals.RBRACKET);
+          case 16:
+            { return sym(Terminals.ID);
             }
             // fall through
           case 39: break;
-          case 18:
-            { return sym(Terminals.NOTEQ);
+          case 17:
+            { return sym(Terminals.LBRACKET);
             }
             // fall through
           case 40: break;
-          case 19:
-            { return sym(Terminals.LEQ);
+          case 18:
+            { return sym(Terminals.RBRACKET);
             }
             // fall through
           case 41: break;
-          case 20:
-            { return sym(Terminals.EQ);
+          case 19:
+            { return sym(Terminals.NOTEQ);
             }
             // fall through
           case 42: break;
-          case 21:
-            { return sym(Terminals.GEQ);
+          case 20:
+            { return sym(Terminals.LEQ);
             }
             // fall through
           case 43: break;
-          case 22:
-            { return sym(Terminals.INT);
+          case 21:
+            { return sym(Terminals.EQ);
             }
             // fall through
           case 44: break;
+          case 22:
+            { return sym(Terminals.GEQ);
+            }
+            // fall through
+          case 45: break;
+          case 23:
+            { return sym(Terminals.INT);
+            }
+            // fall through
+          case 46: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

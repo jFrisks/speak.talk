@@ -76,6 +76,18 @@ public class ParseTests {
 		Util.testValidSyntax(TEST_DIRECTORY, "paren1.in");
 	}
 
+	@Test public void emptyFunction() {
+		Util.testValidSyntax(TEST_DIRECTORY, "emptyFunction.in");
+	}
+
+	@Test public void functionCall() {
+		Util.testValidSyntax(TEST_DIRECTORY, "functionCall.in");
+	}
+
+	@Test public void functionCallArgs() {
+		Util.testValidSyntax(TEST_DIRECTORY, "functionCallArgs.in");
+	}
+
 	/* ERROR TESTS */
 
 	@Test public void errorFunctionBadOrder() {
