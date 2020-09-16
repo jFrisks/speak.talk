@@ -139,6 +139,14 @@ public class ParseTests {
         Util.testValidSyntax(TEST_DIRECTORY, "functionCallAsStatement.in");
     }
 
+	@Test public void nestedIf() {
+		Util.testValidSyntax(TEST_DIRECTORY, "nestedIf.in");
+	}
+
+	@Test public void ifReadEquals() {
+		Util.testValidSyntax(TEST_DIRECTORY, "ifReadEquals.in");
+	}
+
 	/* ERROR TESTS */
 
 	@Test public void errorFunctionBadOrder() {
