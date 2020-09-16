@@ -39,7 +39,7 @@ COMMENT = \/\/.*
 // token definitions
 "int"         { return sym(Terminals.INT); }
 "return"      { return sym(Terminals.RETURN); }
-"print"      { return sym(Terminals.PRINT); }
+"print"       { return sym(Terminals.PRINT); }
 "("           { return sym(Terminals.LPARAN);}
 ")"           { return sym(Terminals.RPARAN);}
 "{"           { return sym(Terminals.LBRACKET);}

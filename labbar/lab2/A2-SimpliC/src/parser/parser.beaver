@@ -9,7 +9,7 @@
 	}
 :};
 
-%terminals ID, NUMERAL, INT, LPARAN, RPARAN, LBRACKET, RBRACKET, SEMICOLON, ASSIGN, MULTIPLIER, PLUS, SUB, DIVIDER, MODULAR, LESS, GREATER, LEQ, GEQ, NOTEQ, EQ, COMMA, COMMENT, RETURN;
+%terminals ID, NUMERAL, INT, LPARAN, RPARAN, LBRACKET, RBRACKET, SEMICOLON, ASSIGN, MULTIPLIER, PLUS, SUB, DIVIDER, MODULAR, LESS, GREATER, LEQ, GEQ, NOTEQ, EQ, COMMA, COMMENT, RETURN, PRINT;
 
 %typeof program = "Program";
 %typeof programStmtList = "List";
@@ -23,6 +23,7 @@
 %typeof idDecl = "IdDecl";
 %typeof assignment = "Assignment";
 %typeof returnStmt = "ReturnStmt";
+%typeof printStmt = "PrintStmt";
 %typeof idUse = "IdUse";
 %typeof numeral = "Numeral";
 %typeof expr = "Expr";
@@ -83,6 +84,7 @@ stmt =
   idDecl.a SEMICOLON {: return a; :}
   | assignment.a SEMICOLON {: return a; :}
   | returnStmt.a SEMICOLON {: return a; :}
+  | printStmt.a SEMICOLON {: return a; :}
   ;
 
 assignment = idUse.a ASSIGN expr.b {: return new Assignment(a,b); :};
@@ -90,6 +92,8 @@ assignment = idUse.a ASSIGN expr.b {: return new Assignment(a,b); :};
 idDecl = INT ID.id {: return new IdDecl(id); :} ;
 
 returnStmt = RETURN expr.a {: return new ReturnStmt(a); :};
+
+printStmt = PRINT paren.a {: return new PrintStmt(a); :};
 
 expr =
   comparator
