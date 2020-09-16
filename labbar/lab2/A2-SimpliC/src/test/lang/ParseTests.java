@@ -193,5 +193,7 @@ public class ParseTests {
 		Util.testSyntaxError(TEST_DIRECTORY, "functionArgsCommaFirst.in");
 	}
 
-
+	@Test public void functionCallBeginningComma() {
+		Util.testSyntaxError(TEST_DIRECTORY, "functionCallBeginningComma.in");
+	}
 }

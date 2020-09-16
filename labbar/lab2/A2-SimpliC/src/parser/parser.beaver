@@ -127,11 +127,13 @@ expr =
   | notEqual
   ;
 
-functionCall = ID LPARAN paramList.a RPARAN {: return new FunctionCall(a); :} ;
+functionCall =
+  ID LPARAN paramList.a RPARAN {: return new FunctionCall(a); :}
+  | ID LPARAN RPARAN {: return new FunctionCall(); :}
+  ;
 
 paramList =
-  /* epsilon */ {: return new List(); :}
-  | expr.a {: return new List().add(a); :}
+  expr.a {: return new List().add(a); :}
   | paramList.a COMMA expr.b {: return a.add(b); :}
   ;
 
