@@ -181,5 +181,9 @@ public class ParseTests {
 		Util.testSyntaxError(TEST_DIRECTORY, "whileError.in");
 	}
 
+	@Test public void functionError() {
+		Util.testSyntaxError(TEST_DIRECTORY, "functionError.in");
+	}
+
 
 }
