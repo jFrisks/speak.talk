@@ -96,6 +96,10 @@ public class ParseTests {
 		Util.testValidSyntax(TEST_DIRECTORY, "comment.in");
 	}
 
+	@Test public void returnTest() {
+		Util.testValidSyntax(TEST_DIRECTORY, "returnTest.in");
+	}
+
 	/* ERROR TESTS */
 
 	@Test public void errorFunctionBadOrder() {
@@ -136,6 +140,10 @@ public class ParseTests {
 
 	@Test public void functionCallStmtArgsError3() {
 		Util.testSyntaxError(TEST_DIRECTORY, "functionCallStmtArgsError3.in");
+	}
+
+	@Test public void returnError() {
+		Util.testSyntaxError(TEST_DIRECTORY, "returnError.in");
 	}
 
 }
