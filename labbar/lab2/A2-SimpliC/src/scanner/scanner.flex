@@ -42,8 +42,6 @@ COMMENT = \/\/.*
 "else"        { return sym(Terminals.ELSE); }
 "while"       { return sym(Terminals.WHILE); }
 "return"      { return sym(Terminals.RETURN); }
-"print"       { return sym(Terminals.PRINT); }
-"read"        { return sym(Terminals.READ); }
 "("           { return sym(Terminals.LPARAN);}
 ")"           { return sym(Terminals.RPARAN);}
 "{"           { return sym(Terminals.LBRACKET);}

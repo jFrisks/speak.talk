@@ -9,7 +9,7 @@
 	}
 :};
 
-%terminals ID, NUMERAL, INT, LPARAN, RPARAN, LBRACKET, RBRACKET, SEMICOLON, ASSIGN, MULTIPLIER, PLUS, SUB, DIVIDER, MODULAR, LESS, GREATER, LEQ, GEQ, NOTEQ, EQ, COMMA, COMMENT, RETURN, PRINT, READ, IF, ELSE, WHILE;
+%terminals ID, NUMERAL, INT, LPARAN, RPARAN, LBRACKET, RBRACKET, SEMICOLON, ASSIGN, MULTIPLIER, PLUS, SUB, DIVIDER, MODULAR, LESS, GREATER, LEQ, GEQ, NOTEQ, EQ, COMMA, COMMENT, RETURN, IF, ELSE, WHILE;
 
 %typeof program = "Program";
 %typeof programStmtList = "List";
@@ -23,10 +23,8 @@
 %typeof assignment = "Assignment";
 %typeof returnStmt = "ReturnStmt";
 %typeof ifElse = "IfElse";
-%typeof printStmt = "PrintStmt";
 %typeof while = "While";
 %typeof functionCallStmt = "FunctionCallStmt";
-%typeof readExpr = "ReadExpr";
 %typeof comment = "Comment";
 %typeof idUse = "IdUse";
 %typeof numeral = "Numeral";
@@ -90,7 +88,6 @@ stmt =
   idDecl.a SEMICOLON {: return a; :}
   | assignment.a SEMICOLON {: return a; :}
   | returnStmt.a SEMICOLON {: return a; :}
-  | printStmt.a SEMICOLON {: return a; :}
   | ifElse.a {: return a; :}
   | while.a {: return a; :}
   | functionCallStmt.a SEMICOLON {: return a; :}
@@ -104,8 +101,6 @@ assignment =
 idDecl = INT ID.id {: return new IdDecl(id); :} ;
 
 returnStmt = RETURN expr.a {: return new ReturnStmt(a); :};
-
-printStmt = PRINT paren.a {: return new PrintStmt(a); :};
 
 while = WHILE paren.a block.b {: return new While(a,b); :};
 
@@ -127,8 +122,8 @@ expr =
   ;
 
 functionCall =
-  ID LPARAN paramList.a RPARAN {: return new FunctionCall(a); :}
-  | ID LPARAN RPARAN {: return new FunctionCall(); :}
+  ID.a LPARAN paramList.b RPARAN {: return new FunctionCall(a, b); :}
+  | ID.a LPARAN RPARAN {: return new FunctionCall(a, new List()); :}
   ;
 
 paramList =
@@ -136,7 +131,6 @@ paramList =
   | paramList.a COMMA expr.b {: return a.add(b); :}
   ;
 
-readExpr = READ LPARAN RPARAN {: return new ReadExpr(); :};
 
 less = comparator.a LESS comparator.b {: return new Less(a, b); :};
 
@@ -176,7 +170,6 @@ mod = term.a MODULAR factor.b {: return new Mod(a, b); :};
 factor =
   numeral
   | functionCall
-  | readExpr
   | idUse
   | paren
   ;

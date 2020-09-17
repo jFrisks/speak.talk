@@ -7,15 +7,12 @@ Block ::= Stmt*;
 abstract Stmt;
 Assignment : Stmt ::= IdUse Expr;
 IdDecl : Stmt ::= <ID>;
-PrintStmt : Stmt ::= Expr;
-ReturnStmt : Stmt ::= Expr;
+FunctionCallStmt : Stmt ::= Expr;
 IfElse: Stmt ::= IfExpr:Expr If:Block [Else:Block];
 While: Stmt ::= Expr Block;
-FunctionCallStmt : Stmt ::= Expr;
 
 abstract Expr;
-FunctionCall : Expr ::= Expr*;
-ReadExpr : Expr ::= ;
+FunctionCall : Expr ::= <ID> Expr*;
 Less : Expr ::= Left:Expr Right:Expr;
 Greater : Expr ::= Left:Expr Right:Expr;
 LessEq : Expr ::= Left:Expr Right:Expr;

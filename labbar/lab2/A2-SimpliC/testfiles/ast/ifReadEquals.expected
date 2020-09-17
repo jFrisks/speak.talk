@@ -6,7 +6,8 @@ Program
         List
           IfElse
             Eq
-              ReadExpr
+              FunctionCall ID="read"
+                List
               Numeral NUMERAL="9"
             Block
               List

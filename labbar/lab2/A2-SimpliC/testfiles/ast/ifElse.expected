@@ -21,5 +21,7 @@ Program
             Opt
               Block
                 List
-                  PrintStmt
-                    Numeral NUMERAL="3"
+                  FunctionCallStmt
+                    FunctionCall ID="print"
+                      List
+                        Numeral NUMERAL="3"

@@ -7,4 +7,5 @@ Program
           IdDecl ID="x"
           Assignment
             IdUse ID="x"
-            ReadExpr
+            FunctionCall ID="read"
+              List
