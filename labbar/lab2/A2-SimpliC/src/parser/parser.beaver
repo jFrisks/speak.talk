@@ -118,7 +118,6 @@ functionCallStmt = functionCall.a {: return new FunctionCallStmt(a); :};
 
 expr =
   comparator
-  | readExpr
   | less
   | greater
   | lessEqual
@@ -177,6 +176,7 @@ mod = term.a MODULAR factor.b {: return new Mod(a, b); :};
 factor =
   numeral
   | functionCall
+  | readExpr
   | idUse
   | paren
   ;

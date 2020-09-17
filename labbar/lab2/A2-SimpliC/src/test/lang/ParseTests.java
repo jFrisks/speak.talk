@@ -147,6 +147,10 @@ public class ParseTests {
 		Util.testValidSyntax(TEST_DIRECTORY, "ifReadEquals.in");
 	}
 
+	@Test public void ifEquals() {
+		Util.testValidSyntax(TEST_DIRECTORY, "ifEquals.in");
+	}
+
 	/* ERROR TESTS */
 
 	@Test public void errorFunctionBadOrder() {
