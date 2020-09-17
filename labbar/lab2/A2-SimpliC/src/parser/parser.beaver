@@ -30,6 +30,7 @@
 %typeof idUse = "IdUse";
 %typeof numeral = "Numeral";
 %typeof expr = "Expr";
+%typeof neg = "Expr";
 %typeof comparator = "Expr";
 %typeof factor = "Expr";
 %typeof posFactor = "Expr";
@@ -181,7 +182,7 @@ posFactor =
 
 factor =
   posFactor
-  | SUB posFactor
+  | SUB posFactor.a {: return new Neg(a); :}
   ;
 
 paren =

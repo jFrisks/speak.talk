@@ -13,6 +13,7 @@ IfElse: Stmt ::= IfExpr:Expr If:Block [Else:Block];
 While: Stmt ::= Expr Block;
 
 abstract Expr;
+Neg: Expr ::= Expr;
 FunctionCall : Expr ::= <ID> Expr*;
 Less : Expr ::= Left:Expr Right:Expr;
 Greater : Expr ::= Left:Expr Right:Expr;
