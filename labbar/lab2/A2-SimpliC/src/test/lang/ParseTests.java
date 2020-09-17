@@ -155,6 +155,18 @@ public class ParseTests {
         Util.testValidSyntax(TEST_DIRECTORY, "negativeNumbers.in");
     }
 
+	@Test public void comment1() {
+		Util.testValidSyntax(TEST_DIRECTORY, "comment1.in");
+	}
+
+	@Test public void unary() {
+		Util.testValidSyntax(TEST_DIRECTORY, "unaryMinusBinaryExp.in");
+	}
+
+	@Test public void repeatedMinus() {
+		Util.testValidSyntax(TEST_DIRECTORY, "repeatedMinus.in");
+	}
+
 	/* ERROR TESTS */
 
 	@Test public void errorFunctionBadOrder() {

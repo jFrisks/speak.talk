@@ -26,11 +26,13 @@
 %typeof while = "While";
 %typeof functionCallStmt = "FunctionCallStmt";
 %typeof comment = "Comment";
+%typeof commentStmt = "CommentStmt";
 %typeof idUse = "IdUse";
 %typeof numeral = "Numeral";
 %typeof expr = "Expr";
 %typeof comparator = "Expr";
 %typeof factor = "Expr";
+%typeof posFactor = "Expr";
 %typeof term = "Expr";
 %typeof paren = "Expr";
 %typeof paramList = "List";
@@ -68,7 +70,9 @@ functionDecl =
   | INT ID.id LPARAN RPARAN block.b {: return new FunctionDecl(id, new List(), b); :}
   ;
 
-comment = COMMENT.a {: return new Comment(a); :};
+comment = commentStmt.a {: return new Comment(a); :};
+
+commentStmt = COMMENT.a {: return new CommentStmt(a); :};
 
 paramDeclareList =
   idDecl.a {: return new List().add(a); :}
@@ -91,6 +95,7 @@ stmt =
   | ifElse.a {: return a; :}
   | while.a {: return a; :}
   | functionCallStmt.a SEMICOLON {: return a; :}
+  | commentStmt
   ;
 
 assignment =
@@ -156,7 +161,6 @@ sub = comparator.a SUB term.b {: return new Sub(a, b); :};
 
 term =
     factor
-    | SUB factor
     | div
     | mod
     | mul
@@ -168,11 +172,16 @@ div = term.a DIVIDER factor.b {: return new Div(a, b); :};
 
 mod = term.a MODULAR factor.b {: return new Mod(a, b); :};
 
-factor =
+posFactor =
   numeral
   | functionCall
   | idUse
   | paren
+  ;
+
+factor =
+  posFactor
+  | SUB posFactor
   ;
 
 paren =
@@ -180,4 +189,5 @@ paren =
 
 idUse = ID.id {: return new IdUse(id); :};
 
-numeral = NUMERAL.a {: return new Numeral(a); :};
+numeral =
+  NUMERAL.a {: return new Numeral(a); :};

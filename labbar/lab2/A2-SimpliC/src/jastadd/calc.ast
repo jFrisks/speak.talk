@@ -1,11 +1,12 @@
 Program ::= ProgramStmt*;
 abstract ProgramStmt;
 FunctionDecl : ProgramStmt ::= <ID> Expr* Block;
-Comment : ProgramStmt ::= <COMMENT>;
+Comment : ProgramStmt ::= CommentStmt;
 Block ::= Stmt*;
 
 abstract Stmt;
 Assignment : Stmt ::= IdUse Expr;
+CommentStmt : Stmt ::= <COMMENT>;
 IdDecl : Stmt ::= <ID>;
 FunctionCallStmt : Stmt ::= Expr;
 IfElse: Stmt ::= IfExpr:Expr If:Block [Else:Block];
