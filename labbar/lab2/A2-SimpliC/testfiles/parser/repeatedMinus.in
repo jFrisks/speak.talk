@@ -1,0 +1,11 @@
+int f() {
+  return --3; // = -(-(3))
+}
+
+int g() {
+  return ---3;
+}
+
+int g() {
+  return ------3;
+}

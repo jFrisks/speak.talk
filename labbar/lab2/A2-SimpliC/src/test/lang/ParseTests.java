@@ -8,6 +8,10 @@ public class ParseTests {
 	/** Directory where the test input files are stored. */
 	private static final File TEST_DIRECTORY = new File("testfiles/parser");
 
+	@Test public void empty() {
+		Util.testValidSyntax(TEST_DIRECTORY, "empty.in");
+	}
+
 	@Test public void functionIntEmpty() {
 		Util.testValidSyntax(TEST_DIRECTORY, "functionIntEmpty.in");
 	}
@@ -76,6 +80,93 @@ public class ParseTests {
 		Util.testValidSyntax(TEST_DIRECTORY, "paren1.in");
 	}
 
+	@Test public void emptyFunction() {
+		Util.testValidSyntax(TEST_DIRECTORY, "emptyFunction.in");
+	}
+
+	@Test public void functionCall() {
+		Util.testValidSyntax(TEST_DIRECTORY, "functionCall.in");
+	}
+
+	@Test public void functionCallArgs() {
+		Util.testValidSyntax(TEST_DIRECTORY, "functionCallArgs.in");
+	}
+
+	@Test public void functionCallStmtArgs() {
+		Util.testValidSyntax(TEST_DIRECTORY, "functionCallStmtArgs.in");
+	}
+
+	@Test public void comment() {
+		Util.testValidSyntax(TEST_DIRECTORY, "comment.in");
+	}
+
+	@Test public void returnTest() {
+		Util.testValidSyntax(TEST_DIRECTORY, "returnTest.in");
+	}
+
+	@Test public void print() {
+		Util.testValidSyntax(TEST_DIRECTORY, "print.in");
+	}
+
+	@Test public void read() {
+		Util.testValidSyntax(TEST_DIRECTORY, "read.in");
+	}
+
+
+
+	@Test public void ifOnly() {
+		Util.testValidSyntax(TEST_DIRECTORY, "ifOnly.in");
+	}
+
+	@Test public void ifElse() {
+		Util.testValidSyntax(TEST_DIRECTORY, "ifElse.in");
+	}
+
+	@Test public void assignTest() {
+		Util.testValidSyntax(TEST_DIRECTORY, "assignTest.in");
+	}
+
+
+	@Test public void whileTest() {
+		Util.testValidSyntax(TEST_DIRECTORY, "while.in");
+	}
+
+	@Test public void finalBoss() {
+		Util.testValidSyntax(TEST_DIRECTORY, "finalBoss.in");
+	}
+
+    @Test public void functionCallAsStatement() {
+        Util.testValidSyntax(TEST_DIRECTORY, "functionCallAsStatement.in");
+    }
+
+	@Test public void nestedIf() {
+		Util.testValidSyntax(TEST_DIRECTORY, "nestedIf.in");
+	}
+
+	@Test public void ifReadEquals() {
+		Util.testValidSyntax(TEST_DIRECTORY, "ifReadEquals.in");
+	}
+
+	@Test public void ifEquals() {
+		Util.testValidSyntax(TEST_DIRECTORY, "ifEquals.in");
+	}
+
+    @Test public void negativeNumbers() {
+        Util.testValidSyntax(TEST_DIRECTORY, "negativeNumbers.in");
+    }
+
+	@Test public void comment1() {
+		Util.testValidSyntax(TEST_DIRECTORY, "comment1.in");
+	}
+
+	@Test public void unary() {
+		Util.testValidSyntax(TEST_DIRECTORY, "unaryMinusBinaryExp.in");
+	}
+
+	@Test public void repeatedMinus() {
+		Util.testValidSyntax(TEST_DIRECTORY, "repeatedMinus.in");
+	}
+
 	/* ERROR TESTS */
 
 	@Test public void errorFunctionBadOrder() {
@@ -94,12 +185,43 @@ public class ParseTests {
 		Util.testSyntaxError(TEST_DIRECTORY, "variableDeclarationAndUsesError2.in");
 	}
 
-	@Test public void variableDeclarationAndUsesError3() {
-		Util.testSyntaxError(TEST_DIRECTORY, "variableDeclarationAndUsesError3.in");
-	}
-
 	@Test public void comparatorsError() {
 		Util.testSyntaxError(TEST_DIRECTORY, "comparatorsError.in");
 	}
 
+	@Test public void functionCallTrailingComma() {
+		Util.testSyntaxError(TEST_DIRECTORY, "functionCallTrailingComma.in");
+	}
+
+	@Test public void functionCallStmtArgsError() {
+		Util.testSyntaxError(TEST_DIRECTORY, "functionCallStmtArgsError.in");
+	}
+
+	@Test public void functionCallStmtArgsError2() {
+		Util.testSyntaxError(TEST_DIRECTORY, "functionCallStmtArgsError2.in");
+	}
+
+	@Test public void functionCallStmtArgsError3() {
+		Util.testSyntaxError(TEST_DIRECTORY, "functionCallStmtArgsError3.in");
+	}
+
+	@Test public void returnError() {
+		Util.testSyntaxError(TEST_DIRECTORY, "returnError.in");
+	}
+
+	@Test public void whileError() {
+		Util.testSyntaxError(TEST_DIRECTORY, "whileError.in");
+	}
+
+	@Test public void functionError() {
+		Util.testSyntaxError(TEST_DIRECTORY, "functionError.in");
+	}
+
+	@Test public void functionArgsCommaFirst() {
+		Util.testSyntaxError(TEST_DIRECTORY, "functionArgsCommaFirst.in");
+	}
+
+	@Test public void functionCallBeginningComma() {
+		Util.testSyntaxError(TEST_DIRECTORY, "functionCallBeginningComma.in");
+	}
 }

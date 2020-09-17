@@ -28,17 +28,23 @@ import lang.ast.LangParser.SyntaxError;
 
 // macros
 WhiteSpace = [ ] | \t | \f | \n | \r
-ID = [a-zA-Z]+
+ID = [a-zA-Z][a-zA-Z0-9]*
 NUMERAL = (0 | [1-9][0-9]*)
+COMMENT = \/\/.*
+POSITIVE = (--)*
+NEGATIVE = (-)*
 %%
 
 // discard whitespace information
 {WhiteSpace}  { }
+{POSITIVE}    { }
 
 // token definitions
 "int"         { return sym(Terminals.INT); }
-{NUMERAL}     { return sym(Terminals.NUMERAL); }
-{ID}          { return sym(Terminals.ID); }
+"if"          { return sym(Terminals.IF); }
+"else"        { return sym(Terminals.ELSE); }
+"while"       { return sym(Terminals.WHILE); }
+"return"      { return sym(Terminals.RETURN); }
 "("           { return sym(Terminals.LPARAN);}
 ")"           { return sym(Terminals.RPARAN);}
 "{"           { return sym(Terminals.LBRACKET);}
@@ -46,7 +52,7 @@ NUMERAL = (0 | [1-9][0-9]*)
 ";"           { return sym(Terminals.SEMICOLON);}
 "*"           { return sym(Terminals.MULTIPLIER);}
 "+"           { return sym(Terminals.PLUS);}
-"-"           { return sym(Terminals.SUB);}
+{NEGATIVE}    { return sym(Terminals.SUB);}
 "/"           { return sym(Terminals.DIVIDER);}
 "%"           { return sym(Terminals.MODULAR);}
 "<="          { return sym(Terminals.LEQ);}
@@ -56,6 +62,10 @@ NUMERAL = (0 | [1-9][0-9]*)
 "!="          { return sym(Terminals.NOTEQ);}
 "=="          { return sym(Terminals.EQ);}
 "="           { return sym(Terminals.ASSIGN); }
+","           { return sym(Terminals.COMMA); }
+{COMMENT}     { return sym(Terminals.COMMENT); }
+{NUMERAL}     { return sym(Terminals.NUMERAL); }
+{ID}          { return sym(Terminals.ID); }
 <<EOF>>       { return sym(Terminals.EOF); }
 
 /* error fallback */

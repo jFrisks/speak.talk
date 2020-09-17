@@ -7,8 +7,5 @@ Program
           IdDecl ID="x"
           Assignment
             IdUse ID="x"
-            Mul
-              Sub
-                Numeral NUMERAL="3"
-                Numeral NUMERAL="4"
-              Numeral NUMERAL="5"
+            FunctionCall ID="read"
+              List

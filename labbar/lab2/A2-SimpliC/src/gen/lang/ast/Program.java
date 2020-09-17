@@ -6,8 +6,8 @@ import java.lang.reflect.InvocationTargetException;
 /**
  * @ast node
  * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab2/A2-SimpliC/src/jastadd/calc.ast:1
- * @astdecl Program : ASTNode ::= FunctionCallStmt*;
- * @production Program : {@link ASTNode} ::= <span class="component">{@link FunctionCallStmt}*</span>;
+ * @astdecl Program : ASTNode ::= ProgramStmt*;
+ * @production Program : {@link ASTNode} ::= <span class="component">{@link ProgramStmt}*</span>;
 
  */
 public class Program extends ASTNode<ASTNode> implements Cloneable {
@@ -32,11 +32,11 @@ public class Program extends ASTNode<ASTNode> implements Cloneable {
    * @declaredat ASTNode:14
    */
   @ASTNodeAnnotation.Constructor(
-    name = {"FunctionCallStmt"},
-    type = {"List<FunctionCallStmt>"},
+    name = {"ProgramStmt"},
+    type = {"List<ProgramStmt>"},
     kind = {"List"}
   )
-  public Program(List<FunctionCallStmt> p0) {
+  public Program(List<ProgramStmt> p0) {
     setChild(p0, 0);
   }
   /** @apilevel low-level 
@@ -135,118 +135,118 @@ public class Program extends ASTNode<ASTNode> implements Cloneable {
     return tree;
   }
   /**
-   * Replaces the FunctionCallStmt list.
-   * @param list The new list node to be used as the FunctionCallStmt list.
+   * Replaces the ProgramStmt list.
+   * @param list The new list node to be used as the ProgramStmt list.
    * @apilevel high-level
    */
-  public Program setFunctionCallStmtList(List<FunctionCallStmt> list) {
+  public Program setProgramStmtList(List<ProgramStmt> list) {
     setChild(list, 0);
     return this;
   }
   /**
-   * Retrieves the number of children in the FunctionCallStmt list.
-   * @return Number of children in the FunctionCallStmt list.
+   * Retrieves the number of children in the ProgramStmt list.
+   * @return Number of children in the ProgramStmt list.
    * @apilevel high-level
    */
-  public int getNumFunctionCallStmt() {
-    return getFunctionCallStmtList().getNumChild();
+  public int getNumProgramStmt() {
+    return getProgramStmtList().getNumChild();
   }
   /**
-   * Retrieves the number of children in the FunctionCallStmt list.
+   * Retrieves the number of children in the ProgramStmt list.
    * Calling this method will not trigger rewrites.
-   * @return Number of children in the FunctionCallStmt list.
+   * @return Number of children in the ProgramStmt list.
    * @apilevel low-level
    */
-  public int getNumFunctionCallStmtNoTransform() {
-    return getFunctionCallStmtListNoTransform().getNumChildNoTransform();
+  public int getNumProgramStmtNoTransform() {
+    return getProgramStmtListNoTransform().getNumChildNoTransform();
   }
   /**
-   * Retrieves the element at index {@code i} in the FunctionCallStmt list.
+   * Retrieves the element at index {@code i} in the ProgramStmt list.
    * @param i Index of the element to return.
-   * @return The element at position {@code i} in the FunctionCallStmt list.
+   * @return The element at position {@code i} in the ProgramStmt list.
    * @apilevel high-level
    */
-  public FunctionCallStmt getFunctionCallStmt(int i) {
-    return (FunctionCallStmt) getFunctionCallStmtList().getChild(i);
+  public ProgramStmt getProgramStmt(int i) {
+    return (ProgramStmt) getProgramStmtList().getChild(i);
   }
   /**
-   * Check whether the FunctionCallStmt list has any children.
+   * Check whether the ProgramStmt list has any children.
    * @return {@code true} if it has at least one child, {@code false} otherwise.
    * @apilevel high-level
    */
-  public boolean hasFunctionCallStmt() {
-    return getFunctionCallStmtList().getNumChild() != 0;
+  public boolean hasProgramStmt() {
+    return getProgramStmtList().getNumChild() != 0;
   }
   /**
-   * Append an element to the FunctionCallStmt list.
-   * @param node The element to append to the FunctionCallStmt list.
+   * Append an element to the ProgramStmt list.
+   * @param node The element to append to the ProgramStmt list.
    * @apilevel high-level
    */
-  public Program addFunctionCallStmt(FunctionCallStmt node) {
-    List<FunctionCallStmt> list = (parent == null) ? getFunctionCallStmtListNoTransform() : getFunctionCallStmtList();
+  public Program addProgramStmt(ProgramStmt node) {
+    List<ProgramStmt> list = (parent == null) ? getProgramStmtListNoTransform() : getProgramStmtList();
     list.addChild(node);
     return this;
   }
   /** @apilevel low-level 
    */
-  public Program addFunctionCallStmtNoTransform(FunctionCallStmt node) {
-    List<FunctionCallStmt> list = getFunctionCallStmtListNoTransform();
+  public Program addProgramStmtNoTransform(ProgramStmt node) {
+    List<ProgramStmt> list = getProgramStmtListNoTransform();
     list.addChild(node);
     return this;
   }
   /**
-   * Replaces the FunctionCallStmt list element at index {@code i} with the new node {@code node}.
+   * Replaces the ProgramStmt list element at index {@code i} with the new node {@code node}.
    * @param node The new node to replace the old list element.
    * @param i The list index of the node to be replaced.
    * @apilevel high-level
    */
-  public Program setFunctionCallStmt(FunctionCallStmt node, int i) {
-    List<FunctionCallStmt> list = getFunctionCallStmtList();
+  public Program setProgramStmt(ProgramStmt node, int i) {
+    List<ProgramStmt> list = getProgramStmtList();
     list.setChild(node, i);
     return this;
   }
   /**
-   * Retrieves the FunctionCallStmt list.
-   * @return The node representing the FunctionCallStmt list.
+   * Retrieves the ProgramStmt list.
+   * @return The node representing the ProgramStmt list.
    * @apilevel high-level
    */
-  @ASTNodeAnnotation.ListChild(name="FunctionCallStmt")
-  public List<FunctionCallStmt> getFunctionCallStmtList() {
-    List<FunctionCallStmt> list = (List<FunctionCallStmt>) getChild(0);
+  @ASTNodeAnnotation.ListChild(name="ProgramStmt")
+  public List<ProgramStmt> getProgramStmtList() {
+    List<ProgramStmt> list = (List<ProgramStmt>) getChild(0);
     return list;
   }
   /**
-   * Retrieves the FunctionCallStmt list.
+   * Retrieves the ProgramStmt list.
    * <p><em>This method does not invoke AST transformations.</em></p>
-   * @return The node representing the FunctionCallStmt list.
+   * @return The node representing the ProgramStmt list.
    * @apilevel low-level
    */
-  public List<FunctionCallStmt> getFunctionCallStmtListNoTransform() {
-    return (List<FunctionCallStmt>) getChildNoTransform(0);
+  public List<ProgramStmt> getProgramStmtListNoTransform() {
+    return (List<ProgramStmt>) getChildNoTransform(0);
   }
   /**
-   * @return the element at index {@code i} in the FunctionCallStmt list without
+   * @return the element at index {@code i} in the ProgramStmt list without
    * triggering rewrites.
    */
-  public FunctionCallStmt getFunctionCallStmtNoTransform(int i) {
-    return (FunctionCallStmt) getFunctionCallStmtListNoTransform().getChildNoTransform(i);
+  public ProgramStmt getProgramStmtNoTransform(int i) {
+    return (ProgramStmt) getProgramStmtListNoTransform().getChildNoTransform(i);
   }
   /**
-   * Retrieves the FunctionCallStmt list.
-   * @return The node representing the FunctionCallStmt list.
+   * Retrieves the ProgramStmt list.
+   * @return The node representing the ProgramStmt list.
    * @apilevel high-level
    */
-  public List<FunctionCallStmt> getFunctionCallStmts() {
-    return getFunctionCallStmtList();
+  public List<ProgramStmt> getProgramStmts() {
+    return getProgramStmtList();
   }
   /**
-   * Retrieves the FunctionCallStmt list.
+   * Retrieves the ProgramStmt list.
    * <p><em>This method does not invoke AST transformations.</em></p>
-   * @return The node representing the FunctionCallStmt list.
+   * @return The node representing the ProgramStmt list.
    * @apilevel low-level
    */
-  public List<FunctionCallStmt> getFunctionCallStmtsNoTransform() {
-    return getFunctionCallStmtListNoTransform();
+  public List<ProgramStmt> getProgramStmtsNoTransform() {
+    return getProgramStmtListNoTransform();
   }
 
 }

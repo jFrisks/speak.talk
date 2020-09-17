@@ -1,5 +1,6 @@
 Program
   List
-    FunctionCallStmt
+    FunctionDecl ID="lucas"
+      List
       Block
         List
