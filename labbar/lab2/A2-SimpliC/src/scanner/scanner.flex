@@ -31,10 +31,13 @@ WhiteSpace = [ ] | \t | \f | \n | \r
 ID = [a-zA-Z][a-zA-Z0-9]*
 NUMERAL = (0 | [1-9][0-9]*)
 COMMENT = \/\/.*
+POSITIVE = (--)*
+NEGATIVE = (-)*
 %%
 
 // discard whitespace information
 {WhiteSpace}  { }
+{POSITIVE}    { }
 
 // token definitions
 "int"         { return sym(Terminals.INT); }
@@ -49,7 +52,7 @@ COMMENT = \/\/.*
 ";"           { return sym(Terminals.SEMICOLON);}
 "*"           { return sym(Terminals.MULTIPLIER);}
 "+"           { return sym(Terminals.PLUS);}
-"-"           { return sym(Terminals.SUB);}
+{NEGATIVE}    { return sym(Terminals.SUB);}
 "/"           { return sym(Terminals.DIVIDER);}
 "%"           { return sym(Terminals.MODULAR);}
 "<="          { return sym(Terminals.LEQ);}
