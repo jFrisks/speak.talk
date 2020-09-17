@@ -151,6 +151,10 @@ public class ParseTests {
 		Util.testValidSyntax(TEST_DIRECTORY, "ifEquals.in");
 	}
 
+    @Test public void negativeNumbers() {
+        Util.testValidSyntax(TEST_DIRECTORY, "negativeNumbers.in");
+    }
+
 	/* ERROR TESTS */
 
 	@Test public void errorFunctionBadOrder() {

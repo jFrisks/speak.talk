@@ -1,6 +1,6 @@
 Program
   List
-    FunctionDecl
+    FunctionDecl ID="a"
       List
       Block
         List
@@ -12,4 +12,3 @@ Program
                 Numeral NUMERAL="3"
                 Numeral NUMERAL="4"
               Numeral NUMERAL="5"
-
