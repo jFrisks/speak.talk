@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="lang.TestDumpTree" tests="7" skipped="0" failures="0" errors="0" timestamp="2020-09-14T13:44:31" hostname="Lucas.local" time="0.168">
+<testsuite name="lang.TestDumpTree" tests="14" skipped="0" failures="0" errors="0" timestamp="2020-09-17T14:36:27" hostname="Lucas.local" time="0.288">
   <properties/>
-  <testcase name="runTest[declaration.in]" classname="lang.TestDumpTree" time="0.095"/>
-  <testcase name="runTest[operationsMul1.in]" classname="lang.TestDumpTree" time="0.025"/>
-  <testcase name="runTest[functionIntEmpty.in]" classname="lang.TestDumpTree" time="0.005"/>
-  <testcase name="runTest[statements1.in]" classname="lang.TestDumpTree" time="0.008"/>
-  <testcase name="runTest[operationsAdd1.in]" classname="lang.TestDumpTree" time="0.008"/>
-  <testcase name="runTest[operationsPriority1.in]" classname="lang.TestDumpTree" time="0.007"/>
-  <testcase name="runTest[operationsAll.in]" classname="lang.TestDumpTree" time="0.014"/>
+  <testcase name="runTest[declaration.in]" classname="lang.TestDumpTree" time="0.159"/>
+  <testcase name="runTest[operationsMul1.in]" classname="lang.TestDumpTree" time="0.015"/>
+  <testcase name="runTest[ifElse.in]" classname="lang.TestDumpTree" time="0.014"/>
+  <testcase name="runTest[functionIntEmpty.in]" classname="lang.TestDumpTree" time="0.006"/>
+  <testcase name="runTest[ifReadEquals.in]" classname="lang.TestDumpTree" time="0.008"/>
+  <testcase name="runTest[paren1.in]" classname="lang.TestDumpTree" time="0.009"/>
+  <testcase name="runTest[statements1.in]" classname="lang.TestDumpTree" time="0.006"/>
+  <testcase name="runTest[operationsAdd1.in]" classname="lang.TestDumpTree" time="0.012"/>
+  <testcase name="runTest[comparators.in]" classname="lang.TestDumpTree" time="0.017"/>
+  <testcase name="runTest[operationsPriority1.in]" classname="lang.TestDumpTree" time="0.009"/>
+  <testcase name="runTest[read.in]" classname="lang.TestDumpTree" time="0.006"/>
+  <testcase name="runTest[operationsAll.in]" classname="lang.TestDumpTree" time="0.007"/>
+  <testcase name="runTest[print.in]" classname="lang.TestDumpTree" time="0.005"/>
+  <testcase name="runTest[negativeExpr.in]" classname="lang.TestDumpTree" time="0.007"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
