@@ -59,13 +59,58 @@ aspect Visitor {
 	public Object IdUse.accept(Visitor visitor, Object data) {
 		return visitor.visit(this, data);
 	}
-	public Object Let.accept(Visitor visitor, Object data) {
+	public Object Add.accept(Visitor visitor, Object data) {
 		return visitor.visit(this, data);
 	}
-	public Object Binding.accept(Visitor visitor, Object data) {
+	public Object Assignment.accept(Visitor visitor, Object data) {
 		return visitor.visit(this, data);
 	}
-	public Object Ask.accept(Visitor visitor, Object data) {
+	public Object Block.accept(Visitor visitor, Object data) {
 		return visitor.visit(this, data);
 	}
+	public Object Eq.accept(Visitor visitor, Object data) {
+        return visitor.visit(this, data);
+    }
+    public Object FunctionCall.accept(Visitor visitor, Object data) {
+        return visitor.visit(this, data);
+    }
+    public Object FunctionCallStmt.accept(Visitor visitor, Object data) {
+        return visitor.visit(this, data);
+    }
+    public Object FunctionDecl.accept(Visitor visitor, Object data) {
+        return visitor.visit(this, data);
+    }
+    public Object Greater.accept(Visitor visitor, Object data) {
+        return visitor.visit(this, data);
+    }
+    public Object GreaterEq.accept(Visitor visitor, Object data) {
+        return visitor.visit(this, data);
+    }
+    public Object IfElse.accept(Visitor visitor, Object data) {
+        return visitor.visit(this, data);
+    }
+    public Object Less.accept(Visitor visitor, Object data) {
+        return visitor.visit(this, data);
+    }
+    public Object LessEq.accept(Visitor visitor, Object data) {
+        return visitor.visit(this, data);
+    }
+    public Object Mod.accept(Visitor visitor, Object data) {
+        return visitor.visit(this, data);
+    }
+    public Object Neg.accept(Visitor visitor, Object data) {
+        return visitor.visit(this, data);
+    }
+    public Object NotEq.accept(Visitor visitor, Object data) {
+        return visitor.visit(this, data);
+    }
+    public Object ReturnStmt.accept(Visitor visitor, Object data) {
+        return visitor.visit(this, data);
+    }
+    public Object Sub.accept(Visitor visitor, Object data) {
+        return visitor.visit(this, data);
+    }
+    public Object While.accept(Visitor visitor, Object data) {
+        return visitor.visit(this, data);
+    }
 }
