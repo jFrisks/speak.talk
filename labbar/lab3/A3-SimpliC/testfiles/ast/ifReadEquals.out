@@ -1,0 +1,14 @@
+Program
+  List
+    FunctionDecl ID="a"
+      List
+      Block
+        List
+          IfElse
+            Eq
+              FunctionCall ID="read"
+                List
+              Numeral NUMERAL="9"
+            Block
+              List
+            Opt

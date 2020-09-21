@@ -1,0 +1,27 @@
+Program
+  List
+    FunctionDecl ID="a"
+      List
+      Block
+        List
+          IdDecl ID="x"
+          Assignment
+            IdUse ID="x"
+            Numeral NUMERAL="10"
+          IfElse
+            Greater
+              IdUse ID="x"
+              Numeral NUMERAL="3"
+            Block
+              List
+                IdDecl ID="z"
+                Assignment
+                  IdUse ID="z"
+                  Numeral NUMERAL="3"
+            Opt
+              Block
+                List
+                  FunctionCallStmt
+                    FunctionCall ID="print"
+                      List
+                        Numeral NUMERAL="3"

@@ -1,0 +1,10 @@
+Program
+  List
+    FunctionDecl ID="a"
+      List
+      Block
+        List
+          FunctionCallStmt
+            FunctionCall ID="print"
+              List
+                Numeral NUMERAL="3"

@@ -1,0 +1,10 @@
+int a() {
+ int x;
+ int y;
+ x = 10;
+ y = 11;
+ while () {
+  print(x);
+  print(y);
+ }
+}

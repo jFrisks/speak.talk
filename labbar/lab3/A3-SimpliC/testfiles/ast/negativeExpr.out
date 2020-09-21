@@ -1,0 +1,9 @@
+Program
+  List
+    FunctionDecl ID="g"
+      List
+      Block
+        List
+          ReturnStmt
+            Neg
+              Numeral NUMERAL="3"

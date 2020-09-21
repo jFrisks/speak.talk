@@ -1,0 +1,14 @@
+int a() {
+  int x;
+  x = b(3);
+}
+
+int b() {
+  int x;
+  x = 5;
+}
+
+int c() {
+  int x;
+  x = b(1,2,3);
+}
