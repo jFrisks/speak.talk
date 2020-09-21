@@ -11,6 +11,7 @@ IdDecl : Stmt ::= <ID>;
 FunctionCallStmt : Stmt ::= Expr;
 IfElse: Stmt ::= IfExpr:Expr If:Block [Else:Block];
 While: Stmt ::= Expr Block;
+ReturnStmt: Stmt ::= Expr;
 
 abstract Expr;
 Neg: Expr ::= Expr;
