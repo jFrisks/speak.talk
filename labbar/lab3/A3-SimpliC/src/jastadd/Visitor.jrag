@@ -27,9 +27,9 @@ aspect Visitor {
 		public Object visit(Mod node, Object data);
 		public Object visit(Neg node, Object data);
 		public Object visit(NotEq node, Object data);
-		public Object visit(ReturnStmt node, Object data);
 		public Object visit(Sub node, Object data);
 		public Object visit(While node, Object data);
+		public Object visit(ReturnStmt node, Object data);
 	}
 
 	public Object ASTNode.accept(Visitor visitor, Object data) {

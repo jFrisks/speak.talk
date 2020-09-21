@@ -5,12 +5,19 @@ import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
 /**
  * @ast node
- * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/calc.ast:31
+ * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/calc.ast:32
  * @astdecl IdUse : Expr ::= <ID:String>;
  * @production IdUse : {@link Expr} ::= <span class="component">&lt;ID:{@link String}&gt;</span>;
 
  */
 public class IdUse extends Expr implements Cloneable {
+  /**
+   * @aspect Visitor
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/Visitor.jrag:59
+   */
+  public Object accept(Visitor visitor, Object data) {
+		return visitor.visit(this, data);
+	}
   /**
    * @declaredat ASTNode:1
    */

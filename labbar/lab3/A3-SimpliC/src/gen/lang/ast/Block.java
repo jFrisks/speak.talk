@@ -12,6 +12,13 @@ import java.lang.reflect.InvocationTargetException;
  */
 public class Block extends ASTNode<ASTNode> implements Cloneable {
   /**
+   * @aspect Visitor
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/Visitor.jrag:68
+   */
+  public Object accept(Visitor visitor, Object data) {
+		return visitor.visit(this, data);
+	}
+  /**
    * @declaredat ASTNode:1
    */
   public Block() {

@@ -11,6 +11,13 @@ import java.lang.reflect.InvocationTargetException;
  */
 public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneable {
   /**
+   * @aspect Visitor
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/Visitor.jrag:35
+   */
+  public Object accept(Visitor visitor, Object data) {
+		throw new Error("Visitor: accept method not available for " + getClass().getName());
+	}
+  /**
    * @aspect DumpTree
    * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/DumpTree.jrag:9
    */
