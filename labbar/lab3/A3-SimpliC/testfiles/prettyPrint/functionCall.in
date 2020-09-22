@@ -1,8 +1,8 @@
-int b(){
+int b() {
     int x;
     x = 10;
 }
-int a(){
+int a() {
     int x;
     x = 10;
     int y = 11;

@@ -78,9 +78,14 @@ aspect PrettyPrint {
     getBlock().prettyPrint(out, ind+"    ");
   }
 
-	public void Assignment.prettyPrint(PrintStream out, String ind) {
-		getIdUse().prettyPrint(out, ind);
-		out.append(" = ");
-		getExpr().prettyPrint(out, ind+"    ");
-	}
+    public void Assignment.prettyPrint(PrintStream out, String ind) {
+        getIdUse().prettyPrint(out, ind);
+        out.append(" = ");
+        getExpr().prettyPrint(out, ind+"    ");
+    }
+
+    public void ReturnStmt.prettyPrint(PrintStream out, String ind) {
+        out.print("return ");
+        getExpr().prettyPrint(out, ind);
+      }
 }
