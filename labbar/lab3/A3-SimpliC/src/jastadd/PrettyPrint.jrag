@@ -53,6 +53,7 @@ aspect PrettyPrint {
 	public void IdDecl.prettyPrint(PrintStream out, String ind) {
 		out.print("int ");
 		out.print(getID());
+        out.println(";");
 	}
 
 	public void Block.prettyPrint(PrintStream out, String ind) {
@@ -60,7 +61,6 @@ aspect PrettyPrint {
     for (ASTNode child : getStmtList()) {
       out.print(ind);
       child.prettyPrint(out, ind+"    ");
-      out.println(";");
     }
     out.println("}");
   }
@@ -71,21 +71,62 @@ aspect PrettyPrint {
     getRight().prettyPrint(out, ind);
   }
 
+  public void NotEq.prettyPrint(PrintStream out, String ind) {
+      getLeft().prettyPrint(out, ind);
+      out.print(" != ");
+      getRight().prettyPrint(out, ind);
+    }
+
+  public void Less.prettyPrint(PrintStream out, String ind) {
+      getLeft().prettyPrint(out, ind);
+      out.print(" < ");
+      getRight().prettyPrint(out, ind);
+    }
+
+public void Greater.prettyPrint(PrintStream out, String ind) {
+      getLeft().prettyPrint(out, ind);
+      out.print(" > ");
+      getRight().prettyPrint(out, ind);
+    }
+
+    public void GreaterEq.prettyPrint(PrintStream out, String ind) {
+          getLeft().prettyPrint(out, ind);
+          out.print(" >= ");
+          getRight().prettyPrint(out, ind);
+        }
+
+    public void LessEq.prettyPrint(PrintStream out, String ind) {
+          getLeft().prettyPrint(out, ind);
+          out.print(" <= ");
+          getRight().prettyPrint(out, ind);
+        }
+
+
   public void FunctionDecl.prettyPrint(PrintStream out, String ind) {
     out.print("int ");
     out.print(getID());
     out.print("() ");
-    getBlock().prettyPrint(out, ind+"    ");
+    getBlock().prettyPrint(out, ind);
   }
 
     public void Assignment.prettyPrint(PrintStream out, String ind) {
         getIdUse().prettyPrint(out, ind);
         out.append(" = ");
         getExpr().prettyPrint(out, ind+"    ");
+        out.println(";");
     }
 
     public void ReturnStmt.prettyPrint(PrintStream out, String ind) {
         out.print("return ");
         getExpr().prettyPrint(out, ind);
+        out.println(";");
       }
+
+  public void While.prettyPrint(PrintStream out, String ind) {
+    out.print("while");
+    out.print(" (");
+    getExpr().prettyPrint(out, ind);
+    out.print(") ");
+    getBlock().prettyPrint(out,ind+"    ");
+  }
 }
