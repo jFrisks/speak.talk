@@ -19,6 +19,16 @@ public class FunctionDecl extends ProgramStmt implements Cloneable {
         return visitor.visit(this, data);
     }
   /**
+   * @aspect PrettyPrint
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:74
+   */
+  public void prettyPrint(PrintStream out, String ind) {
+    out.print("int ");
+    out.print(getID());
+    out.print("() ");
+    getBlock().prettyPrint(out, ind+"    ");
+  }
+  /**
    * @declaredat ASTNode:1
    */
   public FunctionDecl() {

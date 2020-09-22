@@ -19,6 +19,19 @@ public class Block extends ASTNode<ASTNode> implements Cloneable {
 		return visitor.visit(this, data);
 	}
   /**
+   * @aspect PrettyPrint
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:58
+   */
+  public void prettyPrint(PrintStream out, String ind) {
+    out.println("{");
+    for (ASTNode child : getStmtList()) {
+      out.print(ind);
+      child.prettyPrint(out, ind+"    ");
+      out.println(";");
+    }
+    out.println("}");
+  }
+  /**
    * @declaredat ASTNode:1
    */
   public Block() {

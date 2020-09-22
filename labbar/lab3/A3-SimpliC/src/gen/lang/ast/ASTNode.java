@@ -18,6 +18,23 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
 		throw new Error("Visitor: accept method not available for " + getClass().getName());
 	}
   /**
+   * @aspect PrettyPrint
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:4
+   */
+  public void prettyPrint(PrintStream out) {
+		prettyPrint(out, "");
+		out.println();
+	}
+  /**
+   * @aspect PrettyPrint
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:9
+   */
+  public void prettyPrint(PrintStream out, String ind) {
+	  for (ASTNode child : astChildren()) {
+		  child.prettyPrint(out, ind);
+		}
+	}
+  /**
    * @aspect DumpTree
    * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/DumpTree.jrag:9
    */
