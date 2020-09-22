@@ -59,10 +59,11 @@ aspect PrettyPrint {
 	public void Block.prettyPrint(PrintStream out, String ind) {
     out.println("{");
     for (ASTNode child : getStmtList()) {
-      out.print(ind);
-      child.prettyPrint(out, ind+"    ");
+      String newIndent = ind + "    ";
+      out.print(newIndent);
+      child.prettyPrint(out,newIndent);
     }
-    out.println("}");
+    out.println(ind+"}");
   }
 
   public void Eq.prettyPrint(PrintStream out, String ind) {
@@ -127,6 +128,6 @@ public void Greater.prettyPrint(PrintStream out, String ind) {
     out.print(" (");
     getExpr().prettyPrint(out, ind);
     out.print(") ");
-    getBlock().prettyPrint(out,ind+"    ");
+    getBlock().prettyPrint(out,ind);
   }
 }
