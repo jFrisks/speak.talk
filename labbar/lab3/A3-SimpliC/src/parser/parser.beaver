@@ -25,8 +25,6 @@
 %typeof ifElse = "IfElse";
 %typeof while = "While";
 %typeof functionCallStmt = "FunctionCallStmt";
-%typeof comment = "Comment";
-%typeof commentStmt = "CommentStmt";
 %typeof idUse = "IdUse";
 %typeof numeral = "Numeral";
 %typeof expr = "Expr";
@@ -62,18 +60,13 @@ programStmtList =
   ;
 
 programStmt =
-  comment
-  | functionDecl
+  functionDecl
   ;
 
 functionDecl =
   INT ID.id LPARAN paramDeclareList.a RPARAN block.b {: return new FunctionDecl(id, a, b); :}
   | INT ID.id LPARAN RPARAN block.b {: return new FunctionDecl(id, new List(), b); :}
   ;
-
-comment = commentStmt.a {: return new Comment(a); :};
-
-commentStmt = COMMENT.a {: return new CommentStmt(a); :};
 
 paramDeclareList =
   idDecl.a {: return new List().add(a); :}
@@ -96,7 +89,6 @@ stmt =
   | ifElse.a {: return a; :}
   | while.a {: return a; :}
   | functionCallStmt.a SEMICOLON {: return a; :}
-  | commentStmt
   ;
 
 assignment =

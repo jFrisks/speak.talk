@@ -63,7 +63,7 @@ NEGATIVE = (-)+
 "=="          { return sym(Terminals.EQ);}
 "="           { return sym(Terminals.ASSIGN); }
 ","           { return sym(Terminals.COMMA); }
-{COMMENT}     { return sym(Terminals.COMMENT); }
+{COMMENT}     { }
 {NUMERAL}     { return sym(Terminals.NUMERAL); }
 {ID}          { return sym(Terminals.ID); }
 <<EOF>>       { return sym(Terminals.EOF); }
