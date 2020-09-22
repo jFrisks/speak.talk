@@ -63,7 +63,7 @@ aspect PrettyPrint {
       out.print(newIndent);
       child.prettyPrint(out,newIndent);
     }
-    out.println(ind+"}");
+    out.print(ind+"}");
   }
 
   public void Eq.prettyPrint(PrintStream out, String ind) {
@@ -108,6 +108,7 @@ public void Greater.prettyPrint(PrintStream out, String ind) {
     out.print(getID());
     out.print("() ");
     getBlock().prettyPrint(out, ind);
+    out.println();
   }
 
     public void Assignment.prettyPrint(PrintStream out, String ind) {
@@ -129,5 +130,31 @@ public void Greater.prettyPrint(PrintStream out, String ind) {
     getExpr().prettyPrint(out, ind);
     out.print(") ");
     getBlock().prettyPrint(out,ind);
+    out.println();
   }
+
+  public void IfElse.prettyPrint(PrintStream out, String ind) {
+      out.print("if");
+      out.print(" (");
+      getIfExpr().prettyPrint(out, ind);
+      out.print(") ");
+      getIf().prettyPrint(out,ind);
+      if (hasElse()) {
+        out.print(" else ");
+        getElse().prettyPrint(out,ind);
+      }
+      out.println();
+    }
+
+    public void FunctionCall.prettyPrint(PrintStream out, String ind) {
+        out.print(getID());
+        out.print("(");
+        for (ASTNode child : getExprList()) {
+
+          child.prettyPrint(out, ind);
+        }
+        out.println();
+      }
+
+
 }

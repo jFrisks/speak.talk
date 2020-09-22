@@ -19,6 +19,15 @@ public class ReturnStmt extends Stmt implements Cloneable {
         return visitor.visit(this, data);
     }
   /**
+   * @aspect PrettyPrint
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:121
+   */
+  public void prettyPrint(PrintStream out, String ind) {
+        out.print("return ");
+        getExpr().prettyPrint(out, ind);
+        out.println(";");
+      }
+  /**
    * @declaredat ASTNode:1
    */
   public ReturnStmt() {

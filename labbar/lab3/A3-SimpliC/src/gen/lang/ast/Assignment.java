@@ -20,13 +20,14 @@ public class Assignment extends Stmt implements Cloneable {
 	}
   /**
    * @aspect PrettyPrint
-   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:81
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:114
    */
   public void prettyPrint(PrintStream out, String ind) {
-		getIdUse().prettyPrint(out, ind);
-		out.append(" = ");
-		getExpr().prettyPrint(out, ind+"    ");
-	}
+        getIdUse().prettyPrint(out, ind);
+        out.append(" = ");
+        getExpr().prettyPrint(out, ind+"    ");
+        out.println(";");
+    }
   /**
    * @declaredat ASTNode:1
    */

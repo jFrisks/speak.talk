@@ -20,7 +20,7 @@ public class Eq extends Expr implements Cloneable {
     }
   /**
    * @aspect PrettyPrint
-   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:68
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:69
    */
   public void prettyPrint(PrintStream out, String ind) {
     getLeft().prettyPrint(out, ind);

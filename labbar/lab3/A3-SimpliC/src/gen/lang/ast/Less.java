@@ -19,6 +19,15 @@ public class Less extends Expr implements Cloneable {
         return visitor.visit(this, data);
     }
   /**
+   * @aspect PrettyPrint
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:81
+   */
+  public void prettyPrint(PrintStream out, String ind) {
+      getLeft().prettyPrint(out, ind);
+      out.print(" < ");
+      getRight().prettyPrint(out, ind);
+    }
+  /**
    * @declaredat ASTNode:1
    */
   public Less() {

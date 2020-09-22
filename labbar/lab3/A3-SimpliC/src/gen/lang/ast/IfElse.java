@@ -19,6 +19,22 @@ public class IfElse extends Stmt implements Cloneable {
         return visitor.visit(this, data);
     }
   /**
+   * @aspect PrettyPrint
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:136
+   */
+  public void prettyPrint(PrintStream out, String ind) {
+      out.print("if");
+      out.print(" (");
+      getIfExpr().prettyPrint(out, ind);
+      out.print(") ");
+      getIf().prettyPrint(out,ind);
+      if (hasElse()) {
+        out.print(" else ");
+        getElse().prettyPrint(out,ind);
+      }
+      out.println();
+    }
+  /**
    * @declaredat ASTNode:1
    */
   public IfElse() {

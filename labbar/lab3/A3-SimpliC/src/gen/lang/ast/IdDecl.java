@@ -25,6 +25,7 @@ public class IdDecl extends Stmt implements Cloneable {
   public void prettyPrint(PrintStream out, String ind) {
 		out.print("int ");
 		out.print(getID());
+        out.println(";");
 	}
   /**
    * @declaredat ASTNode:1

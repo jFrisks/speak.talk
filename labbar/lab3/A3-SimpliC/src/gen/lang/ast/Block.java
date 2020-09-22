@@ -20,16 +20,16 @@ public class Block extends ASTNode<ASTNode> implements Cloneable {
 	}
   /**
    * @aspect PrettyPrint
-   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:58
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:59
    */
   public void prettyPrint(PrintStream out, String ind) {
     out.println("{");
     for (ASTNode child : getStmtList()) {
-      out.print(ind);
-      child.prettyPrint(out, ind+"    ");
-      out.println(";");
+      String newIndent = ind + "    ";
+      out.print(newIndent);
+      child.prettyPrint(out,newIndent);
     }
-    out.println("}");
+    out.print(ind+"}");
   }
   /**
    * @declaredat ASTNode:1
