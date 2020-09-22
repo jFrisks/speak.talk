@@ -100,9 +100,9 @@ public final class LangScanner extends beaver.Scanner {
   private static final String ZZ_ACTION_PACKED_0 =
     "\1\0\1\1\1\2\1\1\1\3\1\4\1\5\1\6"+
     "\1\7\1\10\1\11\1\12\2\13\1\14\1\15\1\16"+
-    "\1\17\5\20\1\21\1\22\1\23\1\2\1\24\1\25"+
-    "\1\26\1\27\1\20\1\30\4\20\1\31\2\20\1\32"+
-    "\3\20\1\33\1\34";
+    "\1\17\5\20\1\21\1\22\1\23\2\2\1\24\1\25"+
+    "\1\26\1\20\1\27\4\20\1\30\2\20\1\31\3\20"+
+    "\1\32\1\33";
 
   private static int [] zzUnpackAction() {
     int [] result = new int[46];
@@ -709,142 +709,137 @@ public final class LangScanner extends beaver.Scanner {
             { throw new SyntaxError("Illegal character <"+yytext()+">");
             }
             // fall through
-          case 29: break;
+          case 28: break;
           case 2:
             { 
             }
             // fall through
-          case 30: break;
+          case 29: break;
           case 3:
             { return sym(Terminals.MODULAR);
             }
             // fall through
-          case 31: break;
+          case 30: break;
           case 4:
             { return sym(Terminals.LPARAN);
             }
             // fall through
-          case 32: break;
+          case 31: break;
           case 5:
             { return sym(Terminals.RPARAN);
             }
             // fall through
-          case 33: break;
+          case 32: break;
           case 6:
             { return sym(Terminals.MULTIPLIER);
             }
             // fall through
-          case 34: break;
+          case 33: break;
           case 7:
             { return sym(Terminals.PLUS);
             }
             // fall through
-          case 35: break;
+          case 34: break;
           case 8:
             { return sym(Terminals.COMMA);
             }
             // fall through
-          case 36: break;
+          case 35: break;
           case 9:
             { return sym(Terminals.SUB);
             }
             // fall through
-          case 37: break;
+          case 36: break;
           case 10:
             { return sym(Terminals.DIVIDER);
             }
             // fall through
-          case 38: break;
+          case 37: break;
           case 11:
             { return sym(Terminals.NUMERAL);
             }
             // fall through
-          case 39: break;
+          case 38: break;
           case 12:
             { return sym(Terminals.SEMICOLON);
             }
             // fall through
-          case 40: break;
+          case 39: break;
           case 13:
             { return sym(Terminals.LESS);
             }
             // fall through
-          case 41: break;
+          case 40: break;
           case 14:
             { return sym(Terminals.ASSIGN);
             }
             // fall through
-          case 42: break;
+          case 41: break;
           case 15:
             { return sym(Terminals.GREATER);
             }
             // fall through
-          case 43: break;
+          case 42: break;
           case 16:
             { return sym(Terminals.ID);
             }
             // fall through
-          case 44: break;
+          case 43: break;
           case 17:
             { return sym(Terminals.LBRACKET);
             }
             // fall through
-          case 45: break;
+          case 44: break;
           case 18:
             { return sym(Terminals.RBRACKET);
             }
             // fall through
-          case 46: break;
+          case 45: break;
           case 19:
             { return sym(Terminals.NOTEQ);
             }
             // fall through
-          case 47: break;
+          case 46: break;
           case 20:
-            { return sym(Terminals.COMMENT);
-            }
-            // fall through
-          case 48: break;
-          case 21:
             { return sym(Terminals.LEQ);
             }
             // fall through
-          case 49: break;
-          case 22:
+          case 47: break;
+          case 21:
             { return sym(Terminals.EQ);
             }
             // fall through
-          case 50: break;
-          case 23:
+          case 48: break;
+          case 22:
             { return sym(Terminals.GEQ);
             }
             // fall through
-          case 51: break;
-          case 24:
+          case 49: break;
+          case 23:
             { return sym(Terminals.IF);
             }
             // fall through
-          case 52: break;
-          case 25:
+          case 50: break;
+          case 24:
             { return sym(Terminals.INT);
             }
             // fall through
-          case 53: break;
-          case 26:
+          case 51: break;
+          case 25:
             { return sym(Terminals.ELSE);
             }
             // fall through
-          case 54: break;
-          case 27:
+          case 52: break;
+          case 26:
             { return sym(Terminals.WHILE);
             }
             // fall through
-          case 55: break;
-          case 28:
+          case 53: break;
+          case 27:
             { return sym(Terminals.RETURN);
             }
             // fall through
-          case 56: break;
+          case 54: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }
