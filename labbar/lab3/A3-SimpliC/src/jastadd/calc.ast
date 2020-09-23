@@ -1,6 +1,6 @@
 Program ::= ProgramStmt*;
 abstract ProgramStmt;
-FunctionDecl : ProgramStmt ::= <ID> Expr* Block;
+FunctionDecl : ProgramStmt ::= <ID> IdDecl* Block;
 Block ::= Stmt*;
 
 abstract Stmt;

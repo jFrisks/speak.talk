@@ -102,15 +102,6 @@ public void Greater.prettyPrint(PrintStream out, String ind) {
           getRight().prettyPrint(out, ind);
         }
 
-
-  public void FunctionDecl.prettyPrint(PrintStream out, String ind) {
-    out.print("int ");
-    out.print(getID());
-    out.print("() ");
-    getBlock().prettyPrint(out, ind);
-    out.println();
-  }
-
     public void Assignment.prettyPrint(PrintStream out, String ind) {
         getIdUse().prettyPrint(out, ind);
         out.append(" = ");
@@ -159,6 +150,24 @@ public void Greater.prettyPrint(PrintStream out, String ind) {
         }
         out.print(")");
     }
+
+    public void FunctionDecl.prettyPrint(PrintStream out, String ind) {
+        out.print("int ");
+        out.print(getID());
+        out.print("(");
+        for (int i = 0; i < getIdDeclList().numChildren(); i++) {
+          if(i == 0){
+            (getIdDeclList().getChild(i)).prettyPrint(out, ind);
+          }else{
+            out.print(", ");
+            (getIdDeclList().getChild(i)).prettyPrint(out, ind);
+          }
+        }
+        out.print(") ");
+        getBlock().prettyPrint(out, ind);
+        out.println();
+    }
+
 
     public void FunctionCallStmt.prettyPrint(PrintStream out, String ind) {
         getExpr().prettyPrint(out, ind);
