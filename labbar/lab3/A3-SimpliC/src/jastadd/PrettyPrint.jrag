@@ -53,8 +53,12 @@ aspect PrettyPrint {
 	public void IdDecl.prettyPrint(PrintStream out, String ind) {
 		out.print("int ");
 		out.print(getID());
-        out.println(";");
 	}
+
+	public void IdDeclStmt.prettyPrint(PrintStream out, String ind) {
+    		getIdDecl().prettyPrint(out, ind);
+    		out.println(";");
+    	}
 
 	public void Block.prettyPrint(PrintStream out, String ind) {
     out.println("{");
@@ -165,6 +169,7 @@ public void Greater.prettyPrint(PrintStream out, String ind) {
         }
         out.print(") ");
         getBlock().prettyPrint(out, ind);
+        out.println();
         out.println();
     }
 

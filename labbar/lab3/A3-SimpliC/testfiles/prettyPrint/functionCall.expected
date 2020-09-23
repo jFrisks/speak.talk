@@ -2,6 +2,7 @@ int b() {
     int x;
     x = 10;
 }
+
 int a() {
     int x;
     int y;
