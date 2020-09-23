@@ -301,7 +301,13 @@ public class LangParser extends beaver.Parser {
         return new Assignment(a,b);
       }
     },
-    RETURN2, // [38] factor =  SUB posFactor (default action: return symbol 2)
+    new Action() { // [38] factor =  SUB posFactor
+      public Symbol reduce(Symbol[] _symbols, int offset) {
+        final Symbol SUB = _symbols[offset + 1];
+        final Expr a = (Expr) _symbols[offset + 2].value;
+        return new Neg(a);
+      }
+    },
     new Action() { // [39] paren =  LPARAN expr RPARAN
       public Symbol reduce(Symbol[] _symbols, int offset) {
         final Symbol LPARAN = _symbols[offset + 1];
@@ -436,11 +442,6 @@ public class LangParser extends beaver.Parser {
     },
   };
 
-      static final Action RETURN2 = new Action() {
-        public Symbol reduce(Symbol[] _symbols, int offset) {
-          return _symbols[offset + 2];
-        }
-      };
   static final ParsingTables PARSING_TABLES = new ParsingTables(
     "U9pjcbbm54KOn$#xsP1a0mbNk9AGS0KI4a8Wa8IG0v33cyCJHIuFL42KyabH7xGionSjgnH" +
     "VrB9ANwool5vyKCiNImuHvP8ZA8gSYXmASZd#UtedsxCzi#mqOOb2V$MRxk$h$dVtTFVCRW" +

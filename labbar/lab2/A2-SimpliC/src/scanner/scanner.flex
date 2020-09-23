@@ -31,8 +31,8 @@ WhiteSpace = [ ] | \t | \f | \n | \r
 ID = [a-zA-Z][a-zA-Z0-9]*
 NUMERAL = (0 | [1-9][0-9]*)
 COMMENT = \/\/.*
-POSITIVE = (--)*
-NEGATIVE = (-)*
+POSITIVE = (--)+
+NEGATIVE = (-)+
 %%
 
 // discard whitespace information
