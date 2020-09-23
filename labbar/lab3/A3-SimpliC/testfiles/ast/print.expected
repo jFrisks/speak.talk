@@ -6,6 +6,7 @@ Program
       Block
         List
           FunctionCallStmt
-            FunctionCall ID="print"
+            FunctionCall
+              IdUse ID="print"
               List
                 Numeral NUMERAL="3"

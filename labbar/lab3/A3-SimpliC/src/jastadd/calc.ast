@@ -13,7 +13,7 @@ ReturnStmt: Stmt ::= Expr;
 
 abstract Expr;
 Neg: Expr ::= Expr;
-FunctionCall : Expr ::= <ID> Expr*;
+FunctionCall : Expr ::= IdUse Expr*;
 Less : Expr ::= Left:Expr Right:Expr;
 Greater : Expr ::= Left:Expr Right:Expr;
 LessEq : Expr ::= Left:Expr Right:Expr;

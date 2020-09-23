@@ -121,8 +121,8 @@ expr =
   ;
 
 functionCall =
-  ID.a LPARAN paramList.b RPARAN {: return new FunctionCall(a, b); :}
-  | ID.a LPARAN RPARAN {: return new FunctionCall(a, new List()); :}
+  idUse.a LPARAN paramList.b RPARAN {: return new FunctionCall(a, b); :}
+  | idUse.a LPARAN RPARAN {: return new FunctionCall(a, new List()); :}
   ;
 
 paramList =
