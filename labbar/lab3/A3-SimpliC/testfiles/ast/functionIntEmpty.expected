@@ -1,6 +1,7 @@
 Program
   List
-    FunctionDecl ID="lucas"
+    FunctionDecl
+      IdDecl ID="lucas"
       List
       Block
         List

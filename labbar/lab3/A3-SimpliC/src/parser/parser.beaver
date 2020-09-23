@@ -65,8 +65,8 @@ programStmt =
   ;
 
 functionDecl =
-  INT ID.id LPARAN paramDeclareList.a RPARAN block.b {: return new FunctionDecl(id, a, b); :}
-  | INT ID.id LPARAN RPARAN block.b {: return new FunctionDecl(id, new List(), b); :}
+  idDecl.id LPARAN paramDeclareList.a RPARAN block.b {: return new FunctionDecl(id, a, b); :}
+  | idDecl.id LPARAN RPARAN block.b {: return new FunctionDecl(id, new List(), b); :}
   ;
 
 paramDeclareList =
@@ -121,8 +121,8 @@ expr =
   ;
 
 functionCall =
-  ID.a LPARAN paramList.b RPARAN {: return new FunctionCall(a, b); :}
-  | ID.a LPARAN RPARAN {: return new FunctionCall(a, new List()); :}
+  idUse.a LPARAN paramList.b RPARAN {: return new FunctionCall(a, b); :}
+  | idUse.a LPARAN RPARAN {: return new FunctionCall(a, new List()); :}
   ;
 
 paramList =

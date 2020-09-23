@@ -1,6 +1,7 @@
 Program
   List
-    FunctionDecl ID="a"
+    FunctionDecl
+      IdDecl ID="a"
       List
       Block
         List
@@ -24,6 +25,7 @@ Program
               Block
                 List
                   FunctionCallStmt
-                    FunctionCall ID="print"
+                    FunctionCall
+                      IdUse ID="print"
                       List
                         Numeral NUMERAL="3"
