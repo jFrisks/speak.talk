@@ -4,7 +4,8 @@ Program
       List
       Block
         List
-          IdDecl ID="x"
+          IdDeclStmt
+            IdDecl ID="x"
           Assignment
             IdUse ID="x"
             Numeral NUMERAL="10"
@@ -14,7 +15,8 @@ Program
               Numeral NUMERAL="3"
             Block
               List
-                IdDecl ID="z"
+                IdDeclStmt
+                  IdDecl ID="z"
                 Assignment
                   IdUse ID="z"
                   Numeral NUMERAL="3"

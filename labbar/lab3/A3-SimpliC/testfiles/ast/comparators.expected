@@ -4,7 +4,8 @@ Program
       List
       Block
         List
-          IdDecl ID="x"
+          IdDeclStmt
+            IdDecl ID="x"
           Assignment
             IdUse ID="x"
             Less

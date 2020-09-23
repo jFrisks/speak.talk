@@ -19,6 +19,7 @@
 %typeof stmt = "Stmt";
 %typeof stmtList = "List";
 %typeof block = "Block";
+%typeof idDeclStmt = "IdDeclStmt";
 %typeof idDecl = "IdDecl";
 %typeof assignment = "Assignment";
 %typeof returnStmt = "ReturnStmt";
@@ -83,20 +84,20 @@ stmtList =
     ;
 
 stmt =
-  idDecl.a SEMICOLON {: return a; :}
-  | assignment.a SEMICOLON {: return a; :}
-  | returnStmt.a SEMICOLON {: return a; :}
-  | ifElse.a {: return a; :}
-  | while.a {: return a; :}
-  | functionCallStmt.a SEMICOLON {: return a; :}
-  ;
+     idDeclStmt.a SEMICOLON {: return a; :}
+     | assignment.a SEMICOLON {: return a; :}
+     | returnStmt.a SEMICOLON {: return a; :}
+     | ifElse.a {: return a; :}
+     | while.a {: return a; :}
+     | functionCallStmt.a SEMICOLON {: return a; :}
+     ;
 
 assignment =
   idUse.a ASSIGN expr.b {: return new Assignment(a,b); :}
-  | INT idUse.a ASSIGN expr.b {: return new Assignment(a,b); :}
+  | idDecl.a ASSIGN expr.b {: return new Assignment(a,b); :}
   ;
 
-idDecl = INT ID.id {: return new IdDecl(id); :} ;
+idDeclStmt = idDecl.a {: return new IdDeclStmt(a); :};
 
 returnStmt = RETURN expr.a {: return new ReturnStmt(a); :};
 
@@ -181,6 +182,8 @@ paren =
   LPARAN expr.a RPARAN {: return a; :};
 
 idUse = ID.id {: return new IdUse(id); :};
+
+idDecl = INT ID.id {: return new IdDecl(id); :} ;
 
 numeral =
   NUMERAL.a {: return new Numeral(a); :};

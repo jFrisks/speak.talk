@@ -103,9 +103,9 @@ public void Greater.prettyPrint(PrintStream out, String ind) {
         }
 
     public void Assignment.prettyPrint(PrintStream out, String ind) {
-        getIdUse().prettyPrint(out, ind);
+        getLeft().prettyPrint(out, ind);
         out.append(" = ");
-        getExpr().prettyPrint(out, ind+"    ");
+        getRight().prettyPrint(out, ind+"    ");
         out.println(";");
     }
 

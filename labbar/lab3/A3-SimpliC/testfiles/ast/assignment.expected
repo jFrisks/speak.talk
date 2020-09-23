@@ -7,6 +7,5 @@ Program
           IdDeclStmt
             IdDecl ID="x"
           Assignment
-            IdUse ID="x"
-            FunctionCall ID="read"
-              List
+            IdDecl ID="y"
+            Numeral NUMERAL="5"

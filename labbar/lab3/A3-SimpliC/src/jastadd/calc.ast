@@ -4,8 +4,8 @@ FunctionDecl : ProgramStmt ::= <ID> IdDecl* Block;
 Block ::= Stmt*;
 
 abstract Stmt;
-Assignment : Stmt ::= IdUse Expr;
-IdDecl : Stmt ::= <ID>;
+Assignment : Stmt ::= Left:Expr Right:Expr;
+IdDeclStmt : Stmt ::= IdDecl;
 FunctionCallStmt : Stmt ::= Expr;
 IfElse: Stmt ::= IfExpr:Expr If:Block [Else:Block];
 While: Stmt ::= Expr Block;
@@ -28,4 +28,5 @@ Div : Expr ::= Left:Expr Right:Expr;
 Mod : Expr ::= Left:Expr Right:Expr;
 
 IdUse : Expr ::= <ID>;
+IdDecl : Expr ::= <ID>;
 Numeral : Expr ::= <NUMERAL>;
