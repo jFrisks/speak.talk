@@ -1,11 +1,13 @@
 /* This file was generated with JastAdd2 (http://jastadd.org) version 2.3.4 */
 package lang.ast;
 import java.io.PrintStream;
+import java.util.Set;
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashSet;
 /**
  * @ast node
- * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/calc.ast:12
+ * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/calc.ast:12
  * @astdecl ReturnStmt : Stmt ::= Expr;
  * @production ReturnStmt : {@link Stmt} ::= <span class="component">{@link Expr}</span>;
 
@@ -13,14 +15,14 @@ import java.lang.reflect.InvocationTargetException;
 public class ReturnStmt extends Stmt implements Cloneable {
   /**
    * @aspect Visitor
-   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/Visitor.jrag:107
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/Visitor.jrag:107
    */
   public Object accept(Visitor visitor, Object data) {
         return visitor.visit(this, data);
     }
   /**
    * @aspect PrettyPrint
-   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:121
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:116
    */
   public void prettyPrint(PrintStream out, String ind) {
         out.print("return ");

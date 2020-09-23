@@ -1,8 +1,10 @@
 /* This file was generated with JastAdd2 (http://jastadd.org) version 2.3.4 */
 package lang.ast;
 import java.io.PrintStream;
+import java.util.Set;
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashSet;
 /**
  * @ast node
  * @astdecl ASTNode;
@@ -12,14 +14,14 @@ import java.lang.reflect.InvocationTargetException;
 public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneable {
   /**
    * @aspect Visitor
-   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/Visitor.jrag:35
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/Visitor.jrag:35
    */
   public Object accept(Visitor visitor, Object data) {
 		throw new Error("Visitor: accept method not available for " + getClass().getName());
 	}
   /**
    * @aspect PrettyPrint
-   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:4
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:4
    */
   public void prettyPrint(PrintStream out) {
 		prettyPrint(out, "");
@@ -27,7 +29,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
 	}
   /**
    * @aspect PrettyPrint
-   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:9
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:9
    */
   public void prettyPrint(PrintStream out, String ind) {
 	  for (ASTNode child : astChildren()) {
@@ -36,12 +38,12 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
 	}
   /**
    * @aspect DumpTree
-   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/DumpTree.jrag:9
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/DumpTree.jrag:9
    */
   private static final String DUMP_TREE_INDENT = "  ";
   /**
    * @aspect DumpTree
-   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/DumpTree.jrag:11
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/DumpTree.jrag:11
    */
   public String dumpTree() {
 		ByteArrayOutputStream bytes = new ByteArrayOutputStream();
@@ -50,7 +52,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
 	}
   /**
    * @aspect DumpTree
-   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/DumpTree.jrag:17
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/DumpTree.jrag:17
    */
   public void dumpTree(PrintStream out) {
 		dumpTree(out, "");
@@ -58,7 +60,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
 	}
   /**
    * @aspect DumpTree
-   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/DumpTree.jrag:22
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/DumpTree.jrag:22
    */
   public void dumpTree(PrintStream out, String indent) {
 		out.print(indent + getClass().getSimpleName());
@@ -74,7 +76,7 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
 	}
   /**
    * @aspect DumpTree
-   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/DumpTree.jrag:35
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/DumpTree.jrag:35
    */
   public String getTokens() {
 		java.util.TreeSet<java.lang.reflect.Method> methods = new java.util.TreeSet<>(
@@ -98,6 +100,26 @@ public class ASTNode<T extends ASTNode> extends beaver.Symbol implements Cloneab
 			}
 		}
 		return result;
+	}
+  /**
+   * @param err where to write error messages
+   * @param symbols symbol table
+   * @aspect NameAnalysis
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/NameAnalysis.jrag:67
+   */
+  public void checkNames(PrintStream err, SymbolTable symbols) {
+        for (ASTNode child : astChildren()) {
+              child.checkNames(err, symbols);
+        }
+    }
+  /**
+   * Helper method
+   * @return line number of this token
+   * @aspect NameAnalysis
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/NameAnalysis.jrag:121
+   */
+  public int getLine() {
+		return getLine(getStart());
 	}
   /**
    * @declaredat ASTNode:1

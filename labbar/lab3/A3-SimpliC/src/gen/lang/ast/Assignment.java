@@ -1,32 +1,42 @@
 /* This file was generated with JastAdd2 (http://jastadd.org) version 2.3.4 */
 package lang.ast;
 import java.io.PrintStream;
+import java.util.Set;
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashSet;
 /**
  * @ast node
- * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/calc.ast:7
- * @astdecl Assignment : Stmt ::= IdUse Expr;
- * @production Assignment : {@link Stmt} ::= <span class="component">{@link IdUse}</span> <span class="component">{@link Expr}</span>;
+ * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/calc.ast:7
+ * @astdecl Assignment : Stmt ::= Left:Expr Right:Expr;
+ * @production Assignment : {@link Stmt} ::= <span class="component">Left:{@link Expr}</span> <span class="component">Right:{@link Expr}</span>;
 
  */
 public class Assignment extends Stmt implements Cloneable {
   /**
    * @aspect Visitor
-   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/Visitor.jrag:65
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/Visitor.jrag:65
    */
   public Object accept(Visitor visitor, Object data) {
 		return visitor.visit(this, data);
 	}
   /**
    * @aspect PrettyPrint
-   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:114
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:109
    */
   public void prettyPrint(PrintStream out, String ind) {
-        getIdUse().prettyPrint(out, ind);
+        getLeft().prettyPrint(out, ind);
         out.append(" = ");
-        getExpr().prettyPrint(out, ind+"    ");
+        getRight().prettyPrint(out, ind+"    ");
         out.println(";");
+    }
+  /**
+   * @aspect NameAnalysis
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/NameAnalysis.jrag:73
+   */
+  public void checkNames(PrintStream err, SymbolTable symbols) {
+        getRight().checkNames(err, symbols.push());
+        getLeft().checkNames(err, symbols);
     }
   /**
    * @declaredat ASTNode:1
@@ -48,11 +58,11 @@ public class Assignment extends Stmt implements Cloneable {
    * @declaredat ASTNode:13
    */
   @ASTNodeAnnotation.Constructor(
-    name = {"IdUse", "Expr"},
-    type = {"IdUse", "Expr"},
+    name = {"Left", "Right"},
+    type = {"Expr", "Expr"},
     kind = {"Child", "Child"}
   )
-  public Assignment(IdUse p0, Expr p1) {
+  public Assignment(Expr p0, Expr p1) {
     setChild(p0, 0);
     setChild(p1, 1);
   }
@@ -152,57 +162,57 @@ public class Assignment extends Stmt implements Cloneable {
     return tree;
   }
   /**
-   * Replaces the IdUse child.
-   * @param node The new node to replace the IdUse child.
+   * Replaces the Left child.
+   * @param node The new node to replace the Left child.
    * @apilevel high-level
    */
-  public Assignment setIdUse(IdUse node) {
+  public Assignment setLeft(Expr node) {
     setChild(node, 0);
     return this;
   }
   /**
-   * Retrieves the IdUse child.
-   * @return The current node used as the IdUse child.
+   * Retrieves the Left child.
+   * @return The current node used as the Left child.
    * @apilevel high-level
    */
-  @ASTNodeAnnotation.Child(name="IdUse")
-  public IdUse getIdUse() {
-    return (IdUse) getChild(0);
+  @ASTNodeAnnotation.Child(name="Left")
+  public Expr getLeft() {
+    return (Expr) getChild(0);
   }
   /**
-   * Retrieves the IdUse child.
+   * Retrieves the Left child.
    * <p><em>This method does not invoke AST transformations.</em></p>
-   * @return The current node used as the IdUse child.
+   * @return The current node used as the Left child.
    * @apilevel low-level
    */
-  public IdUse getIdUseNoTransform() {
-    return (IdUse) getChildNoTransform(0);
+  public Expr getLeftNoTransform() {
+    return (Expr) getChildNoTransform(0);
   }
   /**
-   * Replaces the Expr child.
-   * @param node The new node to replace the Expr child.
+   * Replaces the Right child.
+   * @param node The new node to replace the Right child.
    * @apilevel high-level
    */
-  public Assignment setExpr(Expr node) {
+  public Assignment setRight(Expr node) {
     setChild(node, 1);
     return this;
   }
   /**
-   * Retrieves the Expr child.
-   * @return The current node used as the Expr child.
+   * Retrieves the Right child.
+   * @return The current node used as the Right child.
    * @apilevel high-level
    */
-  @ASTNodeAnnotation.Child(name="Expr")
-  public Expr getExpr() {
+  @ASTNodeAnnotation.Child(name="Right")
+  public Expr getRight() {
     return (Expr) getChild(1);
   }
   /**
-   * Retrieves the Expr child.
+   * Retrieves the Right child.
    * <p><em>This method does not invoke AST transformations.</em></p>
-   * @return The current node used as the Expr child.
+   * @return The current node used as the Right child.
    * @apilevel low-level
    */
-  public Expr getExprNoTransform() {
+  public Expr getRightNoTransform() {
     return (Expr) getChildNoTransform(1);
   }
 

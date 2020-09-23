@@ -1,29 +1,31 @@
 /* This file was generated with JastAdd2 (http://jastadd.org) version 2.3.4 */
 package lang.ast;
 import java.io.PrintStream;
+import java.util.Set;
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashSet;
 /**
  * @ast node
- * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/calc.ast:16
- * @astdecl FunctionCall : Expr ::= <ID:String> Expr*;
- * @production FunctionCall : {@link Expr} ::= <span class="component">&lt;ID:{@link String}&gt;</span> <span class="component">{@link Expr}*</span>;
+ * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/calc.ast:16
+ * @astdecl FunctionCall : Expr ::= IdUse Expr*;
+ * @production FunctionCall : {@link Expr} ::= <span class="component">{@link IdUse}</span> <span class="component">{@link Expr}*</span>;
 
  */
 public class FunctionCall extends Expr implements Cloneable {
   /**
    * @aspect Visitor
-   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/Visitor.jrag:74
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/Visitor.jrag:74
    */
   public Object accept(Visitor visitor, Object data) {
         return visitor.visit(this, data);
     }
   /**
    * @aspect PrettyPrint
-   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:149
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:144
    */
   public void prettyPrint(PrintStream out, String ind) {
-        out.print(getID());
+        getIdUse().prettyPrint(out, ind);
         out.print("(");
         for (int i = 0; i < getExprList().numChildren(); i++) {
           if(i == 0){
@@ -34,6 +36,13 @@ public class FunctionCall extends Expr implements Cloneable {
           }
         }
         out.print(")");
+    }
+  /**
+   * @aspect NameAnalysis
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/NameAnalysis.jrag:96
+   */
+  public void checkNames(PrintStream err, SymbolTable symbols) {
+        getIdUse().checkNames(err, symbols);
     }
   /**
    * @declaredat ASTNode:1
@@ -49,57 +58,50 @@ public class FunctionCall extends Expr implements Cloneable {
    * @declaredat ASTNode:10
    */
   public void init$Children() {
-    children = new ASTNode[1];
-    setChild(new List(), 0);
+    children = new ASTNode[2];
+    setChild(new List(), 1);
   }
   /**
    * @declaredat ASTNode:14
    */
   @ASTNodeAnnotation.Constructor(
-    name = {"ID", "Expr"},
-    type = {"String", "List<Expr>"},
-    kind = {"Token", "List"}
+    name = {"IdUse", "Expr"},
+    type = {"IdUse", "List<Expr>"},
+    kind = {"Child", "List"}
   )
-  public FunctionCall(String p0, List<Expr> p1) {
-    setID(p0);
-    setChild(p1, 0);
-  }
-  /**
-   * @declaredat ASTNode:23
-   */
-  public FunctionCall(beaver.Symbol p0, List<Expr> p1) {
-    setID(p0);
-    setChild(p1, 0);
+  public FunctionCall(IdUse p0, List<Expr> p1) {
+    setChild(p0, 0);
+    setChild(p1, 1);
   }
   /** @apilevel low-level 
-   * @declaredat ASTNode:28
+   * @declaredat ASTNode:24
    */
   protected int numChildren() {
-    return 1;
+    return 2;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:32
+   * @declaredat ASTNode:28
    */
   public void flushAttrCache() {
     super.flushAttrCache();
 
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:37
+   * @declaredat ASTNode:33
    */
   public void flushCollectionCache() {
     super.flushCollectionCache();
 
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:42
+   * @declaredat ASTNode:38
    */
   public FunctionCall clone() throws CloneNotSupportedException {
     FunctionCall node = (FunctionCall) super.clone();
     return node;
   }
   /** @apilevel internal 
-   * @declaredat ASTNode:47
+   * @declaredat ASTNode:43
    */
   public FunctionCall copy() {
     try {
@@ -119,7 +121,7 @@ public class FunctionCall extends Expr implements Cloneable {
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
    * @deprecated Please use treeCopy or treeCopyNoTransform instead
-   * @declaredat ASTNode:66
+   * @declaredat ASTNode:62
    */
   @Deprecated
   public FunctionCall fullCopy() {
@@ -130,7 +132,7 @@ public class FunctionCall extends Expr implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:76
+   * @declaredat ASTNode:72
    */
   public FunctionCall treeCopyNoTransform() {
     FunctionCall tree = (FunctionCall) copy();
@@ -151,7 +153,7 @@ public class FunctionCall extends Expr implements Cloneable {
    * The copy is dangling, i.e. has no parent.
    * @return dangling copy of the subtree at this node
    * @apilevel low-level
-   * @declaredat ASTNode:96
+   * @declaredat ASTNode:92
    */
   public FunctionCall treeCopy() {
     FunctionCall tree = (FunctionCall) copy();
@@ -167,44 +169,31 @@ public class FunctionCall extends Expr implements Cloneable {
     return tree;
   }
   /**
-   * Replaces the lexeme ID.
-   * @param value The new value for the lexeme ID.
+   * Replaces the IdUse child.
+   * @param node The new node to replace the IdUse child.
    * @apilevel high-level
    */
-  public FunctionCall setID(String value) {
-    tokenString_ID = value;
-    return this;
-  }
-  /** @apilevel internal 
-   */
-  protected String tokenString_ID;
-  /**
-   */
-  public int IDstart;
-  /**
-   */
-  public int IDend;
-  /**
-   * JastAdd-internal setter for lexeme ID using the Beaver parser.
-   * @param symbol Symbol containing the new value for the lexeme ID
-   * @apilevel internal
-   */
-  public FunctionCall setID(beaver.Symbol symbol) {
-    if (symbol.value != null && !(symbol.value instanceof String))
-    throw new UnsupportedOperationException("setID is only valid for String lexemes");
-    tokenString_ID = (String)symbol.value;
-    IDstart = symbol.getStart();
-    IDend = symbol.getEnd();
+  public FunctionCall setIdUse(IdUse node) {
+    setChild(node, 0);
     return this;
   }
   /**
-   * Retrieves the value for the lexeme ID.
-   * @return The value for the lexeme ID.
+   * Retrieves the IdUse child.
+   * @return The current node used as the IdUse child.
    * @apilevel high-level
    */
-  @ASTNodeAnnotation.Token(name="ID")
-  public String getID() {
-    return tokenString_ID != null ? tokenString_ID : "";
+  @ASTNodeAnnotation.Child(name="IdUse")
+  public IdUse getIdUse() {
+    return (IdUse) getChild(0);
+  }
+  /**
+   * Retrieves the IdUse child.
+   * <p><em>This method does not invoke AST transformations.</em></p>
+   * @return The current node used as the IdUse child.
+   * @apilevel low-level
+   */
+  public IdUse getIdUseNoTransform() {
+    return (IdUse) getChildNoTransform(0);
   }
   /**
    * Replaces the Expr list.
@@ -212,7 +201,7 @@ public class FunctionCall extends Expr implements Cloneable {
    * @apilevel high-level
    */
   public FunctionCall setExprList(List<Expr> list) {
-    setChild(list, 0);
+    setChild(list, 1);
     return this;
   }
   /**
@@ -284,7 +273,7 @@ public class FunctionCall extends Expr implements Cloneable {
    */
   @ASTNodeAnnotation.ListChild(name="Expr")
   public List<Expr> getExprList() {
-    List<Expr> list = (List<Expr>) getChild(0);
+    List<Expr> list = (List<Expr>) getChild(1);
     return list;
   }
   /**
@@ -294,7 +283,7 @@ public class FunctionCall extends Expr implements Cloneable {
    * @apilevel low-level
    */
   public List<Expr> getExprListNoTransform() {
-    return (List<Expr>) getChildNoTransform(0);
+    return (List<Expr>) getChildNoTransform(1);
   }
   /**
    * @return the element at index {@code i} in the Expr list without

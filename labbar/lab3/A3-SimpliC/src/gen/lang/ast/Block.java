@@ -1,11 +1,13 @@
 /* This file was generated with JastAdd2 (http://jastadd.org) version 2.3.4 */
 package lang.ast;
 import java.io.PrintStream;
+import java.util.Set;
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashSet;
 /**
  * @ast node
- * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/calc.ast:4
+ * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/calc.ast:4
  * @astdecl Block : ASTNode ::= Stmt*;
  * @production Block : {@link ASTNode} ::= <span class="component">{@link Stmt}*</span>;
 
@@ -13,14 +15,14 @@ import java.lang.reflect.InvocationTargetException;
 public class Block extends ASTNode<ASTNode> implements Cloneable {
   /**
    * @aspect Visitor
-   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/Visitor.jrag:68
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/Visitor.jrag:68
    */
   public Object accept(Visitor visitor, Object data) {
 		return visitor.visit(this, data);
 	}
   /**
    * @aspect PrettyPrint
-   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:59
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:63
    */
   public void prettyPrint(PrintStream out, String ind) {
     out.println("{");
@@ -31,6 +33,16 @@ public class Block extends ASTNode<ASTNode> implements Cloneable {
     }
     out.print(ind+"}");
   }
+  /**
+   * @aspect NameAnalysis
+   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/NameAnalysis.jrag:100
+   */
+  public void checkNames(PrintStream err, SymbolTable symbols) {
+        symbols = symbols.push();
+        for (Stmt s : getStmts()) {
+            s.checkNames(err, symbols);
+        }
+    }
   /**
    * @declaredat ASTNode:1
    */
