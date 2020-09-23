@@ -5,7 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
 /**
  * @ast node
- * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/calc.ast:14
+ * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/calc.ast:14
  * @astdecl Expr : ASTNode;
  * @production Expr : {@link ASTNode};
 

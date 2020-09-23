@@ -5,7 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
 /**
  * @ast node
- * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/calc.ast:11
+ * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/calc.ast:11
  * @astdecl While : Stmt ::= Expr Block;
  * @production While : {@link Stmt} ::= <span class="component">{@link Expr}</span> <span class="component">{@link Block}</span>;
 
@@ -13,14 +13,14 @@ import java.lang.reflect.InvocationTargetException;
 public class While extends Stmt implements Cloneable {
   /**
    * @aspect Visitor
-   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/Visitor.jrag:113
+   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/Visitor.jrag:113
    */
   public Object accept(Visitor visitor, Object data) {
         return visitor.visit(this, data);
     }
   /**
    * @aspect PrettyPrint
-   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:127
+   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:127
    */
   public void prettyPrint(PrintStream out, String ind) {
     out.print("while");

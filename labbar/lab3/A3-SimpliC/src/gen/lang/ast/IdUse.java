@@ -5,7 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
 /**
  * @ast node
- * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/calc.ast:30
+ * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/calc.ast:30
  * @astdecl IdUse : Expr ::= <ID:String>;
  * @production IdUse : {@link Expr} ::= <span class="component">&lt;ID:{@link String}&gt;</span>;
 
@@ -13,14 +13,14 @@ import java.lang.reflect.InvocationTargetException;
 public class IdUse extends Expr implements Cloneable {
   /**
    * @aspect Visitor
-   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/Visitor.jrag:59
+   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/Visitor.jrag:59
    */
   public Object accept(Visitor visitor, Object data) {
 		return visitor.visit(this, data);
 	}
   /**
    * @aspect PrettyPrint
-   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:49
+   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:49
    */
   public void prettyPrint(PrintStream out, String ind) {
 		out.print(getID());

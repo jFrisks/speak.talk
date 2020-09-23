@@ -12,7 +12,7 @@ import java.lang.reflect.InvocationTargetException;
 public class Opt<T extends ASTNode> extends ASTNode<T> implements Cloneable {
   /**
    * @aspect Visitor
-   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/Visitor.jrag:41
+   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/Visitor.jrag:41
    */
   public Object accept(Visitor visitor, Object data) {
 		return visitor.visit(this, data);

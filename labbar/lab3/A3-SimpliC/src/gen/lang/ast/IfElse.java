@@ -5,7 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
 /**
  * @ast node
- * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/calc.ast:10
+ * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/calc.ast:10
  * @astdecl IfElse : Stmt ::= IfExpr:Expr If:Block [Else:Block];
  * @production IfElse : {@link Stmt} ::= <span class="component">IfExpr:{@link Expr}</span> <span class="component">If:{@link Block}</span> <span class="component">[Else:{@link Block}]</span>;
 
@@ -13,14 +13,14 @@ import java.lang.reflect.InvocationTargetException;
 public class IfElse extends Stmt implements Cloneable {
   /**
    * @aspect Visitor
-   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/Visitor.jrag:89
+   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/Visitor.jrag:89
    */
   public Object accept(Visitor visitor, Object data) {
         return visitor.visit(this, data);
     }
   /**
    * @aspect PrettyPrint
-   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:136
+   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:136
    */
   public void prettyPrint(PrintStream out, String ind) {
       out.print("if");

@@ -5,7 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
 /**
  * @ast node
- * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/calc.ast:8
+ * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/calc.ast:8
  * @astdecl IdDecl : Stmt ::= <ID:String>;
  * @production IdDecl : {@link Stmt} ::= <span class="component">&lt;ID:{@link String}&gt;</span>;
 
@@ -13,14 +13,14 @@ import java.lang.reflect.InvocationTargetException;
 public class IdDecl extends Stmt implements Cloneable {
   /**
    * @aspect Visitor
-   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/Visitor.jrag:56
+   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/Visitor.jrag:56
    */
   public Object accept(Visitor visitor, Object data) {
 		return visitor.visit(this, data);
 	}
   /**
    * @aspect PrettyPrint
-   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:53
+   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:53
    */
   public void prettyPrint(PrintStream out, String ind) {
 		out.print("int ");

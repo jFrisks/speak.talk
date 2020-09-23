@@ -5,7 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
 /**
  * @ast node
- * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/calc.ast:1
+ * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/calc.ast:1
  * @astdecl Program : ASTNode ::= ProgramStmt*;
  * @production Program : {@link ASTNode} ::= <span class="component">{@link ProgramStmt}*</span>;
 
@@ -13,7 +13,7 @@ import java.lang.reflect.InvocationTargetException;
 public class Program extends ASTNode<ASTNode> implements Cloneable {
   /**
    * @aspect Visitor
-   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/Visitor.jrag:44
+   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/Visitor.jrag:44
    */
   public Object accept(Visitor visitor, Object data) {
 		return visitor.visit(this, data);

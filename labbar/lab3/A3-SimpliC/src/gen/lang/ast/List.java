@@ -12,7 +12,7 @@ import java.lang.reflect.InvocationTargetException;
 public class List<T extends ASTNode> extends ASTNode<T> implements Cloneable, Iterable<T> {
   /**
    * @aspect Visitor
-   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/Visitor.jrag:38
+   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/Visitor.jrag:38
    */
   public Object accept(Visitor visitor, Object data) {
 		return visitor.visit(this, data);

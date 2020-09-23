@@ -5,7 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
 /**
  * @ast node
- * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/calc.ast:16
+ * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/calc.ast:16
  * @astdecl FunctionCall : Expr ::= <ID:String> Expr*;
  * @production FunctionCall : {@link Expr} ::= <span class="component">&lt;ID:{@link String}&gt;</span> <span class="component">{@link Expr}*</span>;
 
@@ -13,21 +13,28 @@ import java.lang.reflect.InvocationTargetException;
 public class FunctionCall extends Expr implements Cloneable {
   /**
    * @aspect Visitor
-   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/Visitor.jrag:74
+   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/Visitor.jrag:74
    */
   public Object accept(Visitor visitor, Object data) {
         return visitor.visit(this, data);
     }
   /**
    * @aspect PrettyPrint
-   * @declaredat /Users/lucas/Documents/LTH/edan_new_new/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:149
+   * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab3/A3-SimpliC/src/jastadd/PrettyPrint.jrag:149
    */
   public void prettyPrint(PrintStream out, String ind) {
         out.print(getID());
         out.print("(");
-        out.print(String.join(", ", getExprList()));
-        out.println(";");
-      }
+        for (int i = 0; i < getExprList().numChildren(); i++) {
+          if(i == 0){
+            (getExprList().getChild(i)).prettyPrint(out, ind);
+          }else{
+            out.print(", ");
+            (getExprList().getChild(i)).prettyPrint(out, ind);
+          }
+        }
+        out.print(")");
+    }
   /**
    * @declaredat ASTNode:1
    */
