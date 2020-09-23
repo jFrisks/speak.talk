@@ -55,6 +55,8 @@ aspect NameAnalysis {
 	 */
 	public void Program.checkNames(PrintStream err) {
 		SymbolTable symbols = new SymbolTable();
+		symbols.declare("print");
+		symbols.declare("read");
 		checkNames(err, symbols);
 	}
 
@@ -63,14 +65,14 @@ aspect NameAnalysis {
 	 * @param symbols symbol table
 	 */
 	public void ASTNode.checkNames(PrintStream err, SymbolTable symbols) {
-    for (ASTNode child : astChildren()) {
-		  child.checkNames(err, symbols);
-		}
-	}
+        for (ASTNode child : astChildren()) {
+              child.checkNames(err, symbols);
+        }
+    }
 
     public void Assignment.checkNames(PrintStream err, SymbolTable symbols) {
-        getLeft().checkNames(err, symbols);
         getRight().checkNames(err, symbols.push());
+        getLeft().checkNames(err, symbols);
     }
 
 	public void IdDecl.checkNames(PrintStream err, SymbolTable symbols) {
@@ -92,8 +94,25 @@ aspect NameAnalysis {
 	}
 
 	public void FunctionCall.checkNames(PrintStream err, SymbolTable symbols) {
-        getId().checkNames(err, symbols);
+        getIdUse().checkNames(err, symbols);
     }
+
+    public void Block.checkNames(PrintStream err, SymbolTable symbols) {
+        symbols = symbols.push();
+        for (Stmt s : getStmts()) {
+            s.checkNames(err, symbols);
+        }
+    }
+
+    public void IfElse.checkNames(PrintStream err, SymbolTable symbols) {
+        getIfExpr().checkNames(err, symbols);
+        getIf().checkNames(err, symbols);
+        if (hasElse()) {
+            getElse().checkNames(err, symbols);
+        }
+    }
+
+
 
 	/**
 	 * Helper method

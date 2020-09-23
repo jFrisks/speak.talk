@@ -1,0 +1,6 @@
+int main() {
+    int x = 5;
+    if (3 > 2) {
+        int x = 4;
+    }
+}
