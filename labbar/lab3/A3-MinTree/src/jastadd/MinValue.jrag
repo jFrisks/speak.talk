@@ -7,8 +7,7 @@ aspect MinValue {
 	// Exercise 2
 	inh int Node.globalMin();
 	eq Program.getNode().globalMin() = getNode().localMin();
-	eq Pair.Left().globalMin() = globalMin();
-	eq Pair.Right().globalMin() = globalMin();
+
 
 	// Exercise 3
 	syn boolean Leaf.isMinValue();
