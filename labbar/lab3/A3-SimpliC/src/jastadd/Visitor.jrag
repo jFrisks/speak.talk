@@ -10,6 +10,7 @@ aspect Visitor {
 		public Object visit(Mul node, Object data);
 		public Object visit(Div node, Object data);
 		public Object visit(Numeral node, Object data);
+		public Object visit(IdDeclStmt node, Object data);
 		public Object visit(IdDecl node, Object data);
 		public Object visit(IdUse node, Object data);
 		public Object visit(Add node, Object data);
@@ -53,6 +54,9 @@ aspect Visitor {
 	public Object Numeral.accept(Visitor visitor, Object data) {
 		return visitor.visit(this, data);
 	}
+	public Object IdDeclStmt.accept(Visitor visitor, Object data) {
+        return visitor.visit(this, data);
+    }
 	public Object IdDecl.accept(Visitor visitor, Object data) {
 		return visitor.visit(this, data);
 	}

@@ -35,8 +35,10 @@ public class Compiler {
 			LangScanner scanner = new LangScanner(new FileReader(filename));
 			LangParser parser = new LangParser();
 			Program program = (Program) parser.parse(scanner);
-			System.out.println(program.dumpTree());
-			System.out.println("Found MSN Depth: " + MSNVisitor.result(program));
+			program.checkNames(System.out);
+			//System.out.println(program.dumpTree());
+			//System.out.println("Found MSN Depth: " + MSNVisitor.result(program));
+
             DrAST_root_node = program; //Enable debugging with DrAST
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found!");
