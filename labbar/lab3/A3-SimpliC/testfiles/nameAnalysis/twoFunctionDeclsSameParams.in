@@ -1,0 +1,2 @@
+int f(int x, int y, int z) { }
+int g(int x, int y, int h) { }
