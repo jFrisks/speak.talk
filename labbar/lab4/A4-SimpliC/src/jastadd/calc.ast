@@ -28,5 +28,10 @@ Div : Expr ::= Left:Expr Right:Expr;
 Mod : Expr ::= Left:Expr Right:Expr;
 
 IdUse : Expr ::= <ID>;
-IdDecl : Expr ::= <ID>;
+IdDecl : Expr ::= Type <ID>;
 Numeral : Expr ::= <NUMERAL>;
+
+abstract Type;
+IntType: Type;
+BoolType: Type;
+UnknownType: Type;

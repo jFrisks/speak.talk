@@ -48,6 +48,7 @@
 %typeof sub = "Sub";
 %typeof div = "Div";
 %typeof mod = "Mod";
+%typeof intType = "IntType";
 
 %goal program;
 
@@ -183,7 +184,9 @@ paren =
 
 idUse = ID.id {: return new IdUse(id); :};
 
-idDecl = INT ID.id {: return new IdDecl(id); :} ;
+idDecl = intType.a ID.id {: return new IdDecl(a, id); :} ;
+
+intType = INT {: return new IntType(); :};
 
 numeral =
   NUMERAL.a {: return new Numeral(a); :};
