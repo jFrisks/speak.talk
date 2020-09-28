@@ -1,0 +1,17 @@
+Program
+  List
+    FunctionDecl
+      IdDecl ID="a"
+      List
+      Block
+        List
+          IdDeclStmt
+            IdDecl ID="x"
+          IdDeclStmt
+            IdDecl ID="y"
+          Assignment
+            IdUse ID="x"
+            Numeral NUMERAL="5"
+          Assignment
+            IdUse ID="y"
+            IdUse ID="x"
