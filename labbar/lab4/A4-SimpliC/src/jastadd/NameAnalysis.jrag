@@ -33,5 +33,16 @@ aspect NameAnalysis {
 	}
 
 	inh IdDecl IdDecl.lookup(String name);
-	//syn boolean IdDecl.isMultiDeclared() = lookup(getID()) != this;
+	syn boolean IdDecl.isMultiDeclared() = lookup(getID()) != this;
 }
+
+/*
+aspect CircularDefinitions {
+ 	syn boolean IdUse.isCircular() = inExprOf(decl());
+ 	inh boolean IdUse.inExprOf(IdDecl decl);
+ 	inh boolean Assignment.inExprOf(IdDecl decl);
+ 	eq Assignment.getExpr().inExprOf(IdDecl decl)
+ 		= getIdDecl() == decl || inExprOf(decl);
+ 	eq Program.getChild().inExprOf(IdDecl decl) = false;
+ }
+ */
