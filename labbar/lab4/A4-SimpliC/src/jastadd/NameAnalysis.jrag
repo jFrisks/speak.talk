@@ -36,7 +36,7 @@ aspect NameAnalysis {
 	syn IdDecl Block.localLookup(String name, int until) {
 		for (int i = 0; i <= until; i++) {
 			//Go through all stmt and and get stmt(i) decls
-			if (!getStmt(i).decl().isUnknown()) {
+			if (getStmt(i).decl().getID().equals(name)) {
                 return getStmt(i).decl();
             }
 		}
