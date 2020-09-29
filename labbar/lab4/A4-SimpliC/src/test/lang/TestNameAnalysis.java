@@ -15,9 +15,12 @@ import lang.ast.Program;
  * This is a parameterized test: one test case is generated for each input
  * file found in TEST_DIRECTORY. Input files should have the ".in" extension.
  */
+/*
 @RunWith(Parameterized.class)
 public class TestNameAnalysis {
-    /** Directory where the test input files are stored. */
+    */
+/** Directory where the test input files are stored. *//*
+
     private static final File TEST_DIRECTORY = new File("testfiles/nameanalysis");
 
     private final String filename;
@@ -40,3 +43,4 @@ public class TestNameAnalysis {
         return Util.getTestParameters(TEST_DIRECTORY, ".in");
     }
 }
+*/
