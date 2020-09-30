@@ -74,6 +74,24 @@ aspect NameAnalysis {
 
 	inh IdDecl IdDecl.lookup(String name);
 	syn boolean IdDecl.isMultiDeclared() = lookup(getID()) != this;
+
+	syn boolean IdDecl.isVariable(){
+	    if(!(getParent() instanceof FunctionDecl)){
+	        return true;
+	    }
+	    return false;
+	}
+	syn boolean IdDecl.isFunction(){
+        if(getParent() instanceof FunctionDecl){
+            return true;
+        }
+        return false;
+    }
+
+
+
+
+
 }
 
 /*
