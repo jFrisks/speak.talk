@@ -47,6 +47,10 @@ aspect ErrorContributions {
         when isFunctionButExpectedVaraible()
         to Program.errors() for program();
 
+    IdUse contributes error("symbol '" + getID() + "' has the wrong number of arguments!")
+        when getParent() instanceof FunctionCall && decl().isFunction() && (((FunctionDecl) decl().getParent()).getNumParam() != ((FunctionCall) getParent()).getNumExpr())
+        to Program.errors() for program();
+
 	/*
 	IdUse contributes error("the definition of symbol '" + getID() + "' is circular")
 		when isCircular()
