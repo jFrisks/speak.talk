@@ -1,1 +1,1 @@
-donno error code
+Error at line 3: symbol 'x' is a variable but is expected to be a function

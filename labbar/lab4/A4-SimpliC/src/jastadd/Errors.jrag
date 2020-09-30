@@ -39,6 +39,14 @@ aspect ErrorContributions {
 		when isMultiDeclared()
 		to Program.errors() for program();
 
+    IdUse contributes error("symbol '" + getID() + "' is a variable but is expected to be a function")
+        when isVariableButExpectedFunction()
+        to Program.errors() for program();
+
+    IdUse contributes error("symbol '" + getID() + "' is a function but is expected to be a variable")
+        when isFunctionButExpectedVaraible()
+        to Program.errors() for program();
+
 	/*
 	IdUse contributes error("the definition of symbol '" + getID() + "' is circular")
 		when isCircular()
