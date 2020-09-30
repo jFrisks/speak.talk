@@ -1,0 +1,55 @@
+aspect TypesAnalysis{
+    syn Type IdDecl.type() = intType();
+
+    syn Type Expr.type() {
+        if (this instanceof Eq || this instanceof Neg || this instanceof Less || this instanceof Greater || this instanceof LessEq || this instanceof GreaterEq || this instanceof NotEq) {
+            return boolType();
+        } else if (this instanceof Mul || this instanceof Div || this instanceof Add || this instanceof Sub || this instanceof Mod || this instanceof IdUse || this instanceof Numeral || this instanceof FunctionCall) {
+            return intType();
+        }
+        return unknownType();
+    }
+
+    syn Type Add.type() = (getLeft().type() == intType() && getRight().type() == intType()) ? intType() : unknownType();
+    syn Type Sub.type() = (getLeft().type() == intType() && getRight().type() == intType()) ? intType() : unknownType();
+    syn Type Mul.type() = (getLeft().type() == intType() && getRight().type() == intType()) ? intType() : unknownType();
+    syn Type Div.type() = (getLeft().type() == intType() && getRight().type() == intType()) ? intType() : unknownType();
+    syn Type Mod.type() = (getLeft().type() == intType() && getRight().type() == intType()) ? intType() : unknownType();
+
+    syn Type Neg.type() = getExpr().type();
+
+    syn Type Eq.type() = (getLeft().type() == getRight().type()) ? getRight().type() : unknownType();
+    syn Type NotEq.type() = (getLeft().type() == getRight().type()) ? getRight().type() : unknownType();
+
+    syn Type Less.type() = (getLeft().type() == intType() && getRight().type() == intType()) ? boolType() : unknownType();
+    syn Type Greater.type() = (getLeft().type() == intType() && getRight().type() == intType()) ? boolType() : unknownType();
+    syn Type LessEq.type() = (getLeft().type() == intType() && getRight().type() == intType()) ? boolType() : unknownType();
+    syn Type GreaterEq.type() = (getLeft().type() == intType() && getRight().type() == intType()) ? boolType() : unknownType();
+
+
+
+    //syn Type Expr.expectedType() = unknownType();
+    syn Type Mul.expectedType() = intType();
+    syn Type Add.expectedType() = intType();
+    syn Type Sub.expectedType() = intType();
+    syn Type Div.expectedType() = intType();
+    syn Type Mod.expectedType() = intType();
+    //TODO: Need to define for IdUse and so on?...
+
+    syn Type Neg.expectedType() = boolType();
+    syn Type Less.expectedType() = boolType();
+    syn Type Greater.expectedType() = boolType();
+    syn Type LessEq.expectedType() = boolType();
+    syn Type GreaterEq.expectedType() = boolType();
+    syn Type Eq.expectedType() = boolType();
+    syn Type NotEq.expectedType() = boolType();
+
+    syn Type Stmt.expectedType() = unknownType();
+    syn Type Assignment.expectedType() = intType();
+    syn Type IdDeclStmt.expectedType() = intType();
+    syn Type FunctionCallStmt.expectedType() = intType();
+    syn Type IfElse.expectedType() = boolType();
+    syn Type While.expectedType() = boolType();
+    syn Type ReturnStmt.expectedType() = intType();
+
+}

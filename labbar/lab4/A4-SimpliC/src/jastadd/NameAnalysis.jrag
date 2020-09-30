@@ -86,17 +86,6 @@ aspect NameAnalysis {
         return false;
     }
 
-    syn Type IdDecl.type() = intType();
-
-    syn Type Expr.type() {
-        if (this instanceof Eq || this instanceof Neg || this instanceof Less || this instanceof Greater || this instanceof LessEq || this instanceof GreaterEq || this instanceof NotEq) {
-            return boolType();
-        } else if (this instanceof Mul || this instanceof Div || this instanceof Add || this instanceof Sub || this instanceof Mod || this instanceof IdUse || this instanceof Numeral || this instanceof FunctionCall) {
-            return intType();
-        }
-        return unknownType();
-    }
-
     syn boolean IdUse.isVariableButExpectedFunction(){
         boolean parentIsFunction = getParent() instanceof FunctionCall;
         return (!decl().isFunction() && parentIsFunction);
