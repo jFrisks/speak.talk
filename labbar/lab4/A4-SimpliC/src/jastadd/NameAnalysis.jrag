@@ -19,8 +19,6 @@ aspect NameAnalysis {
         return unknownDecl();
     }
 
-
-
 	inh IdDecl Block.lookup(String name);
 
     //Basically FunctionDecl.lookup()
@@ -87,6 +85,14 @@ aspect NameAnalysis {
         }
         return false;
     }
+
+    syn Type IdDecl.type() = intType();
+
+    syn Type Expr.type() {
+
+    }
+
+
 
 
     syn boolean IdUse.isVariableButExpectedFunction(){
