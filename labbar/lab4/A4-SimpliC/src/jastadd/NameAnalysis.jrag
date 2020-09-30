@@ -15,6 +15,7 @@ aspect NameAnalysis {
 
 	inh IdDecl Block.lookup(String name);
 
+    //Basically FunctionDecl.lookup()
 	eq Program.getProgramStmt(int index).lookup(String name) {
 	    //Our declaration only allows functionDecls
 	    IdDecl decl = ((FunctionDecl)getProgramStmt(index)).paramLocalLookup(name);
