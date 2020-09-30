@@ -3,6 +3,14 @@ aspect NameAnalysis {
 	inh IdDecl IdUse.lookup(String name);
 
     syn IdDecl Program.lookup(String name){
+        //check for predefined function names
+        for(FunctionDecl fDecl : predefinedFunctions()){
+            if(fDecl.getIdDecl().getID().equals(name)){
+                return fDecl.getIdDecl();
+            }
+        }
+
+        //check all function names (if not found in predefined)
         for(ProgramStmt programStmt: getProgramStmtList()){
             if(((FunctionDecl)programStmt).getIdDecl().getID().equals(name)){
                 return ((FunctionDecl)programStmt).getIdDecl();
@@ -44,6 +52,8 @@ aspect NameAnalysis {
 		return unknownDecl();
 	}
 
+    //Skriv eq FunctionDecl.getBlock().localLookup(). Den overridear Block.localLookup . Den lägger till en paramLookup i FunctionDecl före localLookup. (Params söks före!!)
+    //då behövs ej Basically FunctionDecl.lookup()
 
 	syn IdDecl Stmt.decl() = unknownDecl();
 	syn IdDecl IdDeclStmt.decl() = getIdDecl();

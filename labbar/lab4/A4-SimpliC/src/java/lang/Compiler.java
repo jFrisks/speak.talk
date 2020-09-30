@@ -35,6 +35,9 @@ public class Compiler {
 			LangScanner scanner = new LangScanner(new FileReader(filename));
 			LangParser parser = new LangParser();
 			Program program = (Program) parser.parse(scanner);
+			if(!program.errors().isEmpty()){
+				System.exit(1);
+			}
 			//program.checkNames(System.out);
 			//System.out.println(program.dumpTree());
 			//System.out.println("Found MSN Depth: " + MSNVisitor.result(program));
