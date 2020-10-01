@@ -2,21 +2,32 @@ aspect TypesAnalysis{
     syn Type IdDecl.type() = intType();
 
     //expected type för undefined kommer förstöra när språket expanderas. Ytterliggare type för undefined krävs för att hitta fel korrekt
-    syn Type Expr.type() {
+    /*syn Type Expr.type() {
         if (this instanceof Eq || this instanceof Neg || this instanceof Less || this instanceof Greater || this instanceof LessEq || this instanceof GreaterEq || this instanceof NotEq) {
             return boolType();
         } else if (this instanceof Mul || this instanceof Div || this instanceof Add || this instanceof Sub || this instanceof Mod || this instanceof IdUse || this instanceof Numeral || this instanceof FunctionCall) {
             return intType();
         }
         return unknownType();
-    }
+    }*/
 
     //if unknownType we return expectedType to limit error propagation.
+    syn Type Expr.type() = unknownType();
     syn Type Add.type() = ((getLeft().type() == unknownType() || getRight().type() == unknownType()) || (getLeft().type() == expectedType() && getRight().type() == expectedType())) ? expectedType() : unknownType();
     syn Type Sub.type() = ((getLeft().type() == unknownType() || getRight().type() == unknownType()) || (getLeft().type() == expectedType() && getRight().type() == expectedType())) ? expectedType() : unknownType();
     syn Type Mul.type() = ((getLeft().type() == unknownType() || getRight().type() == unknownType()) || (getLeft().type() == expectedType() && getRight().type() == expectedType())) ? expectedType() : unknownType();
     syn Type Div.type() = ((getLeft().type() == unknownType() || getRight().type() == unknownType()) || (getLeft().type() == expectedType() && getRight().type() == expectedType())) ? expectedType() : unknownType();
     syn Type Mod.type() = ((getLeft().type() == unknownType() || getRight().type() == unknownType()) || (getLeft().type() == expectedType() && getRight().type() == expectedType())) ? expectedType() : unknownType();
+    syn Type IdUse.type() = intType();
+    syn Type Numeral.type() = intType();
+    syn Type FunctionCall.type() {
+        for (Expr e : getExprList()) {
+            if (e.type() != intType()) {
+                return unknownType();
+            }
+        }
+        return intType();
+    }
 
     syn Type Neg.type() = getExpr().type() == unknownType() ? expectedType() : getExpr().type();
 
@@ -38,7 +49,9 @@ aspect TypesAnalysis{
     syn Type Sub.expectedType() = intType();
     syn Type Div.expectedType() = intType();
     syn Type Mod.expectedType() = intType();
-    //TODO: Need to define for IdUse and so on?...
+    syn Type IdUse.expectedType() = intType();
+    syn Type Numeral.expectedType() = intType();
+    syn Type FunctionCall.expectedType() = intType();
 
     syn Type Neg.expectedType() = getExpr().expectedType();
 
