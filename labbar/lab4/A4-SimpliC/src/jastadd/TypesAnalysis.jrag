@@ -20,8 +20,11 @@ aspect TypesAnalysis{
 
     syn Type Neg.type() = getExpr().type() == unknownType() ? expectedType() : getExpr().type();
 
-    syn Type Eq.type() = ((getLeft().type() == unknownType() || getRight().type() == unknownType()) || getLeft().type() == getRight().type()) ? expectedType() : unknownType();
-    syn Type NotEq.type() = ((getLeft().type() == unknownType() || getRight().type() == unknownType()) || getLeft().type() == getRight().type()) ? expectedType() : unknownType();
+    //working for both two ints or two bools!
+    //syn Type Eq.type() = ((getLeft().type() == unknownType() || getRight().type() == unknownType()) || getLeft().type() == getRight().type()) ? expectedType() : unknownType();
+    //syn Type NotEq.type() = ((getLeft().type() == unknownType() || getRight().type() == unknownType()) || getLeft().type() == getRight().type()) ? expectedType() : unknownType();
+    syn Type Eq.type() = ((getLeft().type() == unknownType() || getRight().type() == unknownType()) || (getLeft().type() == intType() && getRight().type() == intType())) ? expectedType() : unknownType();
+    syn Type NotEq.type() = ((getLeft().type() == unknownType() || getRight().type() == unknownType()) || (getLeft().type() == intType() && getRight().type() == intType())) ? expectedType() : unknownType();
 
     //<, >, <=, >= expected child to be ints!
     syn Type Less.type() = ((getLeft().type() == unknownType() || getRight().type() == unknownType()) || getLeft().type() == intType() && getRight().type() == intType()) ? expectedType() : unknownType();
