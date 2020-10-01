@@ -51,6 +51,10 @@ aspect ErrorContributions {
         when getParent() instanceof FunctionCall && decl().isFunction() && (((FunctionDecl) decl().getParent()).getNumParam() != ((FunctionCall) getParent()).getNumExpr())
         to Program.errors() for program();
 
+    Expr contributes error("Type missmatch for " + getClass().getName() + "!")
+        when type() != expectedType()
+        to Program.errors() for program();
+
 	/*
 	IdUse contributes error("the definition of symbol '" + getID() + "' is circular")
 		when isCircular()

@@ -1,6 +1,7 @@
 aspect TypesAnalysis{
     syn Type IdDecl.type() = intType();
 
+    //expected type för undefined kommer förstöra när språket expanderas. Ytterliggare type för undefined krävs för att hitta fel korrekt
     syn Type Expr.type() {
         if (this instanceof Eq || this instanceof Neg || this instanceof Less || this instanceof Greater || this instanceof LessEq || this instanceof GreaterEq || this instanceof NotEq) {
             return boolType();
@@ -26,9 +27,7 @@ aspect TypesAnalysis{
     syn Type LessEq.type() = (getLeft().type() == intType() && getRight().type() == intType()) ? boolType() : unknownType();
     syn Type GreaterEq.type() = (getLeft().type() == intType() && getRight().type() == intType()) ? boolType() : unknownType();
 
-
-
-    //syn Type Expr.expectedType() = unknownType();
+    syn Type Expr.expectedType() = type();
     syn Type Mul.expectedType() = intType();
     syn Type Add.expectedType() = intType();
     syn Type Sub.expectedType() = intType();
@@ -52,4 +51,13 @@ aspect TypesAnalysis{
     syn Type While.expectedType() = boolType();
     syn Type ReturnStmt.expectedType() = intType();
 
+/*
+    syn Type Stmt.type() = unknownType();
+    syn Type Assignment.type() = intType();
+    syn Type IdDeclStmt.expectedType() = intType();
+    syn Type FunctionCallStmt.expectedType() = intType();
+    syn Type IfElse.expectedType() = boolType();
+    syn Type While.expectedType() = boolType();
+    syn Type ReturnStmt.expectedType() = intType();
+*/
 }
