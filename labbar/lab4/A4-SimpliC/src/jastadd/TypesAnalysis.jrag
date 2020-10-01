@@ -54,13 +54,13 @@ aspect TypesAnalysis{
     syn Type While.expectedType() = boolType();
     syn Type ReturnStmt.expectedType() = intType();
 
-/*
+
     syn Type Stmt.type() = unknownType();
-    syn Type Assignment.type() = intType();
-    syn Type IdDeclStmt.expectedType() = intType();
-    syn Type FunctionCallStmt.expectedType() = intType();
-    syn Type IfElse.expectedType() = boolType();
-    syn Type While.expectedType() = boolType();
-    syn Type ReturnStmt.expectedType() = intType();
-*/
+    syn Type Assignment.type() = ((getLeft().type() == unknownType() || getRight().type() == unknownType()) || (getLeft().type() == expectedType() && getRight().type() == expectedType())) ? expectedType() : unknownType();
+    syn Type IdDeclStmt.type() = ((getIdDecl().type() == unknownType()) || (getIdDecl().type() == expectedType())) ? expectedType() : unknownType();
+    syn Type FunctionCallStmt.type() = ((getExpr().type() == unknownType()) || (getExpr().type() == expectedType())) ? expectedType() : unknownType();
+    syn Type IfElse.type() = ((getIfExpr().type() == unknownType()) || (getIfExpr().type() == expectedType())) ? expectedType() : unknownType();
+    syn Type While.type() = ((getExpr().type() == unknownType()) || (getExpr().type() == expectedType())) ? expectedType() : unknownType();
+    syn Type ReturnStmt.type() = ((getExpr().type() == unknownType()) || (getExpr().type() == expectedType())) ? expectedType() : unknownType();
+
 }
