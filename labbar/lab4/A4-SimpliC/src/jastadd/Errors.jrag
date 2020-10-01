@@ -55,6 +55,10 @@ aspect ErrorContributions {
         when type() != expectedType()
         to Program.errors() for program();
 
+    Stmt contributes error("Type missmatch for " + getClass().getName() + "!")
+        when type() != expectedType()
+        to Program.errors() for program();
+
 	/*
 	IdUse contributes error("the definition of symbol '" + getID() + "' is circular")
 		when isCircular()

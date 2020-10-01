@@ -1,1 +1,1 @@
-error error
+Error at line 2: Type missmatch for lang.ast.ReturnStmt!
