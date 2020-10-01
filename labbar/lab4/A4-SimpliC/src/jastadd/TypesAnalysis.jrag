@@ -11,21 +11,23 @@ aspect TypesAnalysis{
         return unknownType();
     }
 
-    syn Type Add.type() = (getLeft().type() == intType() && getRight().type() == intType()) ? intType() : unknownType();
-    syn Type Sub.type() = (getLeft().type() == intType() && getRight().type() == intType()) ? intType() : unknownType();
-    syn Type Mul.type() = (getLeft().type() == intType() && getRight().type() == intType()) ? intType() : unknownType();
-    syn Type Div.type() = (getLeft().type() == intType() && getRight().type() == intType()) ? intType() : unknownType();
-    syn Type Mod.type() = (getLeft().type() == intType() && getRight().type() == intType()) ? intType() : unknownType();
+    //if unknownType we return expectedType to limit error propagation.
+    syn Type Add.type() = ((getLeft().type() == unknownType() || getRight().type() == unknownType()) || (getLeft().type() == expectedType() && getRight().type() == expectedType())) ? expectedType() : unknownType();
+    syn Type Sub.type() = ((getLeft().type() == unknownType() || getRight().type() == unknownType()) || (getLeft().type() == expectedType() && getRight().type() == expectedType())) ? expectedType() : unknownType();
+    syn Type Mul.type() = ((getLeft().type() == unknownType() || getRight().type() == unknownType()) || (getLeft().type() == expectedType() && getRight().type() == expectedType())) ? expectedType() : unknownType();
+    syn Type Div.type() = ((getLeft().type() == unknownType() || getRight().type() == unknownType()) || (getLeft().type() == expectedType() && getRight().type() == expectedType())) ? expectedType() : unknownType();
+    syn Type Mod.type() = ((getLeft().type() == unknownType() || getRight().type() == unknownType()) || (getLeft().type() == expectedType() && getRight().type() == expectedType())) ? expectedType() : unknownType();
 
-    syn Type Neg.type() = getExpr().type();
+    syn Type Neg.type() = getExpr().type() == unknownType() ? expectedType() : getExpr().type();
 
-    syn Type Eq.type() = (getLeft().type() == getRight().type()) ? getRight().type() : unknownType();
-    syn Type NotEq.type() = (getLeft().type() == getRight().type()) ? getRight().type() : unknownType();
+    syn Type Eq.type() = ((getLeft().type() == unknownType() || getRight().type() == unknownType()) || getLeft().type() == getRight().type()) ? expectedType() : unknownType();
+    syn Type NotEq.type() = ((getLeft().type() == unknownType() || getRight().type() == unknownType()) || getLeft().type() == getRight().type()) ? expectedType() : unknownType();
 
-    syn Type Less.type() = (getLeft().type() == intType() && getRight().type() == intType()) ? boolType() : unknownType();
-    syn Type Greater.type() = (getLeft().type() == intType() && getRight().type() == intType()) ? boolType() : unknownType();
-    syn Type LessEq.type() = (getLeft().type() == intType() && getRight().type() == intType()) ? boolType() : unknownType();
-    syn Type GreaterEq.type() = (getLeft().type() == intType() && getRight().type() == intType()) ? boolType() : unknownType();
+    //<, >, <=, >= expected child to be ints!
+    syn Type Less.type() = ((getLeft().type() == unknownType() || getRight().type() == unknownType()) || getLeft().type() == intType() && getRight().type() == intType()) ? expectedType() : unknownType();
+    syn Type Greater.type() = ((getLeft().type() == unknownType() || getRight().type() == unknownType()) || getLeft().type() == intType() && getRight().type() == intType()) ? expectedType() : unknownType();
+    syn Type LessEq.type() = ((getLeft().type() == unknownType() || getRight().type() == unknownType()) || getLeft().type() == intType() && getRight().type() == intType()) ? expectedType() : unknownType();
+    syn Type GreaterEq.type() = ((getLeft().type() == unknownType() || getRight().type() == unknownType()) || getLeft().type() == intType() && getRight().type() == intType()) ? expectedType() : unknownType();
 
     syn Type Expr.expectedType() = type();
     syn Type Mul.expectedType() = intType();
@@ -35,7 +37,8 @@ aspect TypesAnalysis{
     syn Type Mod.expectedType() = intType();
     //TODO: Need to define for IdUse and so on?...
 
-    syn Type Neg.expectedType() = boolType();
+    syn Type Neg.expectedType() = getExpr().expectedType();
+
     syn Type Less.expectedType() = boolType();
     syn Type Greater.expectedType() = boolType();
     syn Type LessEq.expectedType() = boolType();
