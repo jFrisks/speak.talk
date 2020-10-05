@@ -1,0 +1,12 @@
+int b() {
+    int x;
+    x = 10;
+}
+
+int a() {
+    int x;
+    int y;
+    x = 10;
+    y = 11;
+    print(b(x, y));
+}

@@ -79,7 +79,7 @@ aspect TypesAnalysis{
     syn Type While.type() = ((getExpr().type() == unknownType()) || (getExpr().type() == expectedType())) ? expectedType() : unknownType();
     syn Type ReturnStmt.type() = ((getExpr().type() == unknownType()) || (getExpr().type() == expectedType())) ? expectedType() : unknownType();
 
-
+    /*
     syn boolean IntType.compatibleType(Type otherType){
         if(otherType.equals(IntType) || otherType.equals(unknownType()) ){
         }else if(){
@@ -87,4 +87,5 @@ aspect TypesAnalysis{
             return false;
         }
     }
+    */
 }

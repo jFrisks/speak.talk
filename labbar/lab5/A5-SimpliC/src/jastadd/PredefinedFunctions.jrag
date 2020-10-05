@@ -1,0 +1,15 @@
+aspect Predefined{
+    syn nta List<FunctionDecl> Program.predefinedFunctions() {
+        List<FunctionDecl> list = new List<FunctionDecl>();
+        // Create objects of type FunctionDecl and add them to the list
+        List<IdDecl> param = new List<IdDecl>();
+        param.add(new IdDecl(new IntType(), "a"));
+        FunctionDecl print = new FunctionDecl(new IdDecl(new IntType(), "print"), param, new Block());
+        FunctionDecl read = new FunctionDecl(new IdDecl(new IntType(), "read"), new List(), new Block());
+        //TODO: Fix so we cann add params later when functionCall
+
+        list.add(print);
+        list.add(read);
+        return list;
+    }
+}
