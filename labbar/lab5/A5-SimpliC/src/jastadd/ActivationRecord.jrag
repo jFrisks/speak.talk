@@ -1,7 +1,10 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 aspect ActivationRecord {
-    public class ActivationRecord{
+    public class ActivationRecord {
         //Local variables wiht name -> int
         Map<String, Integer> locals = new HashMap<>();
         void put(String name){}
@@ -15,20 +18,131 @@ aspect ActivationRecord {
     public void Program.eval(){
         //lookup main
         IdDecl main = lookup("main");
-        if(!main.isUnknown())
+        if(main.isUnknown())
             throw new RuntimeException("Main method not found");
 
         //if found, add function as frame.
         FunctionDecl mainMethodDecl = (FunctionDecl) main.getParent();
 
         //eval main method (TODO: Check so it returns correct type?)
-        ActivationRecord mainActivationRecord = new ActivationRecord();
-        mainMethodDecl.eval(mainActivationRecord);
+        mainMethodDecl.eval(new ActivationRecord());
+    }
 
+    syn Deque Program.stack() = new ArrayDeque();
+    inh Deque ASTNode.stack();
+    eq Program.getChild().stack() = stack();
+
+    public int FunctionDecl.eval(ActivationRecord actrec) {
+        stack().push(actrec);
+        Block block = getBlock();
+        for (Stmt stmt : block.getStmtList()) {
+            stmt.eval(actrec);
+        }
+        return -1;
+    }
+    public void Stmt.eval(ActivationRecord actrec) {throw new RuntimeException();}
+    //public void IdDecl.eval(ActivationRecord actrec) {throw new RuntimeException();}
+    public void Assignment.eval(ActivationRecord actrec) {
+        //getLeft().eval(actrec)
+        System.out.println(getRight().eval(actrec));
 
     }
 
-    public int FunctionDecl.eval(ActivationRecord actrec) {throw new RuntimeException();}
-    public void Stmt.eval(ActivationRecord actrec) {throw new RuntimeException();}
-    public int Expr.eval(ActivationRecord actrec) { throw new RuntimeException();}
+    public void IdDeclStmt.eval(ActivationRecord actrec) {
+
+    }
+
+    public void FunctionCallStmt.eval(ActivationRecord actrec) {
+
+    }
+
+    public void IfElse.eval(ActivationRecord actrec) {
+
+    }
+
+    public void While.eval(ActivationRecord actrec) {
+
+    }
+
+    public void ReturnStmt.eval(ActivationRecord actrec) {
+
+    }
+
+    public int Expr.eval(ActivationRecord actrec) {
+        return -1;
+        
+    }
+
+    public int Neg.eval(ActivationRecord actrec) {
+        return -1;
+        
+    }
+
+    public int Less.eval(ActivationRecord actrec) {
+        return -1;
+        
+    }
+
+    public int Greater.eval(ActivationRecord actrec) {
+        return -1;
+        
+    }
+
+    public int LessEq.eval(ActivationRecord actrec) {
+        return -1;
+        
+    }
+
+    public int GreaterEq.eval(ActivationRecord actrec) {
+        return -1;
+        
+    }
+
+    public int Eq.eval(ActivationRecord actrec) {
+        return -1;
+        
+    }
+
+    public int NotEq.eval(ActivationRecord actrec) {
+        return -1;
+        
+    }
+
+    public int Mul.eval(ActivationRecord actrec) {
+        int left = getLeft().eval(actrec);
+        int right = getRight().eval(actrec);
+        int result = left * right;
+        return result;
+    }
+
+    public int Add.eval(ActivationRecord actrec) {
+        int left = getLeft().eval(actrec);
+        int right = getRight().eval(actrec);
+        int result = left + right;
+        return result;
+    }
+
+    public int Sub.eval(ActivationRecord actrec) {
+        return -1;
+        
+    }
+
+    public int Div.eval(ActivationRecord actrec) {
+        return -1;
+        
+    }
+
+    public int Mod.eval(ActivationRecord actrec) {
+        return -1;
+        
+    }
+
+    public int FunctionCall.eval(ActivationRecord actrec) {
+        return -1;
+        
+    }
+
+    public int Numeral.eval(ActivationRecord actrec) {
+        return Integer.parseInt(getNUMERAL());
+    }
 }
