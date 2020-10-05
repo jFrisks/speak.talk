@@ -2,11 +2,13 @@ Program
   List
     FunctionDecl
       IdDecl ID="a"
+        IntType
       List
       Block
         List
           IdDeclStmt
             IdDecl ID="x"
+              IntType
           Assignment
             IdUse ID="x"
             Mul

@@ -2,11 +2,13 @@ Program
   List
     FunctionDecl
       IdDecl ID="a"
+        IntType
       List
       Block
         List
           IdDeclStmt
             IdDecl ID="x"
+              IntType
           Assignment
             IdUse ID="x"
             Numeral NUMERAL="10"
@@ -18,6 +20,7 @@ Program
               List
                 IdDeclStmt
                   IdDecl ID="z"
+                    IntType
                 Assignment
                   IdUse ID="z"
                   Numeral NUMERAL="3"
