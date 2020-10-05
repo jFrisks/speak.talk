@@ -1,9 +1,33 @@
+import java.util.HashMap;
+import java.util.Map;
 aspect ActivationRecord {
     public class ActivationRecord{
+        //Local variables wiht name -> int
+        Map<String, Integer> locals = new HashMap<>();
         void put(String name){}
         void get(String name){}
     }
-    public void Program.eval(){ throw new RuntimeException();}
+
+    /* Invokes eval on main function.
+     * Main cannot be predefined.
+     * @throws if main method not found
+     */
+    public void Program.eval(){
+        //lookup main
+        IdDecl main = lookup("main");
+        if(!main.isUnknown())
+            throw new RuntimeException("Main method not found");
+
+        //if found, add function as frame.
+        FunctionDecl mainMethodDecl = (FunctionDecl) main.getParent();
+
+        //eval main method (TODO: Check so it returns correct type?)
+        ActivationRecord mainActivationRecord = new ActivationRecord();
+        mainMethodDecl.eval(mainActivationRecord);
+
+
+    }
+
     public int FunctionDecl.eval(ActivationRecord actrec) {throw new RuntimeException();}
     public void Stmt.eval(ActivationRecord actrec) {throw new RuntimeException();}
     public int Expr.eval(ActivationRecord actrec) { throw new RuntimeException();}
