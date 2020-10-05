@@ -52,7 +52,16 @@ aspect ActivationRecord {
 
     }
 
+    //TODO: Code Smell! Better version is to define lambda-function together when defining predefined FunctionDecls. This adds code to one place
     public void FunctionCallStmt.eval(ActivationRecord actrec) {
+        String functionName = ((FunctionCall)getExpr()).getIdUse().getID();
+        if(functionName.equals("print")){
+            System.out.println(((FunctionCall)getExpr()).getExpr(0).eval(actrec));
+        }else if(functionName.equals("read")){
+            System.err.println("Predfined read not implemented");
+        }else{
+            System.err.println("Method read not implemented");
+        }
 
     }
 
