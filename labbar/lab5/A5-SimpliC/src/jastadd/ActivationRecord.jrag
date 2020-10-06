@@ -110,7 +110,9 @@ aspect ActivationRecord {
     }
 
     public void While.eval(ActivationRecord actrec) {
-        //TODO: While
+        while (getExpr().eval(actrec) == 1) {
+            getBlock().eval(actrec);
+        }
     }
 
     public void ReturnStmt.eval(ActivationRecord actrec) {
