@@ -29,8 +29,14 @@ public class TestInterpreter {
     }
 
     @Test public void runTest() throws Exception {
-        Program program = (Program) parse(new File(TEST_DIRECTORY, filename)); ByteArrayOutputStream baos = new ByteArrayOutputStream(); System.setOut(new PrintStream(baos));
-        program.eval();
+        Program program = (Program) parse(new File(TEST_DIRECTORY, filename));
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(baos));
+        try {
+            program.eval();
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
         Util.compareOutput(baos.toString(),
                 new File(TEST_DIRECTORY, Util.changeExtension(filename, ".out")),
                 new File(TEST_DIRECTORY, Util.changeExtension(filename, ".expected")));
