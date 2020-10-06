@@ -19,6 +19,12 @@ aspect ActivationRecord {
         }
     }
 
+    public class Utils {
+        public static int boolToInt(boolean b) {
+            return b ? 1 : 0;
+        }
+    }
+
     /* Invokes eval on main function.
      * Main cannot be predefined.
      * @throws if main method not found
@@ -116,39 +122,27 @@ aspect ActivationRecord {
     }
 
     public int Less.eval(ActivationRecord actrec) {
-        //TODO: Less
-        return -1;
-        
+        return Utils.boolToInt(getLeft().eval(actrec) < getRight().eval(actrec));
     }
 
     public int Greater.eval(ActivationRecord actrec) {
-        //TODO: Greater
-        return -1;
-        
+        return Utils.boolToInt(getLeft().eval(actrec) > getRight().eval(actrec));
     }
 
     public int LessEq.eval(ActivationRecord actrec) {
-        //TODO: LessEq
-        return -1;
-        
+        return Utils.boolToInt(getLeft().eval(actrec) <= getRight().eval(actrec));
     }
 
     public int GreaterEq.eval(ActivationRecord actrec) {
-        //TODO: GreaterEq
-        return -1;
-        
+       return Utils.boolToInt(getLeft().eval(actrec) >= getRight().eval(actrec));
     }
 
     public int Eq.eval(ActivationRecord actrec) {
-        //TODO: Eq
-        return -1;
-        
+       return Utils.boolToInt(getLeft().eval(actrec) == getRight().eval(actrec));
     }
 
     public int NotEq.eval(ActivationRecord actrec) {
-        //TODO: NotEq
-        return -1;
-        
+        return Utils.boolToInt(getLeft().eval(actrec) != getRight().eval(actrec));
     }
 
     public int Mul.eval(ActivationRecord actrec) {
