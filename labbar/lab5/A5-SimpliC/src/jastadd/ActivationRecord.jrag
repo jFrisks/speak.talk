@@ -46,13 +46,16 @@ aspect ActivationRecord {
     inh Deque ASTNode.stack();
     eq Program.getChild().stack() = stack();
 
-    public int FunctionDecl.eval(ActivationRecord actrec) {
-        stack().push(actrec);
-        Block block = getBlock();
-        for (Stmt stmt : block.getStmtList()) {
+    public void Block.eval(ActivationRecord actrec) {
+        for (Stmt stmt : getStmtList()) {
             stmt.eval(actrec);
         }
-        return -1;
+    }
+
+    public void FunctionDecl.eval(ActivationRecord actrec) {
+        stack().push(actrec);
+        Block block = getBlock();
+        block.eval(actrec);
     }
 
     public void Stmt.eval(ActivationRecord actrec) {throw new RuntimeException();}
@@ -99,7 +102,11 @@ aspect ActivationRecord {
     }
 
     public void IfElse.eval(ActivationRecord actrec) {
-        //TODO: IfElse
+        if (getIfExpr().eval(actrec) == 1) {
+            getIf().eval(actrec);
+        } else if (hasElse()) {
+            getElse().eval(actrec);
+        }
     }
 
     public void While.eval(ActivationRecord actrec) {
