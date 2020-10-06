@@ -71,6 +71,7 @@ aspect ActivationRecord {
                 break;
             }
             stmt.eval(actrec);
+
         }
     }
 
@@ -79,7 +80,6 @@ aspect ActivationRecord {
         Block block = getBlock();
         block.eval(actrec);
         stack().pop();
-        //TODO: add return on block.eval() which would return the reutrn expression.
     }
 
     public void Stmt.eval(ActivationRecord actrec) {throw new RuntimeException();}
@@ -123,7 +123,7 @@ aspect ActivationRecord {
     }
 
     public void IdDeclStmt.eval(ActivationRecord actrec) {
-        //TODO: IdDeclStmt
+        getIdDecl().eval(actrec);
     }
 
     public void IfElse.eval(ActivationRecord actrec) {
@@ -146,9 +146,7 @@ aspect ActivationRecord {
     }
 
     public int Expr.eval(ActivationRecord actrec) {
-        //TODO: Expr
-        return -1;
-        
+        throw new RuntimeException("Eval not implemented for expression " + getClass().getName());
     }
 
     public int Neg.eval(ActivationRecord actrec) {
@@ -221,7 +219,6 @@ aspect ActivationRecord {
             newActrec.put(param.getID(), argument.eval(actrec));
         }
         functionDecl.eval(newActrec);
-        //TODO: Add return on functionDecl.eval(). (This needs to change FunctionDecl)
         return newActrec.getReturnValue();
     }
 
