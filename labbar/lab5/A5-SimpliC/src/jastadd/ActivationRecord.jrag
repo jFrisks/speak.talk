@@ -1,14 +1,22 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.*;
 
 aspect ActivationRecord {
     public class ActivationRecord {
-        //Local variables wiht name -> int
-        Map<String, Integer> locals = new HashMap<>();
-        void put(String name){}
-        void get(String name){}
+        //Local variables wiht name -> int (Name -> Value) (Boolean is converted to int)
+        private HashMap<String, Integer> locals = new HashMap<>();
+
+        void put(String name, int value){
+            locals.put(name, value);
+        }
+
+        int get(String name){
+            int value = locals.get(name);
+            return value;
+        }
+
+        boolean contains(String name){
+            return locals.containsKey(name);
+        }
     }
 
     /* Invokes eval on main function.
@@ -40,12 +48,30 @@ aspect ActivationRecord {
         }
         return -1;
     }
-    public void Stmt.eval(ActivationRecord actrec) {throw new RuntimeException();}
-    //public void IdDecl.eval(ActivationRecord actrec) {throw new RuntimeException();}
-    public void Assignment.eval(ActivationRecord actrec) {
-        //getLeft().eval(actrec)
-        System.out.println(getRight().eval(actrec));
 
+    public void Stmt.eval(ActivationRecord actrec) {throw new RuntimeException();}
+
+
+    /* Assignment always put left variable (idDecl or IdUse) as the value of the right expression
+    * overwrites already declared var val, or declares the var
+    * @throws if IdDecl is already declared
+    */
+    public void Assignment.eval(ActivationRecord actrec) {
+        //TODO: Crate IDDecl eval. Handle throws here?
+        //getLeft().eval(actrec);
+        Expr left = getLeft();
+        String leftName;
+        if(left instanceof IdDecl){
+            leftName = ((IdDecl)left).getID();
+        }else if(left instanceof IdUse){
+            leftName = ((IdUse)left).getID();
+        }else{
+            leftName = "Unknownfbfdkgbr'sdC-";
+        }
+
+        int rightExpr = getRight().eval(actrec);
+        //adding to local
+        actrec.put(leftName, rightExpr);
     }
 
 
@@ -141,7 +167,6 @@ aspect ActivationRecord {
 
     public int Sub.eval(ActivationRecord actrec) {
         return getLeft().eval(actrec) - getRight().eval(actrec);
-        
     }
 
     public int Div.eval(ActivationRecord actrec) {
@@ -162,5 +187,24 @@ aspect ActivationRecord {
 
     public int Numeral.eval(ActivationRecord actrec) {
         return Integer.parseInt(getNUMERAL());
+    }
+
+    /* Gets the variable assigned value */
+    public int IdUse.eval(ActivationRecord actrec) {
+        String name = getID();
+        if(!actrec.contains(name)){
+            throw new NoSuchElementException("Variable " + name + " not assigned a value in block");
+        }
+        return actrec.get(name);
+    }
+
+    /* IdDecl should decalre if not declared, otherwise throw
+    */
+    public int IdDecl.eval(ActivationRecord actrec) {
+        //Throw if IT IS already in actrec!
+        if(actrec.contains(getID())){
+            throw new RuntimeException("Variable already declared");
+        }
+        return -1;
     }
 }

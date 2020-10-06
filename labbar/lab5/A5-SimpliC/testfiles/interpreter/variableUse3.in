@@ -1,0 +1,6 @@
+int main(){
+    int y = 2;
+    print(y);
+    y = 6 - 2 - 1;
+    print(y);
+}
