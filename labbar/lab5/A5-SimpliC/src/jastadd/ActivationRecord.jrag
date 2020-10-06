@@ -56,6 +56,7 @@ aspect ActivationRecord {
         stack().push(actrec);
         Block block = getBlock();
         block.eval(actrec);
+        //TODO: add return on block.eval() which would return the reutrn expression.
     }
 
     public void Stmt.eval(ActivationRecord actrec) {throw new RuntimeException();}
@@ -92,7 +93,8 @@ aspect ActivationRecord {
         }else if(functionName.equals("read")){
             System.err.println("Predfined read not implemented");
         }else{
-            System.err.println("Method read not implemented");
+            //eval on functionCall
+            ((FunctionCall)getExpr()).eval(actrec);
         }
 
     }
@@ -183,7 +185,23 @@ aspect ActivationRecord {
     }
 
     public int FunctionCall.eval(ActivationRecord actrec) {
-        //TODO: FunctionCall
+        //Loop through params in functionDecl (this adds ne activationRecord) and assign to newly declared params
+        FunctionDecl functionDecl = (FunctionDecl) getIdUse().decl().getParent();
+
+        //Create new activation record and connect functionCalls argument (expr) with corresponding functionDeclParam
+        ActivationRecord newActrec = new ActivationRecord();
+        for(int i = 0; i < functionDecl.getNumParam(); i++){
+            //TODO: handle if not same length
+            IdDecl param = functionDecl.getParam(i);
+            Expr argument = getExpr(i);
+            newActrec.put(param.getID(), argument.eval(actrec));
+        }
+
+
+        functionDecl.eval(newActrec);
+
+        //TODO: Add return on functionDecl.eval(). (This needs to change FunctionDecl)
+
         return -1;
         
     }
