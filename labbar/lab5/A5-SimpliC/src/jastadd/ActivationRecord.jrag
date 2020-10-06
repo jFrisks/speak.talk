@@ -48,9 +48,6 @@ aspect ActivationRecord {
 
     }
 
-    public void IdDeclStmt.eval(ActivationRecord actrec) {
-
-    }
 
     //TODO: Code Smell! Better version is to define lambda-function together when defining predefined FunctionDecls. This adds code to one place
     public void FunctionCallStmt.eval(ActivationRecord actrec) {
@@ -65,54 +62,65 @@ aspect ActivationRecord {
 
     }
 
-    public void IfElse.eval(ActivationRecord actrec) {
+    public void IdDeclStmt.eval(ActivationRecord actrec) {
+        //TODO: IdDeclStmt
+    }
 
+    public void IfElse.eval(ActivationRecord actrec) {
+        //TODO: IfElse
     }
 
     public void While.eval(ActivationRecord actrec) {
-
+        //TODO: While
     }
 
     public void ReturnStmt.eval(ActivationRecord actrec) {
-
+        //TODO: ReturnStmt
     }
 
     public int Expr.eval(ActivationRecord actrec) {
+        //TODO: Expr
         return -1;
         
     }
 
     public int Neg.eval(ActivationRecord actrec) {
-        return -1;
+        return - getExpr().eval(actrec);
         
     }
 
     public int Less.eval(ActivationRecord actrec) {
+        //TODO: Less
         return -1;
         
     }
 
     public int Greater.eval(ActivationRecord actrec) {
+        //TODO: Greater
         return -1;
         
     }
 
     public int LessEq.eval(ActivationRecord actrec) {
+        //TODO: LessEq
         return -1;
         
     }
 
     public int GreaterEq.eval(ActivationRecord actrec) {
+        //TODO: GreaterEq
         return -1;
         
     }
 
     public int Eq.eval(ActivationRecord actrec) {
+        //TODO: Eq
         return -1;
         
     }
 
     public int NotEq.eval(ActivationRecord actrec) {
+        //TODO: NotEq
         return -1;
         
     }
@@ -132,21 +140,22 @@ aspect ActivationRecord {
     }
 
     public int Sub.eval(ActivationRecord actrec) {
-        return -1;
+        return getLeft().eval(actrec) - getRight().eval(actrec);
         
     }
 
     public int Div.eval(ActivationRecord actrec) {
-        return -1;
+        return getLeft().eval(actrec) / getRight().eval(actrec);
         
     }
 
     public int Mod.eval(ActivationRecord actrec) {
-        return -1;
+        return getLeft().eval(actrec) % getRight().eval(actrec);
         
     }
 
     public int FunctionCall.eval(ActivationRecord actrec) {
+        //TODO: FunctionCall
         return -1;
         
     }
