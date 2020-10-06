@@ -4,6 +4,9 @@ aspect ActivationRecord {
     public class ActivationRecord {
         //Local variables wiht name -> int (Name -> Value) (Boolean is converted to int)
         private HashMap<String, Integer> locals = new HashMap<>();
+        private boolean shouldReturn = false;
+        //Default java behavior
+        private int returnValue = 0;
 
         void put(String name, int value){
             locals.put(name, value);
@@ -16,6 +19,22 @@ aspect ActivationRecord {
 
         boolean contains(String name){
             return locals.containsKey(name);
+        }
+
+        void setReturnValue(int i) {
+            returnValue = i;
+        }
+
+        void setShouldReturn(boolean b) {
+            shouldReturn = b;
+        }
+
+        boolean shouldReturn() {
+            return shouldReturn;
+        }
+
+        int getReturnValue() {
+            return returnValue;
         }
     }
 
@@ -48,6 +67,9 @@ aspect ActivationRecord {
 
     public void Block.eval(ActivationRecord actrec) {
         for (Stmt stmt : getStmtList()) {
+            if (actrec.shouldReturn()) {
+                break;
+            }
             stmt.eval(actrec);
         }
     }
@@ -56,6 +78,7 @@ aspect ActivationRecord {
         stack().push(actrec);
         Block block = getBlock();
         block.eval(actrec);
+        stack().pop();
         //TODO: add return on block.eval() which would return the reutrn expression.
     }
 
@@ -118,7 +141,8 @@ aspect ActivationRecord {
     }
 
     public void ReturnStmt.eval(ActivationRecord actrec) {
-        //TODO: ReturnStmt
+        actrec.setReturnValue(getExpr().eval(actrec));
+        actrec.setShouldReturn(true);
     }
 
     public int Expr.eval(ActivationRecord actrec) {
@@ -196,14 +220,9 @@ aspect ActivationRecord {
             Expr argument = getExpr(i);
             newActrec.put(param.getID(), argument.eval(actrec));
         }
-
-
         functionDecl.eval(newActrec);
-
         //TODO: Add return on functionDecl.eval(). (This needs to change FunctionDecl)
-
-        return -1;
-        
+        return newActrec.getReturnValue();
     }
 
     public int Numeral.eval(ActivationRecord actrec) {
