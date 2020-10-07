@@ -39,11 +39,6 @@ aspect ActivationRecord {
     }
 
     public class Utils {
-        public static Scanner scanner = new Scanner(System.in);
-        public static Scanner scanner() {
-            System.out.println(scanner);
-            return scanner;
-        }
         public static int boolToInt(boolean b) {
             return b ? 1 : 0;
         }
@@ -65,6 +60,10 @@ aspect ActivationRecord {
         //eval main method (TODO: Check so it returns correct type?)
         mainMethodDecl.eval(new ActivationRecord());
     }
+
+    syn Scanner Program.scanner() = new Scanner(System.in);
+    inh Scanner ASTNode.scanner();
+    eq Program.getChild().scanner() = scanner();
 
     syn Deque Program.stack() = new ArrayDeque();
     inh Deque ASTNode.stack();
@@ -122,7 +121,7 @@ aspect ActivationRecord {
         if(functionName.equals("print")){
             System.out.println(((FunctionCall)getExpr()).getExpr(0).eval(actrec));
         }else if(functionName.equals("read")){
-            Utils.scanner().nextInt();
+            scanner().nextInt();
         }else{
             //eval on functionCall
             ((FunctionCall)getExpr()).eval(actrec);
