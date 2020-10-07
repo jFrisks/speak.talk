@@ -39,6 +39,11 @@ aspect ActivationRecord {
     }
 
     public class Utils {
+        public static Scanner scanner = new Scanner(System.in);
+        public static Scanner scanner() {
+            System.out.println(scanner);
+            return scanner;
+        }
         public static int boolToInt(boolean b) {
             return b ? 1 : 0;
         }
@@ -117,7 +122,7 @@ aspect ActivationRecord {
         if(functionName.equals("print")){
             System.out.println(((FunctionCall)getExpr()).getExpr(0).eval(actrec));
         }else if(functionName.equals("read")){
-            System.err.println("Predfined read not implemented");
+            Utils.scanner().nextInt();
         }else{
             //eval on functionCall
             ((FunctionCall)getExpr()).eval(actrec);
