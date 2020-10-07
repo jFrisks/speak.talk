@@ -3,7 +3,8 @@ int main() {
   int sum = 0;
   while (x < 10) {
     if (x < 3) {
-      int x = 13;
+      int x;
+      x = 13;
       sum = sum + x;
     }
     sum = sum + 1;

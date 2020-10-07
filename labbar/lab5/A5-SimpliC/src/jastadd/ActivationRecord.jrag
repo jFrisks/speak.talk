@@ -96,7 +96,7 @@ aspect ActivationRecord {
 
         String leftName;
         if(left instanceof IdDecl){
-            left.eval(actrec);
+            //left.eval(actrec);
             //TODO: leftName should be idDecl.unqiqueName()
             //Call unqueName with first stmt and the original variable name
             leftName = ((IdDecl)left).uniqueName();
@@ -120,7 +120,7 @@ aspect ActivationRecord {
     }
 
     public void IdDeclStmt.eval(ActivationRecord actrec) {
-        getIdDecl().eval(actrec);
+        //TODO: Should we never eval IdDecl?
     }
 
     public void IfElse.eval(ActivationRecord actrec) {
@@ -264,11 +264,15 @@ aspect ActivationRecord {
     * 0_i = decalration i of statement 0
     * 1_1_0_i = declaration i in statement 0, in statement 1, in statement 1
     */
-    syn String IdDecl.uniqueName() = uniqueNameRec(getParent(), getID());
+    syn String IdDecl.uniqueName() {
+        String name = uniqueNameRec(getParent(), getID());
+        //System.out.println("Var name is: " + name);
+        return name;
+    }
 
     syn String IdDecl.uniqueNameRec(ASTNode node, String currentString) {
         if(node instanceof FunctionDecl){
-            System.out.println("Var name is: " + currentString);
+            //System.out.println("Var name is: " + currentString);
             return currentString;
         }
         else if(node instanceof Stmt){
