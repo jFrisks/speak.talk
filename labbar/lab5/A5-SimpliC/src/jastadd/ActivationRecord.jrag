@@ -62,8 +62,6 @@ aspect ActivationRecord {
     }
 
     syn Scanner Program.scanner() = new Scanner(System.in);
-    inh Scanner ASTNode.scanner();
-    eq Program.getChild().scanner() = scanner();
 
     syn Deque Program.stack() = new ArrayDeque();
     inh Deque ASTNode.stack();
@@ -117,16 +115,8 @@ aspect ActivationRecord {
 
     //TODO: Code Smell! Better version is to define lambda-function together when defining predefined FunctionDecls. This adds code to one place
     public void FunctionCallStmt.eval(ActivationRecord actrec) {
-        String functionName = ((FunctionCall)getExpr()).getIdUse().getID();
-        if(functionName.equals("print")){
-            System.out.println(((FunctionCall)getExpr()).getExpr(0).eval(actrec));
-        }else if(functionName.equals("read")){
-            scanner().nextInt();
-        }else{
-            //eval on functionCall
-            ((FunctionCall)getExpr()).eval(actrec);
-        }
-
+        //eval on functionCall
+        ((FunctionCall)getExpr()).eval(actrec);
     }
 
     public void IdDeclStmt.eval(ActivationRecord actrec) {
@@ -214,6 +204,17 @@ aspect ActivationRecord {
     }
 
     public int FunctionCall.eval(ActivationRecord actrec) {
+        //predefined functions
+        String functionName = getIdUse().getID();
+        if(functionName.equals("print")){
+            System.out.println(getExpr(0).eval(actrec));
+            return 0;
+        }else if(functionName.equals("read")){
+            System.out.print("Please write a number: ");
+            return program().scanner().nextInt();
+        }
+
+        //Normal functions
         //Loop through params in functionDecl (this adds ne activationRecord) and assign to newly declared params
         FunctionDecl functionDecl = (FunctionDecl) getIdUse().decl().getParent();
 
@@ -263,32 +264,6 @@ aspect ActivationRecord {
     * 0_i = decalration i of statement 0
     * 1_1_0_i = declaration i in statement 0, in statement 1, in statement 1
     */
-
-    /*syn String IdDecl.uniqueName(ASTNode stmtNode, String unfinishedUniqueName) {
-        //TODO: Create attribute or smoething for parentStmt (No hardcoding here...)
-        //basecase when reached the FunctionDecl instead of block
-        if(stmtNode instanceof FunctionDecl){
-            System.out.println("FunctionDecl");
-            //get index of functionDecls blocks stmt
-            String uniqueName = unfinishedUniqueName;
-            return uniqueName;
-        }else{
-            ASTNode parentStmtNode = stmtNode.getParent().getParent().getParent();
-            System.out.println("Called uniqueName with parent "+ parentStmtNode.getClass().getName());
-            String stmtIndex = stmtNode.getParent().getIndexOfChild(stmtNode) + "";
-            String combinedUniqueName = stmtIndex + "_" + unfinishedUniqueName;
-            System.out.println("Stmt index of " + stmtNode.getParent().getClass().getName() + " is "+ stmtIndex);
-            System.out.println("Combined Unique Name: " + combinedUniqueName);
-            return uniqueName(parentStmtNode, combinedUniqueName);
-        }
-
-
-    }
-    */
-
-
-
-
     syn String IdDecl.uniqueName() = uniqueNameRec(getParent(), getID());
 
     syn String IdDecl.uniqueNameRec(ASTNode node, String currentString) {
