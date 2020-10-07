@@ -90,20 +90,24 @@ aspect ActivationRecord {
     * @throws if IdDecl is already declared
     */
     public void Assignment.eval(ActivationRecord actrec) {
-        //TODO: Crate IDDecl eval. Handle throws here?
-        //getLeft().eval(actrec);
         Expr left = getLeft();
+
         String leftName;
         if(left instanceof IdDecl){
-            leftName = ((IdDecl)left).getID();
+            left.eval(actrec);
+            //TODO: leftName should be idDecl.unqiqueName()
+            //Call unqueName with first stmt and the original variable name
+            leftName = ((IdDecl)left).uniqueName(this, ((IdDecl)left).getID());
         }else if(left instanceof IdUse){
-            leftName = ((IdUse)left).getID();
+            IdDecl idDecl = ((IdUse)left).decl();
+            leftName = idDecl.uniqueName(this, idDecl.getID());
         }else{
-            leftName = "Unknownfbfdkgbr'sdC-";
+            throw new RuntimeException("Assignment on unknown variable");
         }
 
         int rightExpr = getRight().eval(actrec);
         //adding to local
+        System.out.println("Left name: " + leftName);
         actrec.put(leftName, rightExpr);
     }
 
@@ -216,7 +220,8 @@ aspect ActivationRecord {
             //TODO: handle if not same length
             IdDecl param = functionDecl.getParam(i);
             Expr argument = getExpr(i);
-            newActrec.put(param.getID(), argument.eval(actrec));
+            String name = param.uniqueName(getParent(), param.getID());
+            newActrec.put(name, argument.eval(actrec));
         }
         functionDecl.eval(newActrec);
         return newActrec.getReturnValue();
@@ -228,7 +233,7 @@ aspect ActivationRecord {
 
     /* Gets the variable assigned value */
     public int IdUse.eval(ActivationRecord actrec) {
-        String name = getID();
+        String name = decl().uniqueName(getParent(), getID());
         if(!actrec.contains(name)){
             throw new NoSuchElementException("Variable " + name + " not assigned a value in block");
         }
@@ -239,9 +244,41 @@ aspect ActivationRecord {
     */
     public int IdDecl.eval(ActivationRecord actrec) {
         //Throw if IT IS already in actrec!
-        if(actrec.contains(getID())){
+        String name = uniqueName(getParent(), getID());
+        if(actrec.contains(name)){
             throw new RuntimeException("Variable already declared");
         }
         return -1;
+    }
+
+
+
+
+
+    /* Handle Shadowing that returns spceial name for var. First call
+    * i = variable name
+    * 0_i = decalration i of statement 0
+    * 1_1_0_i = declaration i in statement 0, in statement 1, in statement 1
+    */
+    syn String IdDecl.uniqueName(ASTNode stmtNode, String unfinishedUniqueName) {
+        //TODO: Create attribute or smoething for parentStmt (No hardcoding here...)
+        //basecase when reached the FunctionDecl instead of block
+        ASTNode parentStmtNode = stmtNode.getParent().getParent().getParent();
+        System.out.println("Called uniqueName with parent "+ parentStmtNode.getClass().getName());
+        if(stmtNode instanceof FunctionDecl){
+            System.out.println("FunctionDecl");
+            //get index of functionDecls blocks stmt
+            //String stmtIndex = stmtNode.getParent().getIndexOfChild(stmtNode) + "";
+            //String uniqueName = stmtIndex + "_" + unfinishedUniqueName;
+            return unfinishedUniqueName;
+        }else{
+            String stmtIndex = stmtNode.getParent().getIndexOfChild(stmtNode) + "";
+            String combinedUniqueName = stmtIndex + "_" + unfinishedUniqueName;
+            System.out.println(stmtIndex);
+            System.out.println(combinedUniqueName);
+            return uniqueName(parentStmtNode, combinedUniqueName);
+        }
+
+
     }
 }
