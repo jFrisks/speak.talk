@@ -1,7 +1,5 @@
 int main() {
-    print(1);
     int x = read();
     print(x);
-    print(2);
     return x;
 }
