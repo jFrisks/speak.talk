@@ -291,6 +291,10 @@ aspect ActivationRecord {
         }
     }
 
+    inh FunctionDecl FunctionCall.enclosingFunction();
+    syn FunctionDecl FunctionDecl.enclosingFunction() = this;
+    eq FunctionDecl.getChild().enclosingFunction() = enclosingFunction();
+
 
 
 
