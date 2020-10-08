@@ -57,7 +57,7 @@ aspect ActivationRecord {
         //if found, add function as frame.
         FunctionDecl mainMethodDecl = (FunctionDecl) main.getParent();
 
-        //eval main method (TODO: Check so it returns correct type?)
+        //eval main method
         mainMethodDecl.eval(new ActivationRecord());
     }
 
@@ -97,7 +97,6 @@ aspect ActivationRecord {
         String leftName;
         if(left instanceof IdDecl){
             //left.eval(actrec);
-            //TODO: leftName should be idDecl.unqiqueName()
             //Call unqueName with first stmt and the original variable name
             leftName = ((IdDecl)left).uniqueName();
         }else if(left instanceof IdUse){
@@ -221,7 +220,6 @@ aspect ActivationRecord {
         //Create new activation record and connect functionCalls argument (expr) with corresponding functionDeclParam
         ActivationRecord newActrec = new ActivationRecord();
         for(int i = 0; i < functionDecl.getNumParam(); i++){
-            //TODO: handle if not same length
             IdDecl param = functionDecl.getParam(i);
             Expr argument = getExpr(i);
             String name = param.uniqueName();
@@ -254,10 +252,6 @@ aspect ActivationRecord {
         }
         return -1;
     }
-
-
-
-
 
     /* Handle Shadowing that returns spceial name for var. First call
     * i = variable name
@@ -298,8 +292,8 @@ aspect ActivationRecord {
     coll Set<FunctionDecl> FunctionDecl.functionCalls() [new HashSet<FunctionDecl>()] with add root FunctionDecl;
 
     FunctionCall contributes (FunctionDecl) getIdUse().decl().getParent()
-    		when true
-    		to FunctionDecl.functionCalls() for enclosingFunction();
+        when true
+        to FunctionDecl.functionCalls() for enclosingFunction();
 
     syn Set<FunctionDecl> FunctionDecl.reachable() circular [new HashSet<FunctionDecl>()] {
         HashSet<FunctionDecl> result = new HashSet<FunctionDecl>();
