@@ -295,23 +295,9 @@ aspect ActivationRecord {
     syn FunctionDecl FunctionDecl.enclosingFunction() = this;
     eq FunctionDecl.getChild().enclosingFunction() = enclosingFunction();
 
+    coll Set<FunctionDecl> FunctionDecl.functionCalls() [new HashSet<FunctionDecl>()] with add root FunctionDecl;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    FunctionCall contributes (FunctionDecl) getIdUse().decl().getParent()
+    		when true
+    		to FunctionDecl.functionCalls() for enclosingFunction();
 }
