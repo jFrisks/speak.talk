@@ -43,7 +43,12 @@ public class Interpreter {
                 System.exit(1);
             }
             //evalute the program
-            program.eval();
+            try {
+                program.eval();
+            }catch(Exception e){
+                System.err.println("Error occured in interpretor: "+ e.getMessage());
+                System.exit(1);
+            }
 
             DrAST_root_node = program; //Enable debugging with DrAST
         } catch (FileNotFoundException e) {

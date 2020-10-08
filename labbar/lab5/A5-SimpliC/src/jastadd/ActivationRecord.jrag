@@ -300,4 +300,13 @@ aspect ActivationRecord {
     FunctionCall contributes (FunctionDecl) getIdUse().decl().getParent()
     		when true
     		to FunctionDecl.functionCalls() for enclosingFunction();
+
+    syn Set<FunctionDecl> FunctionDecl.reachable() circular [new HashSet<FunctionDecl>()] {
+        HashSet<FunctionDecl> result = new HashSet<FunctionDecl>();
+        result.addAll(functionCalls());
+        for(FunctionDecl functionDecl : functionCalls()){
+            result.addAll(functionDecl.reachable());
+        }
+        return result;
+    }
 }
