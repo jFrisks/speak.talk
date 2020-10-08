@@ -1,0 +1,6 @@
+int main(){
+    int x = read();
+    int y = read();
+
+    print(x*y);
+}
