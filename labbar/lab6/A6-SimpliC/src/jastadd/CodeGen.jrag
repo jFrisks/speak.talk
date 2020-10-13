@@ -197,6 +197,10 @@ aspect CodeGen {
   public void FunctionCall.genEval(PrintStream out) {
       //Add space for the number of arguments
       if(getNumExpr() > 0){
+        for (int i = getNumExpr() -1; i >= 0; i--) {
+          getExpr(i).genEval(out);
+          out.println("        pushq %rax");
+        }
         out.println("        subq $" + (getNumExpr()*8) + ", %rsp #Add space for the number of arguments");
       }
       //call correct function
