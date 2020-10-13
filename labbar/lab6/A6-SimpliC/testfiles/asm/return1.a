@@ -1,0 +1,20 @@
+.global _start
+.text
+_start:
+    call main
+    movq $0, %rdi # error code till 0
+    movq $60, %rax # set sys exit
+    syscall
+
+main:
+    pushq %rpb
+    movq %rsp, %rbp # flytta upp rbp till nya frame
+    #hantera locals
+
+    #sätt returvärde
+    movq $1 %rax
+    movq %rbp, %rsp # flytta ner rsp till rbp för att ta bort locals
+    popq %rbp # gå till dynlink
+    ret
+
+
