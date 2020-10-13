@@ -157,11 +157,15 @@ aspect CodeGen {
   public void Block.genCode(PrintStream out) {
     for(Stmt stmt : getStmtList()){
       //TODO: Fix this casting
-      ((ReturnStmt)stmt).genCode(out);
+      (stmt).genCode(out);
     }
   }
 
   //STATEMENTS
+  public void Stmt.genCode(PrintStream out) {
+    out.println("        #Unimplemented stmt method!!!");
+  }
+
   public void ReturnStmt.genCode(PrintStream out) {
     //eval getExpr() which saves in rax
     getExpr().genEval(out);
@@ -176,8 +180,10 @@ aspect CodeGen {
 
   public void FunctionCallStmt.genCode(PrintStream out) {
     //calling function
-    ((FunctionCall)getExpr()).genEval();
+    ((FunctionCall)getExpr()).genEval(out);
   }
+
+
 
 
 
@@ -190,13 +196,17 @@ aspect CodeGen {
 
   public void FunctionCall.genEval(PrintStream out) {
       //Add space for the number of arguments
-      out.println("        subq $" + (getNumExpr()*8) + ", %rsp");
-
+      if(getNumExpr() > 0){
+        out.println("        subq $" + (getNumExpr()*8) + ", %rsp #Add space for the number of arguments");
+      }
       //call correct function
       out.println("        call " + getIdUse().getID());
 
       //clean up on the arguments space alloc
-      out.println("        addq $" + (getNumExpr()*8) + ", %rsp");
+      if(getNumExpr() > 0){
+        out.println("        addq $" + (getNumExpr()*8) + ", %rsp #clean up on the arguments space alloc");
+      }
+
     }
 
   public void Numeral.genEval(PrintStream out) {

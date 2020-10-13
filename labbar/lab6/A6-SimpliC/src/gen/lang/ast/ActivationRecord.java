@@ -9,7 +9,7 @@ import java.lang.reflect.InvocationTargetException;
 /**
  * @ast class
  * @aspect ActivationRecord
- * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab6/A6-SimpliC/src/jastadd/ActivationRecord.jrag:4
+ * @declaredat /h/d2/c/lu6512ed-s/dod/kompilatorer/lab6/edan65-compilers/labbar/lab6/A6-SimpliC/src/jastadd/ActivationRecord.jrag:4
  */
 public class ActivationRecord extends java.lang.Object {
   
