@@ -9,7 +9,7 @@ import java.lang.reflect.InvocationTargetException;
 /**
  * @ast class
  * @aspect ActivationRecord
- * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab5/A5-SimpliC/src/jastadd/ActivationRecord.jrag:41
+ * @declaredat /Users/Jonte/Documents/Appar/edan65-compilers/labbar/lab6/A6-SimpliC/src/jastadd/ActivationRecord.jrag:41
  */
 public class Utils extends java.lang.Object {
   
