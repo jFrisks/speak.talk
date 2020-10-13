@@ -1,0 +1,40 @@
+Program ::= ProgramStmt*;
+abstract ProgramStmt;
+FunctionDecl : ProgramStmt ::= IdDecl Param: IdDecl* Block;
+Block ::= Stmt*;
+
+abstract Stmt;
+Assignment : Stmt ::= Left:Expr Right:Expr;
+IdDeclStmt : Stmt ::= IdDecl;
+FunctionCallStmt : Stmt ::= Expr;
+IfElse: Stmt ::= IfExpr:Expr If:Block [Else:Block];
+While: Stmt ::= Expr Block;
+ReturnStmt: Stmt ::= Expr;
+
+abstract Expr;
+Neg: Expr ::= Expr;
+Less : Expr ::= Left:Expr Right:Expr;
+Greater : Expr ::= Left:Expr Right:Expr;
+LessEq : Expr ::= Left:Expr Right:Expr;
+GreaterEq : Expr ::= Left:Expr Right:Expr;
+Eq : Expr ::= Left:Expr Right:Expr;
+NotEq : Expr ::= Left:Expr Right:Expr;
+
+
+Mul : Expr ::= Left:Expr Right:Expr;
+Add : Expr ::= Left:Expr Right:Expr;
+Sub : Expr ::= Left:Expr Right:Expr;
+Div : Expr ::= Left:Expr Right:Expr;
+Mod : Expr ::= Left:Expr Right:Expr;
+
+FunctionCall : Expr ::= IdUse Expr*;
+
+IdUse : Expr ::= <ID>;
+IdDecl : Expr ::= Type <ID>;
+UnknownDecl: IdDecl;
+Numeral : Expr ::= <NUMERAL>;
+
+abstract Type;
+IntType: Type;
+BoolType: Type;
+UnknownType: Type;

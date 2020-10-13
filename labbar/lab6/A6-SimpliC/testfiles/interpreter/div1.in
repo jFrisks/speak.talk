@@ -1,0 +1,9 @@
+int main(){
+    print(6 / 2);
+}
+
+
+int main(){
+    int x = 10;
+    return a() + b(x) + c();
+}

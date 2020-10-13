@@ -1,0 +1,4 @@
+int b(int y,) {
+    int x;
+    x = a(1,2,3);
+}
