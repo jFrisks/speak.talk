@@ -193,6 +193,54 @@ aspect CodeGen {
     out.println("        #Unimplemented expr method!!!");
   }
 
+  public void Mul.genEval(PrintStream out) {
+    getLeft().genEval(out);
+    out.println("        pushq %rax");
+    getRight().genEval(out);
+    out.println("        movq %rax, %rbx");
+    out.println("        popq %rax");
+    out.println("        imulq %rbx, %rax");
+  }
+
+  public void Div.genEval(PrintStream out) {
+    getLeft().genEval(out);
+    out.println("        pushq %rax");
+    getRight().genEval(out);
+    out.println("        movq %rax, %rbx");
+    out.println("        popq %rax");
+    out.println("        movq $0, %rdx");// NB: clear RDX to prepare division RDX:RAX / RBX
+    out.println("        idivq %rbx");
+  }
+
+  public void Mod.genEval(PrintStream out) {
+    getLeft().genEval(out);
+    out.println("        pushq %rax");
+    getRight().genEval(out);
+    out.println("        movq %rax, %rbx");
+    out.println("        popq %rax");
+    out.println("        movq $0, %rdx");// NB: clear RDX to prepare division RDX:RAX / RBX
+    out.println("        idivq %rbx");
+    out.println("        movq %rdx, %rax #mod adds remainder in RDX to RAX");
+  }
+
+  public void Add.genEval(PrintStream out) {
+    getLeft().genEval(out);
+    out.println("        pushq %rax");
+    getRight().genEval(out);
+    out.println("        movq %rax, %rbx");
+    out.println("        popq %rax");
+    out.println("        addq %rbx, %rax");
+  }
+
+  public void Sub.genEval(PrintStream out) {
+    getLeft().genEval(out);
+    out.println("        pushq %rax");
+    getRight().genEval(out);
+    out.println("        movq %rax, %rbx");
+    out.println("        popq %rax");
+    out.println("        subq %rbx, %rax");
+  }
+
   public void FunctionCall.genEval(PrintStream out) {
       //Add space for the number of arguments
       if(getNumExpr() > 0){
