@@ -15,12 +15,10 @@ aspect CodeGen {
     out.println("        movq %rsp, %rbp");
     //out.println("        subq $" + (getExpr().numLocals()*8) + ", %rsp");
 
-    // Print result:
-    out.println("        pushq %rax");
-    out.println("        call print");
-    out.println("        addq $8, %rsp");
+    // Call function main
+    out.println("        call main");
 
-    // De-allocate local variables:
+    // Pop frame
     out.println("        movq %rbp, %rsp");
     out.println("        popq %rbp");
 
@@ -149,9 +147,10 @@ aspect CodeGen {
     out.println("        movq %rsp, %rbp #flytta upp rbp till nya frame");
 
     //Hantera locals, calls, calcs (clean up in there) -> out to %rax
+    out.println("        subq $" + (numLocals()*8) + ", %rsp #Add space for the number of locals");
     getBlock().genCode(out);
 
-    //should always have a return statement (handled by return stmt)
+    //should always have a return statement (handled by return stmt) which also pops the frame!
   }
 
   public void Block.genCode(PrintStream out) {
@@ -201,8 +200,8 @@ aspect CodeGen {
           getExpr(i).genEval(out);
           out.println("        pushq %rax");
         }
-        out.println("        subq $" + (getNumExpr()*8) + ", %rsp #Add space for the number of arguments");
       }
+
       //call correct function
       out.println("        call " + getIdUse().getID());
 
@@ -210,7 +209,6 @@ aspect CodeGen {
       if(getNumExpr() > 0){
         out.println("        addq $" + (getNumExpr()*8) + ", %rsp #clean up on the arguments space alloc");
       }
-
     }
 
   public void Numeral.genEval(PrintStream out) {
@@ -221,4 +219,15 @@ aspect CodeGen {
     getExpr().genEval(out);
     out.println("        negq %rax");
   }
+
+
+  syn int ASTNode.numLocals() = lastNode().localIndex() - localIndex();
+  syn int ASTNode.localIndex() = prevNode().localIndex();
+  syn int Program.localIndex() = 0;
+  eq IdDecl.localIndex() = prevNode().localIndex() + 1;
+
+  inh ASTNode ASTNode.prevNode();
+  eq ASTNode.getChild(int i).prevNode() = prevNode(i);
+  syn ASTNode ASTNode.lastNode() = prevNode(getNumChild());
+  syn ASTNode ASTNode.prevNode(int i) = i>0 ? getChild(i-1).lastNode() : this;
 }
