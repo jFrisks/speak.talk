@@ -188,8 +188,8 @@ aspect CodeGen {
 
   public void IfElse.genCode(PrintStream out) {
     String labelToJumpIfNotTrue;
-    String elseLabel = uniqueName() + "_else";
-    String endLabel = uniqueName() + "_end";
+    String elseLabel = "else_" + uniqueName();
+    String endLabel = "_end" + uniqueName();
     if (hasElse()) {
       labelToJumpIfNotTrue = elseLabel;
     } else {
@@ -203,14 +203,14 @@ aspect CodeGen {
     //generate block and end if stmt
     out.println("#this is the if-block:");
     getIf().genCode(out);
-    out.println("        jmpq " + endLabel);
+    out.println("        jmp " + endLabel);
 
     //genreate code and label for else-block (if else)
     if(hasElse()){
       out.println(elseLabel+":");
       getElse().genCode(out);
       //TODO: Shoudl we Force jump to label down below?
-      out.println("        jmpq " + endLabel);
+      out.println("        jmp " + endLabel);
     }
 
     //generate code for the label marking "end of if stmt"
@@ -317,61 +317,61 @@ aspect CodeGen {
   public void Less.genConditionalJump(PrintStream out, String labelIfNotTrue) {
     getLeft().genEval(out);
     out.println("        pushq %rax");
-    getLeft().genEval(out);
+    getRight().genEval(out);
     out.println("        movq %rax, %rbx");
     out.println("        popq %rax");
     out.println("        cmpq %rax, %rbx # %rax < %rbx");
-    out.println("        jgeq " + labelIfNotTrue + " # Jump to this if expr false");
+    out.println("        jle " + labelIfNotTrue + " # Jump to this if expr false");
   }
 
   public void Greater.genConditionalJump(PrintStream out, String labelIfNotTrue) {
     getLeft().genEval(out);
     out.println("        pushq %rax");
-    getLeft().genEval(out);
+    getRight().genEval(out);
     out.println("        movq %rax, %rbx");
     out.println("        popq %rax");
-    out.println("        cmpq %rax, %rbx # %rax < %rbx");
-    out.println("        jleq " + labelIfNotTrue + " # Jump to this if expr false");
+    out.println("        cmpq %rax, %rbx # %rax > %rbx");
+    out.println("        jge " + labelIfNotTrue + " # Jump to this if expr false");
   }
 
   public void LessEq.genConditionalJump(PrintStream out, String labelIfNotTrue) {
     getLeft().genEval(out);
     out.println("        pushq %rax");
-    getLeft().genEval(out);
+    getRight().genEval(out);
     out.println("        movq %rax, %rbx");
     out.println("        popq %rax");
-    out.println("        cmpq %rax, %rbx # %rax < %rbx");
-    out.println("        jgq " + labelIfNotTrue + " # Jump to this if expr false");
+    out.println("        cmpq %rax, %rbx # %rax <= %rbx");
+    out.println("        jl " + labelIfNotTrue + " # Jump to this if expr false");
   }
 
   public void GreaterEq.genConditionalJump(PrintStream out, String labelIfNotTrue) {
     getLeft().genEval(out);
     out.println("        pushq %rax");
-    getLeft().genEval(out);
+    getRight().genEval(out);
     out.println("        movq %rax, %rbx");
     out.println("        popq %rax");
-    out.println("        cmpq %rax, %rbx # %rax < %rbx");
-    out.println("        jlq " + labelIfNotTrue + " # Jump to this if expr false");
+    out.println("        cmpq %rax, %rbx # %rax >= %rbx");
+    out.println("        jg " + labelIfNotTrue + " # Jump to this if expr false");
   }
 
   public void Eq.genConditionalJump(PrintStream out, String labelIfNotTrue) {
     getLeft().genEval(out);
     out.println("        pushq %rax");
-    getLeft().genEval(out);
+    getRight().genEval(out);
     out.println("        movq %rax, %rbx");
     out.println("        popq %rax");
-    out.println("        cmpq %rax, %rbx # %rax < %rbx");
-    out.println("        jneq " + labelIfNotTrue + " # Jump to this if expr false");
+    out.println("        cmpq %rax, %rbx # %rax == %rbx");
+    out.println("        jne " + labelIfNotTrue + " # Jump to this if expr false");
   }
 
   public void NotEq.genConditionalJump(PrintStream out, String labelIfNotTrue) {
     getLeft().genEval(out);
     out.println("        pushq %rax");
-    getLeft().genEval(out);
+    getRight().genEval(out);
     out.println("        movq %rax, %rbx");
     out.println("        popq %rax");
-    out.println("        cmpq %rax, %rbx # %rax < %rbx");
-    out.println("        jeq " + labelIfNotTrue + " # Jump to this if expr false");
+    out.println("        cmpq %rax, %rbx # %rax != %rbx");
+    out.println("        je " + labelIfNotTrue + " # Jump to this if expr false");
   }
 
 
