@@ -198,7 +198,7 @@ aspect CodeGen {
 
     //Eval expr and jump to correct label
     //TODO: We should not need to cast anything!
-    getIfExpr().genConditionalJump(out, labelToJumpIfNotTrue);
+    ((Conditional)getIfExpr()).genConditionalJump(out, labelToJumpIfNotTrue);
 
     //generate block and end if stmt
     out.println("#this is the if-block:");
@@ -310,6 +310,10 @@ aspect CodeGen {
 
 
   //COMPARATORS
+  public void Expr.genConditionalJump(PrintStream out, String labelIfNotTrue) {
+     out.println("        #Unimplemented stmt method!!!");
+  }
+
   public void Less.genConditionalJump(PrintStream out, String labelIfNotTrue) {
     getLeft().genEval(out);
     out.println("        pushq %rax");
