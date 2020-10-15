@@ -270,6 +270,72 @@ aspect CodeGen {
   }
 
 
+
+
+
+
+  //COMPARATORS
+  public void Less.genConditionalJump(PrintStream out, String labelIfNotTrue) {
+    getLeft().genEval(out);
+    out.println("        pushq %rax");
+    getLeft().genEval(out);
+    out.println("        movq %rax, %rbx);
+    out.println("        popq %rax);
+    out.println("        cmpq %rax, %rbx # %rax < %rbx);
+    out.println("        jgeq " + labelIfNotTrue + " # Jump to this if expr false");
+  }
+
+  public void Greater.genConditionalJump(PrintStream out, String labelIfNotTrue) {
+    getLeft().genEval(out);
+    out.println("        pushq %rax");
+    getLeft().genEval(out);
+    out.println("        movq %rax, %rbx);
+    out.println("        popq %rax);
+    out.println("        cmpq %rax, %rbx # %rax < %rbx);
+    out.println("        jleq " + labelIfNotTrue + " # Jump to this if expr false");
+  }
+
+  public void LessEq.genConditionalJump(PrintStream out, String labelIfNotTrue) {
+    getLeft().genEval(out);
+    out.println("        pushq %rax");
+    getLeft().genEval(out);
+    out.println("        movq %rax, %rbx);
+    out.println("        popq %rax);
+    out.println("        cmpq %rax, %rbx # %rax < %rbx);
+    out.println("        jgq " + labelIfNotTrue + " # Jump to this if expr false");
+  }
+
+  public void GreaterEq.genConditionalJump(PrintStream out, String labelIfNotTrue) {
+    getLeft().genEval(out);
+    out.println("        pushq %rax");
+    getLeft().genEval(out);
+    out.println("        movq %rax, %rbx);
+    out.println("        popq %rax);
+    out.println("        cmpq %rax, %rbx # %rax < %rbx);
+    out.println("        jlq " + labelIfNotTrue + " # Jump to this if expr false");
+  }
+
+  public void Eq.genConditionalJump(PrintStream out, String labelIfNotTrue) {
+    getLeft().genEval(out);
+    out.println("        pushq %rax");
+    getLeft().genEval(out);
+    out.println("        movq %rax, %rbx);
+    out.println("        popq %rax);
+    out.println("        cmpq %rax, %rbx # %rax < %rbx);
+    out.println("        jneq " + labelIfNotTrue + " # Jump to this if expr false");
+  }
+
+  public void NotEq.genConditionalJump(PrintStream out, String labelIfNotTrue) {
+    getLeft().genEval(out);
+    out.println("        pushq %rax");
+    getLeft().genEval(out);
+    out.println("        movq %rax, %rbx);
+    out.println("        popq %rax);
+    out.println("        cmpq %rax, %rbx # %rax < %rbx);
+    out.println("        jeq " + labelIfNotTrue + " # Jump to this if expr false");
+  }
+
+
   syn int ASTNode.numLocals() = lastNode().localIndex() - localIndex();
   syn int ASTNode.localIndex() = prevNode().localIndex();
   syn int Program.localIndex() = 0;
