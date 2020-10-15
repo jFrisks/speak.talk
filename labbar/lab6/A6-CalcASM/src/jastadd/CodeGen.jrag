@@ -146,7 +146,6 @@ aspect CodeGen {
   }
 
 
-
   /**
    * Generate code to evaluate the expression and
    * store the result in RAX.

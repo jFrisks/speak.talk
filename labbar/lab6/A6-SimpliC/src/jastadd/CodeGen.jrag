@@ -189,7 +189,7 @@ aspect CodeGen {
   public void IfElse.genCode(PrintStream out) {
     String labelToJumpIfNotTrue;
     String elseLabel = "else_" + uniqueName();
-    String endLabel = "_end" + uniqueName();
+    String endLabel = "end_" + uniqueName();
     if (hasElse()) {
       labelToJumpIfNotTrue = elseLabel;
     } else {
@@ -214,6 +214,32 @@ aspect CodeGen {
     }
 
     //generate code for the label marking "end of if stmt"
+    out.println(endLabel+": #continueing on the original function");
+
+  }
+
+  public void While.genCode(PrintStream out) {
+    String loopLabel = "loop_" + uniqueName();
+    String endLabel = "end_" + uniqueName();
+
+    //TODO: do we need to force jump into label
+    out.println("        jmp " + loopLabel + "#force jump to while loop and decide if going into while block first time");
+
+    //add loop label
+    out.println(loopLabel + ": #while loop that first checks expression");
+
+    //Eval expr and jump to correct label
+    //TODO: We should not need to cast anything!
+    ((Conditional)getExpr()).genConditionalJump(out, endLabel);
+
+    //generate block and end if stmt
+    out.println("        # this is the while-block:");
+    getBlock().genCode(out);
+    //jump to loop so we can check expr again
+    out.println("        jmp " + loopLabel + "#jump to loop and decide if looping again");
+
+
+    //generate code for the label marking "end of while stmt"
     out.println(endLabel+": #continueing on the original function");
 
   }
