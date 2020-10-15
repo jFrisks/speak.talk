@@ -1,0 +1,19 @@
+int main(){
+  int x;
+  x = f(3 - 2);
+  int y = g(3, 42);
+  print(x);
+  print(y);
+}
+
+int f(int a){
+  print(a);
+  int y = g(3, a);
+  return y;
+
+}
+
+int g(int a, int b){
+  int x = a + b;
+  return a * b * x;
+}
