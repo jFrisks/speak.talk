@@ -183,6 +183,29 @@ aspect CodeGen {
     ((FunctionCall)getExpr()).genEval(out);
   }
 
+  public void IfElse.genCode(PrintStream out) {
+    //TODO: Fix unique label based on local index. Either jump to else if existing, or after ifElse block
+    out.println("        labelIfNotTrue");
+    getIfExpr.genConditionalJump(out, labelIfNotTrue);
+
+    //generate block
+    getIf().genCode(out);
+
+    //TODO: Jump past else block if we have already been in if block
+    orginal: #varje if/while behöver ett unikt namn
+      compq
+      jeq elseOrNothingLabel #om false hoppar vi dit
+      #nu är vi i if blocket om compexpr var true
+
+
+      #I slutet av ifblock vill vi skippa ett eventuellt else block -> jump to originalContinue
+    #elseOrNothingLabel:
+      #Hit går vi bara om om else
+      #hoppa över labelnamnetraden nedan?
+    #originalContinue:
+      #Här fortsätter vi på vår orginal function
+  }
+
 
 
 
@@ -279,9 +302,9 @@ aspect CodeGen {
     getLeft().genEval(out);
     out.println("        pushq %rax");
     getLeft().genEval(out);
-    out.println("        movq %rax, %rbx);
-    out.println("        popq %rax);
-    out.println("        cmpq %rax, %rbx # %rax < %rbx);
+    out.println("        movq %rax, %rbx");
+    out.println("        popq %rax");
+    out.println("        cmpq %rax, %rbx # %rax < %rbx");
     out.println("        jgeq " + labelIfNotTrue + " # Jump to this if expr false");
   }
 
@@ -289,9 +312,9 @@ aspect CodeGen {
     getLeft().genEval(out);
     out.println("        pushq %rax");
     getLeft().genEval(out);
-    out.println("        movq %rax, %rbx);
-    out.println("        popq %rax);
-    out.println("        cmpq %rax, %rbx # %rax < %rbx);
+    out.println("        movq %rax, %rbx");
+    out.println("        popq %rax");
+    out.println("        cmpq %rax, %rbx # %rax < %rbx");
     out.println("        jleq " + labelIfNotTrue + " # Jump to this if expr false");
   }
 
@@ -299,9 +322,9 @@ aspect CodeGen {
     getLeft().genEval(out);
     out.println("        pushq %rax");
     getLeft().genEval(out);
-    out.println("        movq %rax, %rbx);
-    out.println("        popq %rax);
-    out.println("        cmpq %rax, %rbx # %rax < %rbx);
+    out.println("        movq %rax, %rbx");
+    out.println("        popq %rax");
+    out.println("        cmpq %rax, %rbx # %rax < %rbx");
     out.println("        jgq " + labelIfNotTrue + " # Jump to this if expr false");
   }
 
@@ -309,9 +332,9 @@ aspect CodeGen {
     getLeft().genEval(out);
     out.println("        pushq %rax");
     getLeft().genEval(out);
-    out.println("        movq %rax, %rbx);
-    out.println("        popq %rax);
-    out.println("        cmpq %rax, %rbx # %rax < %rbx);
+    out.println("        movq %rax, %rbx");
+    out.println("        popq %rax");
+    out.println("        cmpq %rax, %rbx # %rax < %rbx");
     out.println("        jlq " + labelIfNotTrue + " # Jump to this if expr false");
   }
 
@@ -319,9 +342,9 @@ aspect CodeGen {
     getLeft().genEval(out);
     out.println("        pushq %rax");
     getLeft().genEval(out);
-    out.println("        movq %rax, %rbx);
-    out.println("        popq %rax);
-    out.println("        cmpq %rax, %rbx # %rax < %rbx);
+    out.println("        movq %rax, %rbx");
+    out.println("        popq %rax");
+    out.println("        cmpq %rax, %rbx # %rax < %rbx");
     out.println("        jneq " + labelIfNotTrue + " # Jump to this if expr false");
   }
 
@@ -329,9 +352,9 @@ aspect CodeGen {
     getLeft().genEval(out);
     out.println("        pushq %rax");
     getLeft().genEval(out);
-    out.println("        movq %rax, %rbx);
-    out.println("        popq %rax);
-    out.println("        cmpq %rax, %rbx # %rax < %rbx);
+    out.println("        movq %rax, %rbx");
+    out.println("        popq %rax");
+    out.println("        cmpq %rax, %rbx # %rax < %rbx");
     out.println("        jeq " + labelIfNotTrue + " # Jump to this if expr false");
   }
 
