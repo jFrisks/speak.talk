@@ -183,6 +183,7 @@ aspect CodeGen {
     ((FunctionCall)getExpr()).genEval(out);
   }
 
+  /*
   public void IfElse.genCode(PrintStream out) {
     //TODO: Fix unique label based on local index. Either jump to else if existing, or after ifElse block
     out.println("        labelIfNotTrue");
@@ -205,6 +206,7 @@ aspect CodeGen {
     #originalContinue:
       #Här fortsätter vi på vår orginal function
   }
+  */
 
 
 
