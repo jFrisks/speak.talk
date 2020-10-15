@@ -147,8 +147,8 @@ aspect CodeGen {
     out.println("        movq %rsp, %rbp #flytta upp rbp till nya frame");
 
     //Hantera locals, calls, calcs (clean up in there) -> out to %rax
-    //TODO: why does every program get 1 local?
-    out.println("        subq $" + (numLocals()*8) + ", %rsp #Add space for the number of locals");
+    //TODO: fix numLocals() wrong number of locals?
+    out.println("        subq $" + (numLocals() *8) + ", %rsp #Add space for the max number of locals");
     getBlock().genCode(out);
 
     //should always have a return statement (handled by return stmt) which also pops the frame!
