@@ -244,6 +244,20 @@ aspect CodeGen {
 
   }
 
+  public void IdDeclStmt.genCode(PrintStream out) {
+    out.println("        #This is a IdDeclStmt");
+  }
+
+  public void Assignment.genCode(PrintStream out) {
+    getRight().genEval(out);
+    if (getLeft() instanceof IdDecl) {
+      out.println("        movq %rax, " + ((IdDecl)getLeft()).address());
+    } else if (getLeft() instanceof IdUse) {
+      out.println("        movq %rax, " + ((IdUse)getLeft()).address());
+    }
+
+  }
+
 
 
 
@@ -325,6 +339,14 @@ aspect CodeGen {
     out.println("        movq $" + getNUMERAL() + ", %rax");
   }
 
+  public void IdDecl.genEval(PrintStream out) {
+    out.println("        movq " + address() + ", %rax");
+  }
+
+  public void IdUse.genEval(PrintStream out) {
+    out.println("        movq " + address() + ", %rax");
+  }
+
   public void Neg.genEval(PrintStream out) {
     getExpr().genEval(out);
     out.println("        negq %rax");
@@ -399,6 +421,9 @@ aspect CodeGen {
     out.println("        cmpq %rax, %rbx # %rax != %rbx");
     out.println("        je " + labelIfNotTrue + " # Jump to this if expr false");
   }
+
+  syn String IdDecl.address() = "-"+(localIndex()*8)+"(%rbp)";
+  syn String IdUse.address() = decl().address();
 
 
   syn int ASTNode.numLocals() = lastNode().localIndex() - localIndex();
