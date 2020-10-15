@@ -162,9 +162,11 @@ aspect CodeGen {
   }
 
   //STATEMENTS
+
   public void Stmt.genCode(PrintStream out) {
     out.println("        #Unimplemented stmt method!!!");
   }
+
 
   public void ReturnStmt.genCode(PrintStream out) {
     //eval getExpr() which saves in rax
@@ -183,30 +185,38 @@ aspect CodeGen {
     ((FunctionCall)getExpr()).genEval(out);
   }
 
-  /*
+
   public void IfElse.genCode(PrintStream out) {
-    //TODO: Fix unique label based on local index. Either jump to else if existing, or after ifElse block
-    out.println("        labelIfNotTrue");
-    getIfExpr.genConditionalJump(out, labelIfNotTrue);
+    String labelToJumpIfNotTrue;
+    String elseLabel = uniqueName() + "_else";
+    String endLabel = uniqueName() + "_end";
+    if (hasElse()) {
+      labelToJumpIfNotTrue = elseLabel;
+    } else {
+      labelToJumpIfNotTrue = endLabel;
+    }
 
-    //generate block
+    //Eval expr and jump to correct label
+    //TODO: We should not need to cast anything!
+    getIfExpr().genConditionalJump(out, labelToJumpIfNotTrue);
+
+    //generate block and end if stmt
+    out.println("#this is the if-block:");
     getIf().genCode(out);
+    out.println("        jmpq " + endLabel);
 
-    //TODO: Jump past else block if we have already been in if block
-    orginal: #varje if/while behöver ett unikt namn
-      compq
-      jeq elseOrNothingLabel #om false hoppar vi dit
-      #nu är vi i if blocket om compexpr var true
+    //genreate code and label for else-block (if else)
+    if(hasElse()){
+      out.println(elseLabel+":");
+      getElse().genCode(out);
+      //TODO: Shoudl we Force jump to label down below?
+      out.println("        jmpq " + endLabel);
+    }
 
+    //generate code for the label marking "end of if stmt"
+    out.println(endLabel+": #continueing on the original function");
 
-      #I slutet av ifblock vill vi skippa ett eventuellt else block -> jump to originalContinue
-    #elseOrNothingLabel:
-      #Hit går vi bara om om else
-      #hoppa över labelnamnetraden nedan?
-    #originalContinue:
-      #Här fortsätter vi på vår orginal function
   }
-  */
 
 
 
