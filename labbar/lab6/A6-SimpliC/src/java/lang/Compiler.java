@@ -38,7 +38,11 @@ public class Compiler {
 			if(!program.errors().isEmpty()){
 				System.exit(1);
 			}
+
 			//program.checkNames(System.out);
+
+			program.genCode(System.out);
+
 			//System.out.println(program.dumpTree());
 			//System.out.println("Found MSN Depth: " + MSNVisitor.result(program));
 
