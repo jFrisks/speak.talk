@@ -45,6 +45,7 @@ aspect ActivationRecord {
 
         public static String uniqueNameRec(ASTNode node, String currentString) {
             if(node instanceof FunctionDecl){
+                currentString = ((FunctionDecl)node).getIdDecl().getID() + currentString;
                 //System.out.println("Var name is: " + currentString);
                 return currentString;
             }
