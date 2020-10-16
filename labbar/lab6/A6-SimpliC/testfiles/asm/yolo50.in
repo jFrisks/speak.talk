@@ -1,0 +1,25 @@
+int fac(int x) {
+  if (x <= 1) {
+    return 1;
+  }
+  return fac(x-1) * x;
+}
+int binom(int n, int k) {
+  if (n==1) {
+    return 1;
+  }
+  if (n==k) {
+    return 1;
+  }
+  if (k>n) {
+    return 0;
+  }
+  return fac(n) / (fac(k) * fac(n-k));
+}
+int main() {
+  print(binom(12, 3));
+  print(binom(12, 4));
+  print(binom(12, 5));
+  print(binom(12, 6));
+  return 0;
+}

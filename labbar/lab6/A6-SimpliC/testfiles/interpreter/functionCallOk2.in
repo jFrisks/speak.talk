@@ -1,0 +1,13 @@
+int add(int a) {
+    print(a);
+}
+
+int main() {
+    int i = 10;
+    add(i); // Call with 2 arguments: first value of i, second value 20.
+    sub();
+}
+
+int sub(){
+    print(11);
+}

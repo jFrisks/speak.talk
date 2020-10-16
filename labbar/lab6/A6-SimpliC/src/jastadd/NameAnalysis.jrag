@@ -1,0 +1,110 @@
+aspect NameAnalysis {
+	syn IdDecl IdUse.decl() = lookup(getID());
+	inh IdDecl IdUse.lookup(String name);
+
+    syn IdDecl Program.lookup(String name){
+        //check for predefined function names
+        for(FunctionDecl fDecl : predefinedFunctions()){
+            if(fDecl.getIdDecl().getID().equals(name)){
+                return fDecl.getIdDecl();
+            }
+        }
+
+        //check all function names (if not found in predefined)
+        for(ProgramStmt programStmt: getProgramStmtList()){
+            if(((FunctionDecl)programStmt).getIdDecl().getID().equals(name)){
+                return ((FunctionDecl)programStmt).getIdDecl();
+            }
+        }
+        return unknownDecl();
+    }
+
+	inh IdDecl Block.lookup(String name);
+
+    //Basically FunctionDecl.lookup()
+	eq Program.getProgramStmt(int index).lookup(String name) {
+	    //Our declaration only allows functionDecls
+	    IdDecl decl = ((FunctionDecl)getProgramStmt(index)).paramLocalLookup(name);
+        return !decl.isUnknown() ? decl : lookup(name);
+	}
+
+    //Should not be called with our beaver
+    syn IdDecl ProgramStmt.paramLocalLookup(String name) = unknownDecl();
+
+	syn IdDecl FunctionDecl.paramLocalLookup(String name) {
+	    for (IdDecl decl : getParamList()) {
+	        if (decl.getID().equals(name)) {
+	            return decl;
+	        }
+	    }
+	    return unknownDecl();
+	}
+
+	syn IdDecl Block.localLookup(String name, int until) {
+		for (int i = 0; i <= until; i++) {
+			//Go through all stmt and and get stmt(i) decls
+			if (getStmt(i).decl().getID().equals(name)) {
+                return getStmt(i).decl();
+            }
+		}
+		return unknownDecl();
+	}
+
+    //Skriv eq FunctionDecl.getBlock().localLookup(). Den overridear Block.localLookup . Den lägger till en paramLookup i FunctionDecl före localLookup. (Params söks före!!)
+    //då behövs ej Basically FunctionDecl.lookup()
+
+	syn IdDecl Stmt.decl() = unknownDecl();
+	syn IdDecl IdDeclStmt.decl() = getIdDecl();
+	syn IdDecl Assignment.decl(){
+	    ASTNode left = getLeft();
+	    if(left instanceof IdDecl){
+	        return (IdDecl) left;
+	    }else{
+	        return unknownDecl();
+	    }
+	}
+
+	eq Block.getStmt(int index).lookup(String name) {
+		IdDecl decl = localLookup(name, index);
+		//TODO: Also find params in same method
+		return !decl.isUnknown() ? decl : lookup(name);
+	}
+
+	inh IdDecl IdDecl.lookup(String name);
+	syn boolean IdDecl.isMultiDeclared() = lookup(getID()) != this;
+
+	syn boolean IdDecl.isVariable(){
+	    if(!(getParent() instanceof FunctionDecl)){
+	        return true;
+	    }
+	    return false;
+	}
+	syn boolean IdDecl.isFunction(){
+        if(getParent() instanceof FunctionDecl){
+            return true;
+        }
+        return false;
+    }
+
+    syn boolean IdUse.isVariableButExpectedFunction(){
+        boolean parentIsFunction = getParent() instanceof FunctionCall;
+        return (!decl().isFunction() && parentIsFunction);
+    }
+
+    syn boolean IdUse.isFunctionButExpectedVaraible(){
+        boolean parentIsFunction = getParent() instanceof FunctionCall;
+        return (decl().isFunction() && !parentIsFunction);
+    }
+
+}
+
+/*
+aspect CircularDefinitions {
+ 	syn boolean IdUse.isCircular() = inExprOf(decl());
+ 	inh boolean IdUse.inExprOf(IdDecl decl);
+ 	inh boolean Assignment.inExprOf(IdDecl decl);
+ 	eq Assignment.getExpr().inExprOf(IdDecl decl)
+ 		= getIdDecl() == decl || inExprOf(decl);
+ 	eq Program.getChild().inExprOf(IdDecl decl) = false;
+ }
+ */

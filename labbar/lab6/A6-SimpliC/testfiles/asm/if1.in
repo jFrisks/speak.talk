@@ -1,0 +1,8 @@
+int main() {
+  if (3 > 2) {
+    print(42);
+  } else {
+    print(10);
+  }
+  return 1;
+}
