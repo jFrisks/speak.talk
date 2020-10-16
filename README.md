@@ -5,4 +5,10 @@ Course in Compilers. Java. Everything from Scanning to Machine Code, except opti
 
 ## Lab 2 - SimpliC Language | Similar to c
 
-## Lab 3
+## Lab 3 - 
+
+## Lab 4 - 
+
+## Lab 5 - 
+
+## Lab 6 - FINAL
