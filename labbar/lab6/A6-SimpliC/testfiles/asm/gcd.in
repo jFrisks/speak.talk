@@ -1,5 +1,6 @@
 int main() {
     print(gcd1(24, 20));
+    return 1;
 }
 
 int gcd1(int a, int b) {

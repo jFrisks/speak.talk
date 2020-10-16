@@ -422,10 +422,24 @@ aspect CodeGen {
     out.println("        je " + labelIfNotTrue + " # Jump to this if expr false");
   }
 
-  syn String IdDecl.address() = "-"+(localIndex()*8)+"(%rbp)";
+  syn boolean IdDecl.isParam() {
+    if (getParent() instanceof List && getParent().getParent() instanceof FunctionDecl) {
+      return true;
+    }
+    return false;
+  }
+
+  syn String IdDecl.address() {
+    if (isParam()) {
+      return (getParent().getIndexOfChild(this) + 2)*8+"(%rbp)";
+    } else {
+      return "-"+(localIndex()*8)+"(%rbp)";
+    }
+
+  }
   syn String IdUse.address() = decl().address();
   //we need to modify params address to point to args adress! First args is at 16(%rsp)
-  syn String FunctionDecl.getParam(int index).address() = ((index+2)*8)+"(%rbp)";
+  //syn String FunctionDecl.getParam(int index).address() = ((index+2)*8)+"(%rbp)";
 
 
   syn int ASTNode.numLocals() = lastNode().localIndex() - localIndex();
