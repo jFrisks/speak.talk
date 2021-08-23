@@ -1,7 +1,0 @@
-int a(){
-    return int x;
-}
-int b(){
-     int x;
-     return x = 5;
- }

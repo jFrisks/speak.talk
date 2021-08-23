@@ -1,7 +1,0 @@
-int main() {
-    if (4 > 3) {
-        print(1);
-    } else {
-        print(0);
-    }
-}

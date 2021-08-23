@@ -1,8 +1,0 @@
-int main() {
-    int x = 3;
-    print(a());
-}
-
-int a() {
-    int x = 2;
-}

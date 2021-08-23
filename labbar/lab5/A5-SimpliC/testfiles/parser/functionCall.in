@@ -1,9 +1,0 @@
-int a() {
-  int x;
-  x = b();
-}
-
-int b() {
-  int x;
-  x = 5;
-}

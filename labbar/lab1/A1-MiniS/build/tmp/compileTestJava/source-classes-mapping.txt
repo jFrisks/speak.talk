@@ -1,4 +1,0 @@
-lang/ParseTests.java
- lang.ParseTests
-lang/Util.java
- lang.Util

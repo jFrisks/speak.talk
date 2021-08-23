@@ -1,6 +1,0 @@
-int myprint(int x) {
-  print(x);
-}
-int main() {
-  myprint(144);
-}

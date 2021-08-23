@@ -1,7 +1,0 @@
-// This is a comment
-int a() {
-  int x;
-  x = 5;
-}
-
-// text text

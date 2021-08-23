@@ -1,8 +1,0 @@
-int main() {
-    int x = 3;
-    b();
-}
-
-int b() {
-    return 0;
-}

@@ -1,4 +1,0 @@
-int main(){
-    int x = 6 - 2 - 1;
-    print(x);
-}

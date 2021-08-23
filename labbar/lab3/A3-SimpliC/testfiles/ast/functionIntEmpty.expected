@@ -1,7 +1,0 @@
-Program
-  List
-    FunctionDecl
-      IdDecl ID="lucas"
-      List
-      Block
-        List

@@ -1,7 +1,0 @@
-int main() {
-    if (3 > 2) {
-        int y = 4;
-    } else {
-        int y = 3;
-    }
-}

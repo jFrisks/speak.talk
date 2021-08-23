@@ -1,7 +1,0 @@
-int main() {
-    int a = 3;
-    while (3 > 2) {
-        int a = 4;
-        return a;
-    }
-}
