@@ -1,6 +1,6 @@
-int main(){
-    int x = read();
-    int y = read();
+A function that is called main. It returns an integer by running the following code:
+- an integer variable that is called x and has the value of the function read.
+- an integer variable that is called y and has the value of the function read.
 
-    print(x*y);
-}
+- the function that is called print and uses the arguments x multiplied with y.
+.
