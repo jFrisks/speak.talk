@@ -1,14 +1,7 @@
-# edan65-compilers
-Course in Compilers. Java. Everything from Scanning to Machine Code, except optimization.
+# Shortly - A programming language with short syntax
+Everything from Scanning to Machine Code, except optimization.
 
-## Lab 1 - CalcAst Language | Very simple let / mul language
+Written in Java, using JastAdd.
 
-## Lab 2 - SimpliC Language | Similar to c
-
-## Lab 3 - 
-
-## Lab 4 - 
-
-## Lab 5 - 
-
-## Lab 6 - FINAL
+## Credits
+Based on a private repo from project ([@lucasedlund](https://github.com/LucasEdlund) and [@jfrisks](https://github.com/jfrisks).) in a compilers course at Lund University.
