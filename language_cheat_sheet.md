@@ -9,6 +9,7 @@
 - Declare (statement) with arguments: A function that is called [function name] and [arguments], It returns [type] by running the following code: [code block] .
   regex: `^int (\w*)( )?\(([\w, ]*)\) \{
 - Run with arguments (expression): the function that is called print and [arguments].
+  regex: `\([^,]*,[^,)]*\)`
 
 ## Arguments
 - Argument for function (declare/run): uses the arguments of [arg1], [arg2], [...args]
@@ -23,15 +24,20 @@
   Regex1: `(-[ ]*[ \w]*) =`
 - While: - loop while [condition(s)]. Run the following code each time: [code block] .
 - If: - if [conditions(s)], do the following: [code block] - else, do: [code block] .
+  regex: `([ ]*)(\})\n?([ ]*)else[ ]*\{`
 - Return: - finally return [expression].
   regex: `(^[ ]*)(return)(.*)`
+- Function:  run the function that is called [name] and uses the arguments of [args].
 
 ## Variables
 - Declare: [type] that is called [name]
-- Use: the [type] [name]
+- Use: the variable that is called [name]
+  regex1: `((\()([a-zA-Z]*)([,)]))`
 
 ## Expressions
 - Run function: [(Please refer to function-title)]
+- Minus: [variable] subtracted by [variable]
+- Negative
 
 ## Conditions
 - Is not equal: [variable] is not equal to [variable]

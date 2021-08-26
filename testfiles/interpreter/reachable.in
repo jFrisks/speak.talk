@@ -1,12 +1,12 @@
 A function that is called fac and uses the arguments of an integer that is called n. It returns an integer by running the following code:
-    if (n <= 1) { return 1; }
-        else { return fac(n-1) * n; }
-    }
-    int f() {
-    print(fac(5));
-}
+    - if the variable that is called n is less or equal to 1, do the following: return 1; .
+ - else, do: return the value of the function fac that uses the arguments of the variable that is called n subtracted by1 multiplied with n; .
+    .
+    int the function that is called f {
+    - run the function that is called print and uses the arguments of the value of the function fac that uses the arguments of 5;
+.
 
 A function that is called main. It returns an integer by running the following code:
-    f();
-}
+    the function that is called f;
+.
 

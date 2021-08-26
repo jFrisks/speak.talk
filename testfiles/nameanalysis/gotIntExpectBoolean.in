@@ -1,5 +1,5 @@
 A function that is called a. It returns an integer by running the following code:
-    if (1 + 1) {
+    - if 1 added to 1, do the following:
         - finally return 3;
-    }
-}
+    .
+.

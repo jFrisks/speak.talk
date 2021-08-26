@@ -1,7 +1,7 @@
 A function that is called a and uses the arguments of an integer that is called x, an integer that is called y, an integer that is called z. It returns an integer by running the following code:
- }
+ .
 
  int b(an integer that is called y) {
    - an integer that is called x.
-   x = a(1,2,3);
- }
+   - the variable that is called x = the value of the function a that uses the arguments of 1,2,3;
+ .

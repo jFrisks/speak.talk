@@ -1,8 +1,9 @@
 A function that is called main. It returns an integer by running the following code:
-  if (3 > 2) {
-    print(42);
-  } else {
-    print(10);
-  }
+  - if 3 is greater than 2, do the following:
+    - run the function that is called print and uses the arguments of 42;
+  .
+  - else, do:
+    - run the function that is called print and uses the arguments of 10;
+  .
   - finally return 1;
-}
+.

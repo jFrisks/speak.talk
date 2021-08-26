@@ -1,4 +1,4 @@
 A function that is called main. It returns an integer by running the following code:
-    print(0);
+    - run the function that is called print and uses the arguments of 0;
     - finally return 0;
-}
+.

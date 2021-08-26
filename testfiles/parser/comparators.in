@@ -5,10 +5,10 @@ A function that is called a. It returns an integer by running the following code
      - an integer that is called e.
      - an integer that is called f.
      - an integer that is called g.
-     g = 4 < 5;
-     b = 4 > 5;
-     c = 4 <= 5;
-     d = 4 >= 5;
-     e = 4 != 5;
-     f = 4 == 5;
- }
+     - the variable that is called g = 4 is less than 5;
+     - the variable that is called b = 4 is greater than 5;
+     - the variable that is called c = 4 is less or equal to 5;
+     - the variable that is called d = 4 is greater or equal to 5;
+     - the variable that is called e = 4 is not equal to 5;
+     - the variable that is called f = 4 is equal to 5;
+ .

@@ -1,6 +1,6 @@
 A function that is called a. It returns an integer by running the following code:
     - an integer that is called x.
     int y
-    x = 5;
-    y = x;
-}
+    - the variable that is called x = 5;
+    - the variable that is called y = x;
+.

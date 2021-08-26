@@ -1,4 +1,4 @@
 A function that is called a. It returns an integer by running the following code:
-    while (a != b) {
-    }
-}
+    - loop while the variable that is called a is not equal to b. Run the following code each time:
+    .
+.

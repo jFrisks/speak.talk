@@ -1,7 +1,7 @@
 A function that is called main. It returns an integer by running the following code:
   - an integer that is called i and has the value of 100;
-  if (3 > 1) {
+  - if 3 is greater than 1, do the following:
     - finally return 1;
-  }
+  .
   - finally return 0;
-}
+.

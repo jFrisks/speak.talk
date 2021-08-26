@@ -1,4 +1,4 @@
 A function that is called a. It returns an integer by running the following code:
  - an integer that is called x.
- x = 4 % 5;
-}
+ - the variable that is called x = 4 modulo 5;
+.

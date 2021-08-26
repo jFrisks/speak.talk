@@ -1,5 +1,5 @@
 A function that is called a. It returns an integer by running the following code:
  - an integer that is called x.
- x = 3;
+ - the variable that is called x = 3;
  - an integer that is called y and has the value of 5;
-}
+.

@@ -1,3 +1,3 @@
-int a(an integer that is called x){
+A function that is called a and uses the arguments of an integer that is called x. It returns an integer by running the following code:
     - finally return x;
-}
+.

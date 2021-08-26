@@ -1,8 +1,8 @@
 A function that is called a. It returns an integer by running the following code:
-    if(3 < 4){
-        if(2 > 1){
+    - if 3 is less than 4, do the following:
+        - if 2 is greater than 1, do the following:
             - finally return 1;
-        }
-    }
+        .
+    .
 
-}
+.
