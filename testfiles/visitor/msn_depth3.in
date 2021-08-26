@@ -1,5 +1,5 @@
-int main() {
-  int i = 100;
+A function that is called main. It returns an integer by running the following code:
+  - an integer that is called i and has the value of 100;
   while (i > 0) {
     if (i == 5) {
       print(i);
@@ -7,5 +7,5 @@ int main() {
     i = i - 1;
   }
 
-  return 0;
+  - finally return 0;
 }

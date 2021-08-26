@@ -1,11 +1,11 @@
-int fac(int n) {
+A function that is called fac and uses the arguments of an integer that is called n. It returns an integer by running the following code:
     if (n <= 1) { return 1; } else { return fac(n-1) * n; }
 }
 
-int f() {
+A function that is called f. It returns an integer by running the following code:
     print(fac(5));
 }
 
-int main() {
+A function that is called main. It returns an integer by running the following code:
     f();
 }

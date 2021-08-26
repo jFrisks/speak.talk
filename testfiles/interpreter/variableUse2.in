@@ -1,7 +1,7 @@
-int main(){
-    int y = 2;
-    int x = 6 - 2 - 1;
-    int z = 4 * 2;
+A function that is called main. It returns an integer by running the following code:
+    - an integer that is called y and has the value of 2;
+    - an integer that is called x and has the value of 6 - 2 - 1;
+    - an integer that is called z and has the value of 4 * 2;
     print(x);
     print(z);
     print(y);

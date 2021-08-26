@@ -1,8 +1,8 @@
-int main() {
+A function that is called main. It returns an integer by running the following code:
   if (3 > 2) {
     print(42);
   } else {
     print(10);
   }
-  return 1;
+  - finally return 1;
 }

@@ -1,8 +1,8 @@
-int main() {
-    int x = 3;
+A function that is called main. It returns an integer by running the following code:
+    - an integer that is called x and has the value of 3;
     b();
 }
 
-int b() {
-    return 0;
+A function that is called b. It returns an integer by running the following code:
+    - finally return 0;
 }

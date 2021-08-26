@@ -1,19 +1,19 @@
-int main() {
-    int i = 3;
+A function that is called main. It returns an integer by running the following code:
+    - an integer that is called i and has the value of 3;
     while (i > 0) {
         if (i == 2) {
             print(i);
         }
         i = i - 1;
-        int x;
+        - an integer that is called x.
         x = 3;
         print(x);
     }
     print(a(i));
     print(3 > 1);
-    return i;
+    - finally return i;
 }
 
-int a(int b) {
-    return b;
+A function that is called a and uses the arguments of an integer that is called b. It returns an integer by running the following code:
+    - finally return b;
 }

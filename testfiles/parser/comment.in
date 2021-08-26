@@ -1,6 +1,6 @@
 // This is a comment
-int a() {
-  int x;
+A function that is called a. It returns an integer by running the following code:
+  - an integer that is called x.
   x = 5;
 }
 

@@ -1,16 +1,16 @@
-int main() {
+A function that is called main. It returns an integer by running the following code:
   print(1);
   f();
   g();
-  return 1;
+  - finally return 1;
 }
 
-int f() {
+A function that is called f. It returns an integer by running the following code:
   print(2);
-  return 2;
+  - finally return 2;
 }
 
-int g() {
+A function that is called g. It returns an integer by running the following code:
   print(3);
-  return 3;
+  - finally return 3;
 }

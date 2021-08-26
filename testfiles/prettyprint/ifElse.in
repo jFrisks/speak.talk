@@ -1,4 +1,4 @@
-int a() {
+A function that is called a. It returns an integer by running the following code:
     if (a > b) {
         a = a - b;
     } else {

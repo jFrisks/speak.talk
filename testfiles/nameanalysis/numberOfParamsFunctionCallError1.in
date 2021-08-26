@@ -1,7 +1,7 @@
-int a(int x, int y){
-    return x * y;
+int a(an integer that is called x, an integer that is called y){
+    - finally return x * y;
 }
 
-int b(){
+A function that is called b. It returns an integer by running the following code:
     a(3);
 }

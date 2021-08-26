@@ -1,20 +1,20 @@
-int main(){
-  int x;
+A function that is called main. It returns an integer by running the following code:
+  - an integer that is called x.
   x = f(3 - 2);
-  int y = g(3, 42);
+  - an integer that is called y and has the value of g(3, 42);
   print(x);
   print(y);
-  return 1;
+  - finally return 1;
 }
 
-int f(int a){
+int f(an integer that is called a){
   print(a);
-  int y = g(3, a);
-  return y;
+  - an integer that is called y and has the value of g(3, a);
+  - finally return y;
 
 }
 
-int g(int a, int b){
-  int x = a + b;
-  return a * b * x;
+int g(an integer that is called a, an integer that is called b){
+  - an integer that is called x and has the value of a + b;
+  - finally return a * b * x;
 }

@@ -1,6 +1,6 @@
-int myprint(int x) {
+A function that is called myprint and uses the arguments of an integer that is called x. It returns an integer by running the following code:
   print(x);
 }
-int main() {
+A function that is called main. It returns an integer by running the following code:
   myprint(144);
 }

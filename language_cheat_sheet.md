@@ -1,14 +1,18 @@
 ## Types
-- Integer: `an integer`
-- string: `a string`
+- Delcare integer: `an integer`
+  regex2: `(|^)(int (\w*))[ ]*(=)`
+- Declare string: `a string`
 
 ## Function
 - Declare (statement) without arguments: A function that is called [function name]. It returns [type] by running the following code: [code block].
+  regex: `^int (\w*)( )?\(\) \{`
 - Declare (statement) with arguments: A function that is called [function name] and [arguments], It returns [type] by running the following code: [code block] .
+  regex: `^int (\w*)( )?\(([\w, ]*)\) \{
 - Run with arguments (expression): the function that is called print and [arguments].
 
 ## Arguments
 - Argument for function (declare/run): uses the arguments of [arg1], [arg2], [...args]
+  regex: `(of |, |\()(int (\w*))`
 - Multiple args (possible future sol): - Argument for function (declare/run): uses the arguments of [arg1], [arg2], and [arg3]
 
 ## Block of code
@@ -16,8 +20,11 @@
 
 ## Statements
 - Assignment with declaration: - [declare variable] and has the value of [expression] .
+  Regex1: `(-[ ]*[ \w]*) =`
 - While: - loop while [condition(s)]. Run the following code each time: [code block] .
 - If: - if [conditions(s)], do the following: [code block] - else, do: [code block] .
+- Return: - finally return [expression].
+  regex: `(^[ ]*)(return)(.*)`
 
 ## Variables
 - Declare: [type] that is called [name]

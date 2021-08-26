@@ -1,8 +1,8 @@
-int a() {
-  int x;
+A function that is called a. It returns an integer by running the following code:
+  - an integer that is called x.
   x = b(1,);
 }
 
-int b() {
+A function that is called b. It returns an integer by running the following code:
 
 }

@@ -1,2 +1,2 @@
-int a(3) {
+A function that is called a and uses the arguments of 3. It returns an integer by running the following code:
 }

@@ -1,5 +1,5 @@
-int a() {
- int x;
+A function that is called a. It returns an integer by running the following code:
+ - an integer that is called x.
  x = 3;
- int y = 5;
+ - an integer that is called y and has the value of 5;
 }

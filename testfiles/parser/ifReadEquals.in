@@ -1,4 +1,4 @@
-int a(){
+A function that is called a. It returns an integer by running the following code:
     if (read() == 9) {
 
     }
@@ -6,6 +6,6 @@ int a(){
         print(2);
     } else{
         print(2);
-        return 1;
+        - finally return 1;
     }
 }

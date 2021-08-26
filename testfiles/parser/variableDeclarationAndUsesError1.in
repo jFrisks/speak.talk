@@ -1,6 +1,6 @@
-int a() {
+A function that is called a. It returns an integer by running the following code:
     string x;
-    int y;
+    - an integer that is called y.
     x = 5;
     y = x;
 }

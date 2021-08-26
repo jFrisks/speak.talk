@@ -1,9 +1,9 @@
-int main() {
-    int i = 0; // Declaration of i
+A function that is called main. It returns an integer by running the following code:
+    - an integer that is called i and has the value of 0; // Declaration of i
     if (i == 0) {
-        int i = 1; // Another declaration of i
+        - an integer that is called i and has the value of 1; // Another declaration of i
         if (i == 1) {
-            int i = 2; // A third declaration of i
+            - an integer that is called i and has the value of 2; // A third declaration of i
             print(i); // Prints 2
         }
         print(i); // Prints 1

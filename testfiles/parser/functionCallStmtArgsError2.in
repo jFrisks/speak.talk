@@ -1,4 +1,4 @@
-int b(int y,) {
-    int x;
+A function that is called b and uses the arguments of an integer that is called y,. It returns an integer by running the following code:
+    - an integer that is called x.
     x = a(1,2,3);
 }

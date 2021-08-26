@@ -1,7 +1,7 @@
-int a() {
+A function that is called a. It returns an integer by running the following code:
     if(3 < 4){
         if(2 > 1){
-            return 1;
+            - finally return 1;
         }
     }
 

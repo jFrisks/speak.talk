@@ -1,10 +1,10 @@
-int a() {
-     int b;
-     int c;
-     int d;
-     int e;
-     int f;
-     int g;
+A function that is called a. It returns an integer by running the following code:
+     - an integer that is called b.
+     - an integer that is called c.
+     - an integer that is called d.
+     - an integer that is called e.
+     - an integer that is called f.
+     - an integer that is called g.
      g = 4 < 5;
      b = 4 > 5;
      c = 4 <= 5;

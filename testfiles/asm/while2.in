@@ -1,7 +1,7 @@
-int main() {
+A function that is called main. It returns an integer by running the following code:
   while (1 == 0) {
     print(10);
   }
   print(20);
-  return 1;
+  - finally return 1;
 }

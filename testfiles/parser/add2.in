@@ -1,6 +1,6 @@
-int a() {
- int x;
- int y;
+A function that is called a. It returns an integer by running the following code:
+ - an integer that is called x.
+ - an integer that is called y.
  y = 10;
  x = 4 + 5 + y;
 }

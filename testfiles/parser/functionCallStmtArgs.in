@@ -1,7 +1,7 @@
-int a(int x, int y, int z) {
+A function that is called a and uses the arguments of an integer that is called x, an integer that is called y, an integer that is called z. It returns an integer by running the following code:
  }
 
- int b(int y) {
-   int x;
+ int b(an integer that is called y) {
+   - an integer that is called x.
    x = a(1,2,3);
  }

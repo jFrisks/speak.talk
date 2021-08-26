@@ -1,4 +1,4 @@
-int main(){
-    int a;
+A function that is called main. It returns an integer by running the following code:
+    - an integer that is called a.
     print(a);
 }

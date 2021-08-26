@@ -1,25 +1,25 @@
-int fac(int x) {
+A function that is called fac and uses the arguments of an integer that is called x. It returns an integer by running the following code:
   if (x <= 1) {
-    return 1;
+    - finally return 1;
   }
-  return fac(x-1) * x;
+  - finally return fac(x-1) * x;
 }
-int binom(int n, int k) {
+A function that is called binom and uses the arguments of an integer that is called n, an integer that is called k. It returns an integer by running the following code:
   if (n==1) {
-    return 1;
+    - finally return 1;
   }
   if (n==k) {
-    return 1;
+    - finally return 1;
   }
   if (k>n) {
-    return 0;
+    - finally return 0;
   }
-  return fac(n) / (fac(k) * fac(n-k));
+  - finally return fac(n) / (fac(k) * fac(n-k));
 }
-int main() {
+A function that is called main. It returns an integer by running the following code:
   print(binom(12, 3));
   print(binom(12, 4));
   print(binom(12, 5));
   print(binom(12, 6));
-  return 0;
+  - finally return 0;
 }

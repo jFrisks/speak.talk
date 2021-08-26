@@ -1,6 +1,6 @@
-int main() {
+A function that is called main. It returns an integer by running the following code:
     if (3 > 2) {
-        int x = 4;
+        - an integer that is called x and has the value of 4;
     }
-    int x = 5;
+    - an integer that is called x and has the value of 5;
 }

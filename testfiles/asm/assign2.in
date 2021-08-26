@@ -1,14 +1,14 @@
-int main(){
-  int x;
-  int y = 10;
+A function that is called main. It returns an integer by running the following code:
+  - an integer that is called x.
+  - an integer that is called y and has the value of 10;
   x = y + 2;
   print(42);
-  return f(y + x);
+  - finally return f(y + x);
 }
 
-int f(int x){
+int f(an integer that is called x){
   print(x);
-  int y = 2;
+  - an integer that is called y and has the value of 2;
   print(y);
-  return 1;
+  - finally return 1;
 }

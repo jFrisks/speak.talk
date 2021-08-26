@@ -1,4 +1,4 @@
-int main() {
-    int x = 3;
+A function that is called main. It returns an integer by running the following code:
+    - an integer that is called x and has the value of 3;
     x = 4;
 }

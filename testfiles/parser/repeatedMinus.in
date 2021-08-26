@@ -1,11 +1,11 @@
-int f() {
-  return --3; // = -(-(3))
+A function that is called f. It returns an integer by running the following code:
+  - finally return --3; // = -(-(3))
 }
 
-int g() {
-  return ---3;
+A function that is called g. It returns an integer by running the following code:
+  - finally return ---3;
 }
 
-int g() {
-  return ------3;
+A function that is called g. It returns an integer by running the following code:
+  - finally return ------3;
 }

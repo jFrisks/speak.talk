@@ -1,9 +1,9 @@
-int main() {
+A function that is called main. It returns an integer by running the following code:
   f(3);
-  return 1;
+  - finally return 1;
 }
 
-int f(int a) {
+A function that is called f and uses the arguments of an integer that is called a. It returns an integer by running the following code:
   print(a);
-  return 1;
+  - finally return 1;
 }

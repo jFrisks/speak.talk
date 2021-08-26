@@ -1,13 +1,13 @@
-int add(int a) {
+A function that is called add and uses the arguments of an integer that is called a. It returns an integer by running the following code:
     print(a);
 }
 
-int main() {
-    int i = 10;
+A function that is called main. It returns an integer by running the following code:
+    - an integer that is called i and has the value of 10;
     add(i); // Call with 2 arguments: first value of i, second value 20.
     sub();
 }
 
-int sub(){
+A function that is called sub. It returns an integer by running the following code:
     print(11);
 }

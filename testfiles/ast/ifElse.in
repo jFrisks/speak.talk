@@ -1,8 +1,8 @@
-int a() {
- int x;
+A function that is called a. It returns an integer by running the following code:
+ - an integer that is called x.
  x = 10;
  if (x > 3) {
-  int z;
+  - an integer that is called z.
   z = 3;
  } else {
   print(3);

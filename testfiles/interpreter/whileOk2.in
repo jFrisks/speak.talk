@@ -1,4 +1,4 @@
-int main() {
+A function that is called main. It returns an integer by running the following code:
     while(3 < 1) {
         print(1);
     }

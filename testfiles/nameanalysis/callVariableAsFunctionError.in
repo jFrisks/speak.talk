@@ -1,4 +1,4 @@
-int a(){
-    int x = 3;
-    return x();
+A function that is called a. It returns an integer by running the following code:
+    - an integer that is called x and has the value of 3;
+    - finally return x();
 }
