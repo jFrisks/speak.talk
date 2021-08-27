@@ -1,2 +1,2 @@
-int a(an integer that is called x;, an integer that is called y, an integer that is called z) {
+A function that is called a and uses the arguments of an integer that is called x., an integer that is called y, an integer that is called z. It returns an integer by running the following code:
 .

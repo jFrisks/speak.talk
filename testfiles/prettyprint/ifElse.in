@@ -1,8 +1,8 @@
 A function that is called a. It returns an integer by running the following code:
     - if the variable that is called a is greater than b, do the following:
-        - the variable that is called a = the variable that is called a subtracted by the variable that is called b;
+        - the variable that is called a has the value of the variable that is called a subtracted by the variable that is called b.
     .
     - else, do:
-        - the variable that is called b = the variable that is called b subtracted by the variable that is called a;
+        - the variable that is called b has the value of the variable that is called b subtracted by the variable that is called a.
     .
 .

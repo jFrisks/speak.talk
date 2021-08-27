@@ -37,7 +37,8 @@
 ## Expressions
 - Run function: [(Please refer to function-title)]
 - Minus: [variable] subtracted by [variable]
-- Negative
+- Negative:
+  regex: `(?<![\n\v][ ]*)(-)`
 
 ## Conditions
 - Is not equal: [variable] is not equal to [variable]

@@ -1,16 +1,16 @@
 A function that is called main. It returns an integer by running the following code:
-  - run the function that is called print and uses the arguments of 1;
-  the function that is called f;
-  the function that is called g;
-  - finally return 1;
+  - run the function that is called print and uses the arguments of 1.
+  the function that is called f.
+  the function that is called g.
+  - finally return 1.
 .
 
 A function that is called f. It returns an integer by running the following code:
-  - run the function that is called print and uses the arguments of 2;
-  - finally return 2;
+  - run the function that is called print and uses the arguments of 2.
+  - finally return 2.
 .
 
 A function that is called g. It returns an integer by running the following code:
-  - run the function that is called print and uses the arguments of 3;
-  - finally return 3;
+  - run the function that is called print and uses the arguments of 3.
+  - finally return 3.
 .

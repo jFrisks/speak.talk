@@ -1,5 +1,5 @@
 A function that is called a. It returns an integer by running the following code:
-  - finally return 3; //xasdas
+  - finally return 3. //xasdas
   //this is a comment
 .
 

@@ -1,8 +1,8 @@
 A function that is called f. It returns an integer by running the following code:
-    - finally return 2;
+    - finally return 2.
 .
 
 A function that is called main. It returns an integer by running the following code:
-    the function that is called f;
-    - finally return 1;
+    the function that is called f.
+    - finally return 1.
 .

@@ -1,14 +1,14 @@
 A function that is called a. It returns an integer by running the following code:
   - an integer that is called x.
-  - the variable that is called x = the value of the function b that uses the arguments of 3;
+  - the variable that is called x has the value of the value of the function b that uses the arguments of 3.
 .
 
 A function that is called b. It returns an integer by running the following code:
   - an integer that is called x.
-  - the variable that is called x = 5;
+  - the variable that is called x has the value of 5.
 .
 
 A function that is called c. It returns an integer by running the following code:
   - an integer that is called x.
-  - the variable that is called x = the value of the function b that uses the arguments of 1,2,3;
+  - the variable that is called x has the value of the value of the function b that uses the arguments of 1,2,3.
 .

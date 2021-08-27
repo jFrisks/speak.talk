@@ -1,8 +1,8 @@
 A function that is called main. It returns an integer by running the following code:
-    - run the function that is called print and uses the arguments of 3 is less than 4;
-    - run the function that is called print and uses the arguments of 3 is greater than 4;
-    - run the function that is called print and uses the arguments of 3 is greater or equal to 4;
-    - run the function that is called print and uses the arguments of 3 is less or equal to 4;
-    - run the function that is called print and uses the arguments of 3 is not equal to 4;
-    - run the function that is called print and uses the arguments of 3 is equal to 4;
+    - run the function that is called print and uses the arguments of 3 is less than 4.
+    - run the function that is called print and uses the arguments of 3 is greater than 4.
+    - run the function that is called print and uses the arguments of 3 is greater or equal to 4.
+    - run the function that is called print and uses the arguments of 3 is less or equal to 4.
+    - run the function that is called print and uses the arguments of 3 is not equal to 4.
+    - run the function that is called print and uses the arguments of 3 is equal to 4.
 .
