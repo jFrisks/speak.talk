@@ -1,2 +1,2 @@
-A function that is called f and uses the arguments of an integer that is called x, an integer that is called y, an integer that is called z. It returns an integer by running the following code: .
-A function that is called g and uses the arguments of an integer that is called x, an integer that is called y, an integer that is called h. It returns an integer by running the following code: .
+A function that is called f and returns an integer by using the arguments of an integer that is called x, an integer that is called y, an integer that is called z. It runs the following: .
+A function that is called g and returns an integer by using the arguments of an integer that is called x, an integer that is called y, an integer that is called h. It runs the following: .

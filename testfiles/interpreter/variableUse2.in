@@ -1,7 +1,7 @@
-A function that is called main. It returns an integer by running the following code:
-    - an integer that is called y has the value of 2.
-    - an integer that is called x has the value of 6 subtracted by 2 subtracted by 1.
-    - an integer that is called z has the value of 4 multiplied with 2.
+A function that is called main and returns an integer. It runs the following:
+    - an integer that is called y and has the value of 2.
+    - an integer that is called x and has the value of 6 subtracted by 2 subtracted by 1.
+    - an integer that is called z and has the value of 4 multiplied with 2.
     - run the function that is called print and uses the arguments of the variable that is called x.
     - run the function that is called print and uses the arguments of the variable that is called z.
     - run the function that is called print and uses the arguments of the variable that is called y.

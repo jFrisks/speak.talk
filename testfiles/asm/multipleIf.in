@@ -1,4 +1,4 @@
-A function that is called main. It returns an integer by running the following code:
+A function that is called main and returns an integer. It runs the following:
   - if 3 is greater than 2, do the following:
     - finally return 2.
   .
@@ -9,7 +9,7 @@ A function that is called main. It returns an integer by running the following c
   - finally return 1.
 .
 
-A function that is called a. It returns an integer by running the following code:
+A function that is called a and returns an integer. It runs the following:
   - if 3 is greater than 2, do the following:
     - finally return 2.
   .

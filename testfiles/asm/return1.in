@@ -1,3 +1,3 @@
-A function that is called main. It returns an integer by running the following code:
+A function that is called main and returns an integer. It runs the following:
     - finally return 2.
 .

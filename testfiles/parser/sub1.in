@@ -1,4 +1,4 @@
-A function that is called a. It returns an integer by running the following code:
+A function that is called a and returns an integer. It runs the following:
  - an integer that is called x.
  - the variable that is called x has the value of 4 subtracted by 5.
 .

@@ -1,3 +1,3 @@
-A function that is called g. It returns an integer by running the following code:
+A function that is called g and returns an integer. It runs the following:
   - finally return the negative of the negative of the negative of 3.
 .

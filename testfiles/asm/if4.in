@@ -1,4 +1,4 @@
-A function that is called main. It returns an integer by running the following code:
+A function that is called main and returns an integer. It runs the following:
   - if 3 is equal to 4, do the following:
     - run the function that is called print and uses the arguments of 3.
   .

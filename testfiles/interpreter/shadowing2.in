@@ -1,6 +1,6 @@
-A function that is called main. It returns an integer by running the following code:
-  - an integer that is called x has the value of 0.
-  - an integer that is called sum has the value of 0.
+A function that is called main and returns an integer. It runs the following:
+  - an integer that is called x and has the value of 0.
+  - an integer that is called sum and has the value of 0.
   - loop while the variable that is called x is less than 10. Run the following code each time:
     - if the variable that is called x is less than 3, do the following:
       - an integer that is called x.

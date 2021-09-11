@@ -1,7 +1,7 @@
-A function that is called a. It returns an integer by running the following code:
+A function that is called a and returns an integer. It runs the following:
     - finally return the negative of  an integer that is called x.
 .
-A function that is called b. It returns an integer by running the following code:
+A function that is called b and returns an integer. It runs the following:
      - an integer that is called x.
      - finally return x has the value of 5.
  .

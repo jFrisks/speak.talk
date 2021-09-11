@@ -1,11 +1,11 @@
-A function that is called f. It returns an integer by running the following code:
+A function that is called f and returns an integer. It runs the following:
   - finally return the negative of the negative of 3. // = the negative of (the negative of  the expression, 3)
 .
 
-A function that is called g. It returns an integer by running the following code:
+A function that is called g and returns an integer. It runs the following:
   - finally return the negative of the negative of the negative of 3.
 .
 
-A function that is called g. It returns an integer by running the following code:
+A function that is called g and returns an integer. It runs the following:
   - finally return the negative of the negative of the negative of the negative of the negative of the negative of 3.
 .

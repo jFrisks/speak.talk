@@ -1,3 +1,3 @@
-A function that is called f and uses the arguments of an integer that is called x. It returns an integer by running the following code:
+A function that is called f and returns an integer by using the arguments of an integer that is called x. It runs the following:
   - finally return the negative of the variable that is called x multiplied with the negative of 2.
 .

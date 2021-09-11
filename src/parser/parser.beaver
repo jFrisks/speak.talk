@@ -9,7 +9,7 @@
 	}
 :};
 
-%terminals ID, NUMERAL, INT, LPARAN, RPARAN, LBRACKET, RBRACKET, SEMICOLON, ASSIGN, MULTIPLIER, PLUS, SUB, DIVIDER, MODULAR, LESS, GREATER, LEQ, GEQ, NOTEQ, EQ, COMMA, RETURN, IF, ELSE, WHILE;
+%terminals ID, NUMERAL, INT, LPARAN, RPARAN, LBRACKET, ASSIGN, MULTIPLIER, PLUS, SUB, DIVIDER, MODULAR, LESS, GREATER, LEQ, GEQ, NOTEQ, EQ, COMMA, RETURN, RETURNS, IF, ELSE, WHILE, ARTICLE, CALLED, VARIABLE, EXPRESSION, DOFOLLOWING, ENDING, NEG, VALUEOFFUNC, USESARGS, USINGSARGS, FUNCTION, AND;
 
 %typeof program = "Program";
 %typeof programStmtList = "List";
@@ -66,9 +66,9 @@ programStmt =
   ;
 
 functionDecl =
-  idDecl.id LPARAN paramDeclareList.a RPARAN block.b {: return new FunctionDecl(id, a, b); :}
-  | idDecl.id LPARAN RPARAN block.b {: return new FunctionDecl(id, new List(), b); :}
-  ;
+  idDecl.id USINGSARGS paramDeclareList.a ENDING IT DO FOLLOWING block.b {: return new FunctionDecl(id, a, b); :}
+  | idDecl.id ENDING IT DO FOLLOWING block.b {: return new FunctionDecl(id, new List(), b); :}
+  ; /* Watch out for potential problems in paramdeclareList. Also not using idDecl.id */
 
 paramDeclareList =
   idDecl.a {: return new List().add(a); :}
@@ -76,8 +76,8 @@ paramDeclareList =
   ;
 
 block =
-    LBRACKET stmtList.list RBRACKET {: return new Block(list); :}
-    | LBRACKET RBRACKET {: return new Block(); :} ;
+    LBRACKET stmtList.list ENDING {: return new Block(list); :}
+    | LBRACKET ENDING {: return new Block(); :} ;
 
 stmtList =
     stmt.a {: return new List().add(a); :}
@@ -85,31 +85,32 @@ stmtList =
     ;
 
 stmt =
-     idDeclStmt.a SEMICOLON {: return a; :}
-     | assignment.a SEMICOLON {: return a; :}
-     | returnStmt.a SEMICOLON {: return a; :}
-     | ifElse.a {: return a; :}
-     | while.a {: return a; :}
-     | functionCallStmt.a SEMICOLON {: return a; :}
+     DASH idDeclStmt.a ENDING {: return a; :}
+     | DASH assignment.a ENDING {: return a; :}
+     | DASH returnStmt.a ENDING {: return a; :}
+     | DASH ifElse.a ENDING {: return a; :}
+     | DASH while.a ENDING {: return a; :}
+     | DASH functionCallStmt.a ENDING {: return a; :}
      ;
 
 assignment =
   idUse.a ASSIGN expr.b {: return new Assignment(a,b); :}
-  | idDecl.a ASSIGN expr.b {: return new Assignment(a,b); :}
+  | idDecl.a AND ASSIGN expr.b {: return new Assignment(a,b); :}
   ;
 
 idDeclStmt = idDecl.a {: return new IdDeclStmt(a); :};
 
 returnStmt = RETURN expr.a {: return new ReturnStmt(a); :};
 
-while = WHILE paren.a block.b {: return new While(a,b); :};
+while = WHILE expr.a ENDING DO FOLLOWING block.b {: return new While(a,b); :};
 
+//TODO: We changed from paren to expr. Test if correct.
 ifElse =
-  IF paren.a block.b {: return new IfElse(a,b, new Opt()); :}
-  | IF paren.a block.b ELSE block.c {: return new IfElse(a,b,new Opt(c)); :}
+  IF expr.a DO FOLLOWING block.b {: return new IfElse(a,b, new Opt()); :}
+  | IF expr.a DO FOLLOWING block.b ELSE block.c {: return new IfElse(a,b,new Opt(c)); :}
   ;
 
-functionCallStmt = functionCall.a {: return new FunctionCallStmt(a); :};
+functionCallStmt = DO functionCall.a {: return new FunctionCallStmt(a); :};
 
 expr =
   comparator
@@ -122,8 +123,8 @@ expr =
   ;
 
 functionCall =
-  idUse.a LPARAN paramList.b RPARAN {: return new FunctionCall(a, b); :}
-  | idUse.a LPARAN RPARAN {: return new FunctionCall(a, new List()); :}
+  OFFUNC CALLED idUse.a USESARGS paramList.b {: return new FunctionCall(a, b); :}
+  | OFFUNC CALLED idUse.a {: return new FunctionCall(a, new List()); :}
   ;
 
 paramList =
@@ -176,15 +177,19 @@ posFactor =
 
 factor =
   posFactor
-  | SUB posFactor.a {: return new Neg(a); :}
+  | NEG posFactor.a {: return new Neg(a); :}
   ;
 
 paren =
-  LPARAN expr.a RPARAN {: return a; :};
+  EXPRESSION COMMA expr.a COMMA {: return a; :};
 
-idUse = ID.id {: return new IdUse(id); :};
+idUse = VARIABLE CALLED ID.id {: return new IdUse(id); :};
 
-idDecl = intType.a ID.id {: return new IdDecl(a, id); :} ;
+idDecl =
+  ARTICLE intType.a CALLED ID.id {: return new IdDecl(a, id); :}
+  | ARTICLE FUNCTION CALLED ID.id AND RETURNS ARTICLE intType.a {: return new IdDecl(a, id); :}
+  ;
+/* For functions: A function that is called xx and returns an integer. It uses the arguments of ddd, dd and runs the following code: ARTICLE FUNCTION CALLED ID.id */
 
 intType = INT {: return new IntType(); :};
 
