@@ -56,6 +56,7 @@ IT = (it|It)
 "the following"                { return sym(Terminals.FOLLOWING); } //TODO: May need to seperate these
 "else, do"                     { return sym(Terminals.ELSE); }
 "loop while"                   { return sym(Terminals.WHILE); }
+"each time"                    { return sym(Terminals.EACHTIME); }
 "finally return"               { return sym(Terminals.RETURN); }
 "and"                          { return sym(Terminals.AND); }
 "returns"                      { return sym(Terminals.RETURNS); }
@@ -79,7 +80,7 @@ IT = (it|It)
 "-"                            { return sym(Terminals.DASH);}
 "the function"                 { return sym(Terminals.OFFUNC); }
 "function"                     { return sym(Terminals.FUNCTION); }
-"that uses the arguments of"   { return sym(Terminals.USESARGS); }
+"uses the arguments of"        { return sym(Terminals.USESARGS); }
 "by using the arguments of"    { return sym(Terminals.USINGSARGS); }
 {COMMENT}                      { }
 {NUMERAL}                      { return sym(Terminals.NUMERAL); }

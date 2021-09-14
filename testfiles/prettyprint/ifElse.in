@@ -1,7 +1,6 @@
 A function that is called a and returns an integer. It runs the following:
     - if the variable that is called a is greater than b, do the following:
         - the variable that is called a has the value of the variable that is called a subtracted by the variable that is called b.
-    .
     - else, do:
         - the variable that is called b has the value of the variable that is called b subtracted by the variable that is called a.
     .

@@ -1,5 +1,5 @@
 A function that is called main and returns an integer. It runs the following:
-    - loop while 3 is less than 1. Run the following code each time:
+    - loop while 3 is less than 1. Run the following  each time:
         - run the function that is called print and uses the arguments of 1.
     .
     - run the function that is called print and uses the arguments of 2.

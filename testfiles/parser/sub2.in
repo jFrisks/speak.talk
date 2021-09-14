@@ -2,5 +2,5 @@ A function that is called a and returns an integer. It runs the following:
  - an integer that is called x.
  - an integer that is called y.
  - the variable that is called y has the value of 10.
- - the variable that is called x has the value of 4 subtracted by 5 subtracted by y.
+ - the variable that is called x has the value of 4 subtracted by 5 subtracted by the variable that is called y.
 .

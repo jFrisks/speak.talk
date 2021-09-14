@@ -1,5 +1,5 @@
 A function that is called a and returns an integer by using the arguments of an integer that is called x, an integer that is called y. It runs the following:
-    - finally return the variable that is called x multiplied with y.
+    - finally return the variable that is called x multiplied with the variable that is called y.
 .
 
 A function that is called b and returns an integer. It runs the following:

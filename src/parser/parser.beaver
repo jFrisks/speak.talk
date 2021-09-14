@@ -9,7 +9,7 @@
 	}
 :};
 
-%terminals ID, NUMERAL, INT, LPARAN, RPARAN, LBRACKET, ASSIGN, MULTIPLIER, PLUS, SUB, DIVIDER, MODULAR, LESS, GREATER, LEQ, GEQ, NOTEQ, EQ, COMMA, RETURN, RETURNS, IF, ELSE, WHILE, ARTICLE, CALLED, VARIABLE, EXPRESSION, DOFOLLOWING, ENDING, NEG, VALUEOFFUNC, USESARGS, USINGSARGS, FUNCTION, AND;
+%terminals ID, NUMERAL, INT, LPARAN, RPARAN, LBRACKET, ASSIGN, MULTIPLIER, PLUS, SUB, DIVIDER, MODULAR, LESS, GREATER, LEQ, GEQ, NOTEQ, EQ, COMMA, RETURN, RETURNS, IF, ELSE, WHILE, ARTICLE, CALLED, VARIABLE, EXPRESSION, DOFOLLOWING, ENDING, NEG, VALUEOFFUNC, USESARGS, USINGSARGS, FUNCTION, AND, EACHTIME;
 
 %typeof program = "Program";
 %typeof programStmtList = "List";
@@ -26,6 +26,7 @@
 %typeof ifElse = "IfElse";
 %typeof while = "While";
 %typeof functionCallStmt = "FunctionCallStmt";
+%typeof idVariableUse = "IdUse";
 %typeof idUse = "IdUse";
 %typeof numeral = "Numeral";
 %typeof expr = "Expr";
@@ -94,7 +95,7 @@ stmt =
      ;
 
 assignment =
-  idUse.a ASSIGN expr.b {: return new Assignment(a,b); :}
+  idVariableUse.a ASSIGN expr.b {: return new Assignment(a,b); :}
   | idDecl.a AND ASSIGN expr.b {: return new Assignment(a,b); :}
   ;
 
@@ -102,12 +103,12 @@ idDeclStmt = idDecl.a {: return new IdDeclStmt(a); :};
 
 returnStmt = RETURN expr.a {: return new ReturnStmt(a); :};
 
-while = WHILE expr.a ENDING DO FOLLOWING block.b {: return new While(a,b); :};
+while = WHILE expr.a ENDING DO FOLLOWING EACHTIME block.b {: return new While(a,b); :};
 
 //TODO: We changed from paren to expr. Test if correct.
 ifElse =
-  IF expr.a DO FOLLOWING block.b {: return new IfElse(a,b, new Opt()); :}
-  | IF expr.a DO FOLLOWING block.b ELSE block.c {: return new IfElse(a,b,new Opt(c)); :}
+  IF expr.a COMMA DO FOLLOWING block.b {: return new IfElse(a,b, new Opt()); :}
+  | IF expr.a COMMA DO FOLLOWING block.b DASH ELSE block.c {: return new IfElse(a,b,new Opt(c)); :}
   ;
 
 functionCallStmt = DO functionCall.a {: return new FunctionCallStmt(a); :};
@@ -123,7 +124,7 @@ expr =
   ;
 
 functionCall =
-  OFFUNC CALLED idUse.a USESARGS paramList.b {: return new FunctionCall(a, b); :}
+  OFFUNC CALLED idUse.a AND USESARGS paramList.b {: return new FunctionCall(a, b); :}
   | OFFUNC CALLED idUse.a {: return new FunctionCall(a, new List()); :}
   ;
 
@@ -171,7 +172,7 @@ mod = term.a MODULAR factor.b {: return new Mod(a, b); :};
 posFactor =
   numeral
   | functionCall
-  | idUse
+  | idVariableUse
   | paren
   ;
 
@@ -183,7 +184,9 @@ factor =
 paren =
   EXPRESSION COMMA expr.a COMMA {: return a; :};
 
-idUse = VARIABLE CALLED ID.id {: return new IdUse(id); :};
+idVariableUse = VARIABLE CALLED idUse.a {: return a; :};
+
+idUse = ID.id {: return new IdUse(id); :};
 
 idDecl =
   ARTICLE intType.a CALLED ID.id {: return new IdDecl(a, id); :}
